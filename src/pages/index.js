@@ -1,8 +1,8 @@
 import Head from "next/head";
-import { Inter } from "next/font/google";
-// import styles from "@/styles/Home.module.css";
-const inter = Inter({ subsets: ["latin"] });
-import { Container } from "@chakra-ui/react";
+import {
+  SimpleGrid,
+  Box,
+} from "@chakra-ui/react";
 
 export default function Home() {
   return (
@@ -13,9 +13,14 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container centerContent background={"blue"} maxW='container.lg'>
-        <h1>Hello</h1>
-      </Container>
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap={5}>
+        <Box bg="tomato" height="80px"></Box>
+        <Box bg="tomato" height="80px"></Box>
+        <Box bg="tomato" height="80px"></Box>
+        <Box bg="tomato" height="80px"></Box>
+        <Box bg="tomato" height="80px"></Box>
+        <Box bg="tomato" height="80px"></Box>
+      </SimpleGrid>
     </>
   );
 }

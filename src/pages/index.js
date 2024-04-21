@@ -28,9 +28,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container maxW="8xl" p="5em 0em">
-        <SimpleGrid gap={50} minChildWidth="sm" justifyItems="center">
+        <SimpleGrid gap={50} minChildWidth="sm" justifyItems="center" justifyContent="center" alignItems="center">
           {[...Array(20)].map((_, index) => (
-            <Card key={index} maxW="sm">
+            <Card key={index} maxW="sm" w="90vw">
               <CardBody>
                 <Image
                   src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"

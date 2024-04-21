@@ -12,6 +12,7 @@ import {
   CardFooter,
   Button,
   CardHeader,
+  Center,
 } from "@chakra-ui/react";
 
 import { ArrowForwardIcon } from "@chakra-ui/icons";
@@ -30,7 +31,6 @@ function getRandomImage() {
   return images[randomIndex];
 }
 
-
 export default function Home() {
   return (
     <>
@@ -44,7 +44,30 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container maxW="8xl" p="5em 0em">
-        <SimpleGrid gap={50} minChildWidth="sm" justifyItems="center" justifyContent="center" alignItems="center">
+        <Center flexDir="column">
+          <Image
+            src="./logo.svg"
+            alt="Logo"
+            boxSize={{ base: "12em", md: "13em" }}
+          />
+          <Text maxW="70vw" m="3em" textAlign="center">
+            Ea deserunt elit duis enim aliquip irure aliquip et occaecat. Et
+            laboris anim veniam non est adipisicing magna qui sit. Commodo magna
+            eu eu non commodo dolor pariatur occaecat cillum est officia nisi.
+            Consectetur tempor proident labore aute laborum veniam duis. Lorem
+            sint non enim labore eiusmod nostrud ut minim cillum. Pariatur aute
+          </Text>
+        </Center>
+        <Heading m="1.5em" textTransform="upper" fontWeight="400" textAlign={{base: "center", md: "left"}}>
+          Lista de Presentes
+        </Heading>
+        <SimpleGrid
+          gap={50}
+          minChildWidth="sm"
+          justifyItems="center"
+          justifyContent="center"
+          alignItems="center"
+        >
           {[...Array(20)].map((_, index) => (
             <Card key={index} maxW="sm" w="85vw" alignItems="center">
               <CardBody>
@@ -53,10 +76,12 @@ export default function Home() {
                   alt="Green double couch with wooden legs"
                   borderRadius="lg"
                   boxSize="20em"
-                  objectFit='fill'
+                  objectFit="fill"
                 />
                 <Stack mt="6" spacing="3" alignItems="center">
-                  <Heading size="md" fontWeight="400">Living room Sofa</Heading>
+                  <Heading size="md" fontWeight="400">
+                    Living room Sofa
+                  </Heading>
                   <Text color="blue.600" fontSize="2xl">
                     $450
                   </Text>

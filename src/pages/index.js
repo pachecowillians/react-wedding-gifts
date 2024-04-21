@@ -13,6 +13,14 @@ import {
   Button,
   CardHeader,
   Center,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
 } from "@chakra-ui/react";
 
 import { ArrowForwardIcon } from "@chakra-ui/icons";
@@ -32,6 +40,8 @@ function getRandomImage() {
 }
 
 export default function Home() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
       <Head>
@@ -58,7 +68,12 @@ export default function Home() {
             sint non enim labore eiusmod nostrud ut minim cillum. Pariatur aute
           </Text>
         </Center>
-        <Heading m="1.5em" textTransform="upper" fontWeight="400" textAlign={{base: "center", md: "left"}}>
+        <Heading
+          m="1.5em"
+          textTransform="upper"
+          fontWeight="400"
+          textAlign={{ base: "center", md: "left" }}
+        >
           Lista de Presentes
         </Heading>
         <SimpleGrid
@@ -94,6 +109,7 @@ export default function Home() {
                   colorScheme="facebook"
                   size="lg"
                   rightIcon={<ArrowForwardIcon />}
+                  onClick={onOpen}
                 >
                   Escolher
                 </Button>
@@ -102,6 +118,32 @@ export default function Home() {
           ))}
         </SimpleGrid>
       </Container>
+      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text fontWeight="bold" mb="1rem">
+              You can scroll the content behind the modal
+            </Text>
+            <Text>
+              Ullamco incididunt qui ea irure proident enim dolore occaecat
+              proident commodo do. Cupidatat Lorem ut consequat nulla nostrud.
+              Laboris elit laboris nisi velit proident culpa. Adipisicing duis
+              ullamco commodo velit aute proident. Et est pariatur exercitation
+              aliqua. Velit eu velit Lorem aliqua amet laborum.
+            </Text>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="facebook" mr={3} onClick={onClose}>
+              PIX
+            </Button>
+            <Button colorScheme="facebook" variant="ghost" onClick={onClose}>Vou comprar</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   );
 }

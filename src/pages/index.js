@@ -51,11 +51,12 @@ export default function Home() {
                   </Text>
                 </Stack>
               </CardBody>
-              <Divider />
+              <Divider color="gray.200" />
               <CardFooter>
                 <Button
                   variant="solid"
                   colorScheme="facebook"
+                  size="md"
                   rightIcon={<ArrowForwardIcon />}
                 >
                   Escolher

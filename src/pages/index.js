@@ -44,10 +44,21 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container maxW="8xl" p="5em 0em">
-        <Center>
-          <Image src="./logo.svg" alt="Logo" boxSize={{base: "12em", lg: "13em"}}/>
+        <Center flexDir="column">
+          <Image
+            src="./logo.svg"
+            alt="Logo"
+            boxSize={{ base: "12em", md: "13em" }}
+          />
+          <Text maxW="70vw" m="3em" textAlign="center">
+            Ea deserunt elit duis enim aliquip irure aliquip et occaecat. Et
+            laboris anim veniam non est adipisicing magna qui sit. Commodo magna
+            eu eu non commodo dolor pariatur occaecat cillum est officia nisi.
+            Consectetur tempor proident labore aute laborum veniam duis. Lorem
+            sint non enim labore eiusmod nostrud ut minim cillum. Pariatur aute
+          </Text>
         </Center>
-        <Heading m="1.5em" textTransform="upper" fontWeight="400">
+        <Heading m="1.5em" textTransform="upper" fontWeight="400" textAlign={{base: "center", md: "left"}}>
           Lista de Presentes
         </Heading>
         <SimpleGrid

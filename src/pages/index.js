@@ -67,7 +67,7 @@ export default function Home() {
                 <Button
                   variant="solid"
                   colorScheme="facebook"
-                  size="md"
+                  size="lg"
                   rightIcon={<ArrowForwardIcon />}
                 >
                   Escolher

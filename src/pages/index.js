@@ -13,6 +13,12 @@ import {
   ButtonGroup,
   Button,
 } from "@chakra-ui/react";
+import {
+  AddIcon,
+  CheckIcon,
+  CheckCircleIcon,
+  ArrowForwardIcon,
+} from "@chakra-ui/icons";
 
 export default function Home() {
   return (
@@ -47,7 +53,13 @@ export default function Home() {
               </CardBody>
               <Divider />
               <CardFooter>
-                <Button variant="solid" colorScheme="facebook">Escolher</Button>
+                <Button
+                  variant="solid"
+                  colorScheme="facebook"
+                  rightIcon={<ArrowForwardIcon />}
+                >
+                  Escolher
+                </Button>
               </CardFooter>
             </Card>
           ))}

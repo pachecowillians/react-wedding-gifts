@@ -27,7 +27,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container maxW="8xl" p="5em">
+      <Container maxW="8xl" p="5em 0em">
         <SimpleGrid gap={50} minChildWidth="sm" justifyItems="center">
           {[...Array(20)].map((_, index) => (
             <Card key={index} maxW="sm">

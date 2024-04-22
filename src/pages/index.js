@@ -22,6 +22,8 @@ import {
   ModalFooter,
   useDisclosure,
 } from "@chakra-ui/react";
+import { FaPix } from "react-icons/fa6";
+import { FaShoppingCart } from "react-icons/fa";
 
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 
@@ -137,10 +139,10 @@ export default function Home() {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="facebook" mr={3} onClick={onClose}>
+            <Button colorScheme="facebook" mr={3} onClick={onClose} leftIcon={<FaPix/>}>
               PIX
             </Button>
-            <Button colorScheme="facebook" variant="ghost" onClick={onClose}>Vou comprar</Button>
+            <Button colorScheme="facebook" variant="ghost" onClick={onClose} leftIcon={<FaShoppingCart/>}>Eu Compro</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

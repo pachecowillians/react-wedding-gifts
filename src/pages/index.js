@@ -32,7 +32,18 @@ import { FaShoppingCart } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 
 import { ArrowForwardIcon, PhoneIcon } from "@chakra-ui/icons";
-
+import {
+  Step,
+  StepDescription,
+  StepIcon,
+  StepIndicator,
+  StepNumber,
+  StepSeparator,
+  StepStatus,
+  StepTitle,
+  Stepper,
+  useSteps,
+} from "@chakra-ui/react";
 // Vetor com URLs de imagens diferentes
 const images = [
   "https://images.unsplash.com/photo-1617325247661-675ab4b64ae2?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -46,9 +57,19 @@ function getRandomImage() {
   // Retorna a URL da imagem correspondente ao índice selecionado
   return images[randomIndex];
 }
+const steps = [
+  { title: "contact", description: "Informações de Contato" },
+  { title: "payment_method", description: "Opções de Presente" },
+  { title: "confirm_payment", description: "Confirmação da Escolha" },
+];
 
 export default function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { activeStep, setActiveStep } = useSteps({
+    index: 0,
+    count: steps.length,
+  });
+  const activeStepText = steps[activeStep].description;
 
   return (
     <>
@@ -92,13 +113,7 @@ export default function Home() {
           alignItems="center"
         >
           {[...Array(20)].map((_, index) => (
-            <Card
-              key={index}
-              maxW="sm"
-              w="85vw"
-              alignItems="center"
-              size="lg"
-            >
+            <Card key={index} maxW="sm" w="85vw" alignItems="center" size="lg">
               <CardBody>
                 <Image
                   src={getRandomImage()}
@@ -155,32 +170,43 @@ export default function Home() {
                 </Text>
               </Stack>
             </Flex>
-            <Divider m="1.5em 0"/>
+            <Divider m="1.5em 0" />
+            <Stack m="2em 0">
+              <Stepper size="sm" index={activeStep} gap="0">
+                {steps.map((step, index) => (
+                  <Step
+                    key={index}
+                    gap="0"
+                    onClick={() => setActiveStep(index)}
+                  >
+                    <StepIndicator>
+                      <StepStatus complete={<StepIcon />} />
+                    </StepIndicator>
+                    <StepSeparator _horizontal={{ ml: "0" }} />
+                  </Step>
+                ))}
+              </Stepper>
+              <Text>
+                Passo {activeStep + 1}: <b>{activeStepText}</b>
+              </Text>
+            </Stack>
             <Text>
               Ullamco incididunt qui ea irure proident enim dolore occaecat
               proident commodo do. Cupidatat Lorem ut consequat nulla nostrud.
-              Laboris elit laboris nisi velit proident culpa. Adipisicing duis
-              ullamco commodo velit aute proident. Et est pariatur exercitation
-              aliqua. Velit eu velit Lorem aliqua amet laborum.
+              Laboris elit laboris nisi velit proident culpa.
             </Text>
             <Stack spacing={4} mt="2em" mb="1em">
               <InputGroup>
                 <InputLeftElement pointerEvents="none">
                   <IoPerson color="var(--chakra-colors-facebook-500)" />
                 </InputLeftElement>
-                <Input
-                  type="text"
-                  placeholder="Nome completo"
-                />
+                <Input type="text" placeholder="Nome completo" />
               </InputGroup>
               <InputGroup>
                 <InputLeftElement pointerEvents="none">
                   <PhoneIcon color="facebook.500" />
                 </InputLeftElement>
-                <Input
-                  type="tel"
-                  placeholder="Número de celular"
-                />
+                <Input type="tel" placeholder="Número de celular" />
               </InputGroup>
             </Stack>
           </ModalBody>

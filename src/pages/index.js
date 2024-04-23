@@ -21,11 +21,17 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
+  Box,
+  Flex,
+  InputGroup,
+  InputLeftElement,
+  Input,
 } from "@chakra-ui/react";
 import { FaPix } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
+import { IoPerson } from "react-icons/io5";
 
-import { ArrowForwardIcon } from "@chakra-ui/icons";
+import { ArrowForwardIcon, PhoneIcon } from "@chakra-ui/icons";
 
 // Vetor com URLs de imagens diferentes
 const images = [
@@ -86,7 +92,13 @@ export default function Home() {
           alignItems="center"
         >
           {[...Array(20)].map((_, index) => (
-            <Card key={index} maxW="sm" w="85vw" alignItems="center">
+            <Card
+              key={index}
+              maxW="sm"
+              w="85vw"
+              alignItems="center"
+              size="lg"
+            >
               <CardBody>
                 <Image
                   src={getRandomImage()}
@@ -123,12 +135,27 @@ export default function Home() {
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader></ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text fontWeight="bold" mb="1rem">
-              You can scroll the content behind the modal
-            </Text>
+            <Flex gap="1em">
+              <Image
+                src={getRandomImage()}
+                alt="Green double couch with wooden legs"
+                borderRadius="lg"
+                boxSize="5em"
+                objectFit="fill"
+              />
+              <Stack spacing="3" justifyContent="center">
+                <Heading size="md" fontWeight="400">
+                  Living room Sofa
+                </Heading>
+                <Text color="blue.600" fontSize="lg">
+                  $450
+                </Text>
+              </Stack>
+            </Flex>
+            <Divider m="1.5em 0"/>
             <Text>
               Ullamco incididunt qui ea irure proident enim dolore occaecat
               proident commodo do. Cupidatat Lorem ut consequat nulla nostrud.
@@ -136,13 +163,45 @@ export default function Home() {
               ullamco commodo velit aute proident. Et est pariatur exercitation
               aliqua. Velit eu velit Lorem aliqua amet laborum.
             </Text>
+            <Stack spacing={4} mt="2em" mb="1em">
+              <InputGroup>
+                <InputLeftElement pointerEvents="none">
+                  <IoPerson color="var(--chakra-colors-facebook-500)" />
+                </InputLeftElement>
+                <Input
+                  type="text"
+                  placeholder="Nome completo"
+                />
+              </InputGroup>
+              <InputGroup>
+                <InputLeftElement pointerEvents="none">
+                  <PhoneIcon color="facebook.500" />
+                </InputLeftElement>
+                <Input
+                  type="tel"
+                  placeholder="Número de celular"
+                />
+              </InputGroup>
+            </Stack>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="facebook" mr={3} onClick={onClose} leftIcon={<FaPix/>}>
+            <Button
+              colorScheme="facebook"
+              mr={3}
+              // onClick={onClose}
+              leftIcon={<FaPix />}
+            >
               PIX
             </Button>
-            <Button colorScheme="facebook" variant="ghost" onClick={onClose} leftIcon={<FaShoppingCart/>}>Eu Compro</Button>
+            <Button
+              colorScheme="facebook"
+              variant="ghost"
+              // onClick={onClose}
+              leftIcon={<FaShoppingCart />}
+            >
+              Eu Compro
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

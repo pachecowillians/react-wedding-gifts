@@ -31,7 +31,7 @@ import { FaPix } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 
-import { ArrowForwardIcon, PhoneIcon } from "@chakra-ui/icons";
+import { ArrowForwardIcon, PhoneIcon, ArrowBackIcon, CheckIcon } from "@chakra-ui/icons";
 import {
   Step,
   StepDescription,
@@ -190,44 +190,109 @@ export default function Home() {
                 Passo {activeStep + 1}: <b>{activeStepText}</b>
               </Text>
             </Stack>
-            <Text>
-              Ullamco incididunt qui ea irure proident enim dolore occaecat
-              proident commodo do. Cupidatat Lorem ut consequat nulla nostrud.
-              Laboris elit laboris nisi velit proident culpa.
-            </Text>
-            <Stack spacing={4} mt="2em" mb="1em">
-              <InputGroup>
-                <InputLeftElement pointerEvents="none">
-                  <IoPerson color="var(--chakra-colors-facebook-500)" />
-                </InputLeftElement>
-                <Input type="text" placeholder="Nome completo" />
-              </InputGroup>
-              <InputGroup>
-                <InputLeftElement pointerEvents="none">
-                  <PhoneIcon color="facebook.500" />
-                </InputLeftElement>
-                <Input type="tel" placeholder="Número de celular" />
-              </InputGroup>
-            </Stack>
+            {activeStep === 0 && (
+              <>
+                <Text>
+                  Ullamco incididunt qui ea irure proident enim dolore occaecat
+                  proident commodo do. Cupidatat Lorem ut consequat nulla
+                  nostrud. Laboris elit laboris nisi velit proident culpa.
+                </Text>
+                <Stack spacing={4} mt="2em" mb="1em">
+                  <InputGroup>
+                    <InputLeftElement pointerEvents="none">
+                      <IoPerson color="var(--chakra-colors-facebook-500)" />
+                    </InputLeftElement>
+                    <Input type="text" placeholder="Nome completo" />
+                  </InputGroup>
+                  <InputGroup>
+                    <InputLeftElement pointerEvents="none">
+                      <PhoneIcon color="facebook.500" />
+                    </InputLeftElement>
+                    <Input type="tel" placeholder="Número de celular" />
+                  </InputGroup>
+                </Stack>
+              </>
+            )}
+            {activeStep === 1 && (
+              <>
+                <Text>
+                  Ullamco incididunt qui ea irure proident enim dolore occaecat
+                  proident commodo do. Cupidatat Lorem ut consequat nulla
+                  nostrud. Laboris elit laboris nisi velit proident culpa.
+                </Text>
+              </>
+            )}
           </ModalBody>
 
           <ModalFooter>
-            <Button
-              colorScheme="facebook"
-              mr={3}
-              // onClick={onClose}
-              leftIcon={<FaPix />}
-            >
-              PIX
-            </Button>
-            <Button
-              colorScheme="facebook"
-              variant="ghost"
-              // onClick={onClose}
-              leftIcon={<FaShoppingCart />}
-            >
-              Eu Compro
-            </Button>
+            {activeStep === 0 && (
+              <>
+                <Button
+                  colorScheme="facebook"
+                  variant="ghost"
+                  mr={3}
+                  onClick={() => {
+                    setActiveStep(activeStep + 1);
+                  }}
+                  rightIcon={<ArrowForwardIcon />}
+                >
+                  Continuar
+                </Button>
+              </>
+            )}
+            {activeStep > 0 && (
+              <>
+                <Button
+                  colorScheme="facebook"
+                  variant="ghost"
+                  mr={3}
+                  onClick={() => {
+                    setActiveStep(activeStep - 1);
+                  }}
+                  leftIcon={<ArrowBackIcon />}
+                >
+                  Voltar
+                </Button>
+              </>
+            )}
+            {activeStep === 1 && (
+              <>
+                <Button
+                  colorScheme="facebook"
+                  mr={3}
+                  onClick={() => {
+                    setActiveStep(2);
+                  }}
+                  leftIcon={<FaPix />}
+                >
+                  PIX
+                </Button>
+                <Button
+                  colorScheme="facebook"
+                  variant="ghost"
+                  onClick={() => {
+                    setActiveStep(2);
+                  }}
+                  leftIcon={<FaShoppingCart />}
+                >
+                  Eu Compro
+                </Button>
+              </>
+            )}
+            {activeStep === 2 && (
+              <>
+                <Button
+                  colorScheme="facebook"
+                  mr={3}
+                  onClick={() => {
+                    setActiveStep(2);
+                  }}
+                  leftIcon={<CheckIcon />}
+                >
+                  Confirmar
+                </Button>
+              </>
+            )}
           </ModalFooter>
         </ModalContent>
       </Modal>

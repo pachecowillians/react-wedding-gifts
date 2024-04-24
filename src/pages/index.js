@@ -26,6 +26,7 @@ import {
   InputGroup,
   InputLeftElement,
   Input,
+  useToast,
 } from "@chakra-ui/react";
 import { FaPix } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
@@ -77,6 +78,7 @@ export default function Home() {
     count: steps.length,
   });
   const [paymentMethod, setPaymentMethod] = useState("");
+  const toast = useToast()
 
   const activeStepText = steps[activeStep].description;
 
@@ -322,6 +324,13 @@ export default function Home() {
                   onClick={() => {
                     setActiveStep(0);
                     onClose();
+                    toast({
+                      title: 'Presente reservado!',
+                      description: "Muito obrigado pelo presente, te aguardamos em nosso casamento!",
+                      status: 'success',
+                      duration: 9000,
+                      isClosable: false,
+                    })
                   }}
                   leftIcon={<CheckIcon />}
                 >

@@ -76,7 +76,7 @@ export default function Home() {
     index: 0,
     count: steps.length,
   });
-  const [paymentMethod, setPaymentMethod] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState("");
 
   const activeStepText = steps[activeStep].description;
 
@@ -188,11 +188,7 @@ export default function Home() {
             <Stack m="2em 0">
               <Stepper size="sm" index={activeStep} gap="0">
                 {steps.map((step, index) => (
-                  <Step
-                    key={index}
-                    gap="0"
-                    onClick={() => setActiveStep(index)}
-                  >
+                  <Step key={index} gap="0">
                     <StepIndicator>
                       <StepStatus complete={<StepIcon />} />
                     </StepIndicator>
@@ -237,11 +233,25 @@ export default function Home() {
               </>
             )}
             {activeStep === 2 && (
-              <>
-                <Text>
-                 {paymentMethod}
-                </Text>
-              </>
+              <Center>
+                {paymentMethod == "pix" ? (
+                  <Image
+                    src="qrcode.jpeg"
+                    alt="PIX"
+                    borderRadius="lg"
+                    height="30em"
+                    justifySelf="center"
+                    objectFit="fill"
+                  />
+                ) : (
+                  <Text>
+                    Ullamco incididunt qui ea irure proident enim dolore
+                    occaecat proident commodo do. Cupidatat Lorem ut consequat
+                    nulla nostrud. Laboris elit laboris nisi velit proident
+                    culpa.
+                  </Text>
+                )}
+              </Center>
             )}
           </ModalBody>
 
@@ -282,7 +292,7 @@ export default function Home() {
                   colorScheme="facebook"
                   variant="ghost"
                   onClick={() => {
-                    setPaymentMethod("pix")
+                    setPaymentMethod("pix");
                     setActiveStep(2);
                   }}
                   mr={3}
@@ -295,7 +305,7 @@ export default function Home() {
                   colorScheme="facebook"
                   variant="ghost"
                   onClick={() => {
-                    setPaymentMethod("buy")
+                    setPaymentMethod("buy");
                     setActiveStep(2);
                   }}
                   leftIcon={<FaShoppingCart />}

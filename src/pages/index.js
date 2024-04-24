@@ -31,7 +31,12 @@ import { FaPix } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 
-import { ArrowForwardIcon, PhoneIcon, ArrowBackIcon, CheckIcon } from "@chakra-ui/icons";
+import {
+  ArrowForwardIcon,
+  PhoneIcon,
+  ArrowBackIcon,
+  CheckIcon,
+} from "@chakra-ui/icons";
 import {
   Step,
   StepDescription,
@@ -44,6 +49,8 @@ import {
   Stepper,
   useSteps,
 } from "@chakra-ui/react";
+import { useState } from "react";
+
 // Vetor com URLs de imagens diferentes
 const images = [
   "https://images.unsplash.com/photo-1617325247661-675ab4b64ae2?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -69,6 +76,8 @@ export default function Home() {
     index: 0,
     count: steps.length,
   });
+  const [paymentMethod, setPaymentMethod] = useState('');
+
   const activeStepText = steps[activeStep].description;
 
   return (
@@ -147,7 +156,12 @@ export default function Home() {
           ))}
         </SimpleGrid>
       </Container>
-      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
+      <Modal
+        blockScrollOnMount={false}
+        isOpen={isOpen}
+        onClose={onClose}
+        size="lg"
+      >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader></ModalHeader>
@@ -222,6 +236,13 @@ export default function Home() {
                 </Text>
               </>
             )}
+            {activeStep === 2 && (
+              <>
+                <Text>
+                 {paymentMethod}
+                </Text>
+              </>
+            )}
           </ModalBody>
 
           <ModalFooter>
@@ -259,10 +280,13 @@ export default function Home() {
               <>
                 <Button
                   colorScheme="facebook"
-                  mr={3}
+                  variant="ghost"
                   onClick={() => {
+                    setPaymentMethod("pix")
                     setActiveStep(2);
                   }}
+                  mr={3}
+                  ml="auto"
                   leftIcon={<FaPix />}
                 >
                   PIX
@@ -271,6 +295,7 @@ export default function Home() {
                   colorScheme="facebook"
                   variant="ghost"
                   onClick={() => {
+                    setPaymentMethod("buy")
                     setActiveStep(2);
                   }}
                   leftIcon={<FaShoppingCart />}
@@ -285,7 +310,8 @@ export default function Home() {
                   colorScheme="facebook"
                   mr={3}
                   onClick={() => {
-                    setActiveStep(2);
+                    setActiveStep(0);
+                    onClose();
                   }}
                   leftIcon={<CheckIcon />}
                 >

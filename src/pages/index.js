@@ -54,6 +54,7 @@ import { useState } from "react";
 import MyCard from "@/components/MyCard";
 import MyStepper from "@/components/MyStepper";
 import MyContactInformation from "@/components/MyContactInformation";
+import MyPresentOptions from "@/components/MyPresentOptions";
 
 // Vetor com URLs de imagens diferentes
 const images = [
@@ -174,16 +175,7 @@ export default function Home() {
               activeStepText={activeStepText}
             />
             {activeStep === 0 && <MyContactInformation />}
-
-            {activeStep === 1 && (
-              <>
-                <Text>
-                  Ullamco incididunt qui ea irure proident enim dolore occaecat
-                  proident commodo do. Cupidatat Lorem ut consequat nulla
-                  nostrud. Laboris elit laboris nisi velit proident culpa.
-                </Text>
-              </>
-            )}
+            {activeStep === 1 && <MyPresentOptions />}
             {activeStep === 2 && (
               <Center>
                 {paymentMethod == "pix" ? (

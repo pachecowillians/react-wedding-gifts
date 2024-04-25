@@ -51,6 +51,8 @@ import {
   useSteps,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import MyCard from "@/components/MyCard";
+import MyStepper from "@/components/MyStepper";
 
 // Vetor com URLs de imagens diferentes
 const images = [
@@ -78,7 +80,7 @@ export default function Home() {
     count: steps.length,
   });
   const [paymentMethod, setPaymentMethod] = useState("");
-  const toast = useToast()
+  const toast = useToast();
 
   const activeStepText = steps[activeStep].description;
 
@@ -124,37 +126,15 @@ export default function Home() {
           alignItems="center"
         >
           {[...Array(20)].map((_, index) => (
-            <Card key={index} maxW="sm" w="85vw" alignItems="center" size="lg">
-              <CardBody>
-                <Image
-                  src={getRandomImage()}
-                  alt="Green double couch with wooden legs"
-                  borderRadius="lg"
-                  boxSize="20em"
-                  objectFit="fill"
-                />
-                <Stack mt="6" spacing="3" alignItems="center">
-                  <Heading size="md" fontWeight="400">
-                    Living room Sofa
-                  </Heading>
-                  <Text color="blue.600" fontSize="2xl">
-                    $450
-                  </Text>
-                </Stack>
-              </CardBody>
-              <Divider color="gray.200" />
-              <CardFooter>
-                <Button
-                  variant="solid"
-                  colorScheme="facebook"
-                  size="lg"
-                  rightIcon={<ArrowForwardIcon />}
-                  onClick={onOpen}
-                >
-                  Escolher
-                </Button>
-              </CardFooter>
-            </Card>
+            <MyCard
+              key={index}
+              onOpen={onOpen}
+              cardInfo={{
+                imageSrc: getRandomImage(),
+                title: "Cama de Casal",
+                price: 450.0,
+              }}
+            />
           ))}
         </SimpleGrid>
       </Container>
@@ -187,21 +167,11 @@ export default function Home() {
               </Stack>
             </Flex>
             <Divider m="1.5em 0" />
-            <Stack m="2em 0">
-              <Stepper size="sm" index={activeStep} gap="0">
-                {steps.map((step, index) => (
-                  <Step key={index} gap="0">
-                    <StepIndicator>
-                      <StepStatus complete={<StepIcon />} />
-                    </StepIndicator>
-                    <StepSeparator _horizontal={{ ml: "0" }} />
-                  </Step>
-                ))}
-              </Stepper>
-              <Text>
-                Passo {activeStep + 1}: <b>{activeStepText}</b>
-              </Text>
-            </Stack>
+            <MyStepper
+              activeStep={activeStep}
+              steps={steps}
+              activeStepText={activeStepText}
+            />
             {activeStep === 0 && (
               <>
                 <Text>
@@ -325,12 +295,13 @@ export default function Home() {
                     setActiveStep(0);
                     onClose();
                     toast({
-                      title: 'Presente reservado!',
-                      description: "Muito obrigado pelo presente, te aguardamos em nosso casamento!",
-                      status: 'success',
+                      title: "Presente reservado!",
+                      description:
+                        "Muito obrigado pelo presente, te aguardamos em nosso casamento!",
+                      status: "success",
                       duration: 9000,
                       isClosable: false,
-                    })
+                    });
                   }}
                   leftIcon={<CheckIcon />}
                 >

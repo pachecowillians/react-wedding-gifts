@@ -55,6 +55,7 @@ import MyCard from "@/components/MyCard";
 import MyStepper from "@/components/MyStepper";
 import MyContactInformation from "@/components/MyContactInformation";
 import MyPresentOptions from "@/components/MyPresentOptions";
+import MyPayment from "@/components/MyPayment";
 
 // Vetor com URLs de imagens diferentes
 const images = [
@@ -176,27 +177,7 @@ export default function Home() {
             />
             {activeStep === 0 && <MyContactInformation />}
             {activeStep === 1 && <MyPresentOptions />}
-            {activeStep === 2 && (
-              <Center>
-                {paymentMethod == "pix" ? (
-                  <Image
-                    src="qrcode.jpeg"
-                    alt="PIX"
-                    borderRadius="lg"
-                    height="30em"
-                    justifySelf="center"
-                    objectFit="fill"
-                  />
-                ) : (
-                  <Text>
-                    Ullamco incididunt qui ea irure proident enim dolore
-                    occaecat proident commodo do. Cupidatat Lorem ut consequat
-                    nulla nostrud. Laboris elit laboris nisi velit proident
-                    culpa.
-                  </Text>
-                )}
-              </Center>
-            )}
+            {activeStep === 2 && <MyPayment paymentMethod={paymentMethod}/>}
           </ModalBody>
 
           <ModalFooter>

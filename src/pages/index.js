@@ -1,21 +1,16 @@
 import Head from "next/head";
 import {
   SimpleGrid,
-  Card,
-  CardBody,
   Container,
   Image,
-  Stack,
-  Heading,
   Text,
-  Divider,
-  CardFooter,
-  Button,
-  CardHeader,
+  Heading,
   Center,
+  useDisclosure,
 } from "@chakra-ui/react";
-
-import { ArrowForwardIcon } from "@chakra-ui/icons";
+import { useState } from "react";
+import MyCard from "@/components/MyCard";
+import MyModal from "@/components/MyModal";
 
 // Vetor com URLs de imagens diferentes
 const images = [
@@ -32,6 +27,19 @@ function getRandomImage() {
 }
 
 export default function Home() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [cardSelecionado, setCardSelecionado] = useState({ // Define um estado inicial para o cardSelecionado
+    imageSrc: "",
+    title: "",
+    price: 0,
+  });
+
+  // Função para lidar com a abertura do modal e definir o card selecionado
+  const handleOpenModal = (cardInfo) => {
+    setCardSelecionado(cardInfo);
+    onOpen();
+  };
+
   return (
     <>
       <Head>
@@ -58,7 +66,12 @@ export default function Home() {
             sint non enim labore eiusmod nostrud ut minim cillum. Pariatur aute
           </Text>
         </Center>
-        <Heading m="1.5em" textTransform="upper" fontWeight="400" textAlign={{base: "center", md: "left"}}>
+        <Heading
+          m="1.5em"
+          textTransform="upper"
+          fontWeight="400"
+          textAlign={{ base: "center", md: "left" }}
+        >
           Lista de Presentes
         </Heading>
         <SimpleGrid
@@ -69,39 +82,19 @@ export default function Home() {
           alignItems="center"
         >
           {[...Array(20)].map((_, index) => (
-            <Card key={index} maxW="sm" w="85vw" alignItems="center">
-              <CardBody>
-                <Image
-                  src={getRandomImage()}
-                  alt="Green double couch with wooden legs"
-                  borderRadius="lg"
-                  boxSize="20em"
-                  objectFit="fill"
-                />
-                <Stack mt="6" spacing="3" alignItems="center">
-                  <Heading size="md" fontWeight="400">
-                    Living room Sofa
-                  </Heading>
-                  <Text color="blue.600" fontSize="2xl">
-                    $450
-                  </Text>
-                </Stack>
-              </CardBody>
-              <Divider color="gray.200" />
-              <CardFooter>
-                <Button
-                  variant="solid"
-                  colorScheme="facebook"
-                  size="lg"
-                  rightIcon={<ArrowForwardIcon />}
-                >
-                  Escolher
-                </Button>
-              </CardFooter>
-            </Card>
+            <MyCard
+              key={index}
+              handleOpenModal={handleOpenModal}
+              cardInfo={{ 
+                imageSrc: getRandomImage(),
+                title: "Cama de Casal",
+                price: 450.0,
+              }}
+            />
           ))}
         </SimpleGrid>
       </Container>
+      <MyModal isOpen={isOpen} onClose={onClose} cardInfo={cardSelecionado}/>
     </>
   );
 }

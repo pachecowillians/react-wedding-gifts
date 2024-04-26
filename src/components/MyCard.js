@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 
-function MyCard({ cardInfo, onOpen }) {
+function MyCard({ cardInfo, handleOpenModal }) {
   const { imageSrc, title, price } = cardInfo;
 
   return (
@@ -41,7 +41,9 @@ function MyCard({ cardInfo, onOpen }) {
           colorScheme="facebook"
           size="lg"
           rightIcon={<ArrowForwardIcon />}
-          onClick={onOpen}
+          onClick={() => {
+            handleOpenModal(cardInfo);
+          }}
         >
           Escolher
         </Button>

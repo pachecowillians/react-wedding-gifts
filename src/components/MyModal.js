@@ -16,7 +16,8 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import { ArrowForwardIcon, ArrowBackIcon, CheckIcon } from "@chakra-ui/icons";
-import { FaShoppingCart, FaPix } from "react-icons/fa";
+import { FaPix } from "react-icons/fa6";
+import { FaShoppingCart } from "react-icons/fa";
 import MyStepper from "./MyStepper";
 import MyContactInformation from "./MyContactInformation";
 import MyPresentOptions from "./MyPresentOptions";

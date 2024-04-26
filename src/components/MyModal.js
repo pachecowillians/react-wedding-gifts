@@ -22,10 +22,12 @@ import MyStepper from "./MyStepper";
 import MyContactInformation from "./MyContactInformation";
 import MyPresentOptions from "./MyPresentOptions";
 import MyPayment from "./MyPayment";
+import { useToast } from '@chakra-ui/react'
 
 const MyModal = ({ isOpen, onClose, cardInfo }) => {
   const [activeStep, setActiveStep] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState("");
+  const toast = useToast()
   const steps = ["Informações de Contato", "Opções de Presente", "Pagamento"];
   const activeStepText = steps[activeStep];
 
@@ -34,7 +36,7 @@ const MyModal = ({ isOpen, onClose, cardInfo }) => {
       blockScrollOnMount={false}
       isOpen={isOpen}
       onClose={onClose}
-      size="lg"
+      size={{base: "sm", md:"lg"}}
     >
       <ModalOverlay />
       <ModalContent>
@@ -131,6 +133,7 @@ const MyModal = ({ isOpen, onClose, cardInfo }) => {
               <Button
                 colorScheme="facebook"
                 mr={3}
+                ml="auto"
                 onClick={() => {
                   setActiveStep(0);
                   onClose();

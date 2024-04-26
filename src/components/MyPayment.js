@@ -41,7 +41,7 @@ const MyPayment = ({ paymentMethod }) => {
               }}
             />
           </Center>
-          <Text alignSelf="center">{process.env.NEXT_PUBLIC_ACCOUNT_OWNER}</Text>
+          <Text alignSelf="center" fontSize={17}>{process.env.NEXT_PUBLIC_ACCOUNT_OWNER}</Text>
           <Stack
             color="var(--chakra-colors-facebook-500)"
             gap={5}

@@ -94,7 +94,6 @@ export default function Home() {
           ))}
         </SimpleGrid>
       </Container>
-      {/* Passa o estado do card selecionado para o componente MyModal */}
       <MyModal isOpen={isOpen} onClose={onClose} cardInfo={cardSelecionado}/>
     </>
   );

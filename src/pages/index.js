@@ -11,62 +11,16 @@ import {
 import { useState } from "react";
 import MyCard from "@/components/MyCard";
 import MyModal from "@/components/MyModal";
-
-import { google } from "googleapis";
-
-export async function getServerSideProps() {
-  // Autenticação com o Google Sheets
-  const auth = await google.auth.getClient({
-    scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
-    credentials: {
-      private_key: process.env.GAC_PVT_KEY.replace(/\\n/g, '\n'),
-      client_email: process.env.GAC_CLIENT_EMAIL,
-    },
-  });
-
-  const sheets = google.sheets({ version: "v4", auth });
-
-  const range = `Página1!A:F`;
-
-  try {
-    // Obter os dados da planilha
-    const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: process.env.SHEET_ID,
-      range,
-    });
-
-    // Extrair os dados das células
-    const rows = response.data.values;
-
-    // Remover o cabeçalho
-    const [header1, header2, ...gifts] = rows;
-
-    // Retornar os dados como props
-    return {
-      props: {
-        gifts,
-      },
-    };
-  } catch (error) {
-    console.error("Erro ao obter os dados da planilha:", error);
-    return {
-      props: {
-        gifts: [],
-      },
-    };
-  }
-}
+import { authenticateGoogleSheets } from "@/utils/auth";
 
 export default function Home({ gifts }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [cardSelecionado, setCardSelecionado] = useState({
-    // Define um estado inicial para o cardSelecionado
     imageSrc: "",
     title: "",
     price: 0,
   });
 
-  // Função para lidar com a abertura do modal e definir o card selecionado
   const handleOpenModal = (cardInfo) => {
     setCardSelecionado(cardInfo);
     onOpen();
@@ -115,9 +69,9 @@ export default function Home({ gifts }) {
         >
           {gifts.map((gift, index) => (
             <MyCard
-              key={index}
+              key={++index}
               handleOpenModal={handleOpenModal}
-              cardInfo={{
+              data={{
                 imageSrc: gift[0],
                 title: gift[1],
                 price: gift[2],
@@ -130,4 +84,39 @@ export default function Home({ gifts }) {
       <MyModal isOpen={isOpen} onClose={onClose} cardInfo={cardSelecionado} />
     </>
   );
+}
+
+export async function getServerSideProps() {
+  // Authentication with Google Sheets
+  const sheets = await authenticateGoogleSheets();
+
+  const range = `Página1!A:F`;
+
+  try {
+    // Get data from the spreadsheet
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: process.env.SHEET_ID,
+      range,
+    });
+
+    // Extract cell data
+    const rows = response.data.values;
+
+    // Remove the header
+    const [header, ...gifts] = rows;
+
+    // Return data as props
+    return {
+      props: {
+        gifts,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching spreadsheet data:", error);
+    return {
+      props: {
+        gifts: [],
+      },
+    };
+  }
 }

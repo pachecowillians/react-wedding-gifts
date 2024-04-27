@@ -10,6 +10,10 @@ export default async function handler(req, res) {
 
     const auth = await google.auth.getClient({
       scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+      credentials: {
+        private_key: process.env.GAC_PVT_KEY,
+        client_email: process.env.GAC_CLIENT_EMAIL,
+      },
     });
 
     const sheets = google.sheets({ version: "v4", auth });

@@ -18,6 +18,10 @@ export async function getServerSideProps() {
   // Autenticação com o Google Sheets
   const auth = await google.auth.getClient({
     scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
+    credentials: {
+      private_key: process.env.GAC_PVT_KEY,
+      client_email: process.env.GAC_CLIENT_EMAIL,
+    },
   });
 
   const sheets = google.sheets({ version: "v4", auth });
@@ -117,7 +121,7 @@ export default function Home({ gifts }) {
                 imageSrc: gift[0],
                 title: gift[1],
                 price: gift[2],
-                situation: gift[3]
+                situation: gift[3],
               }}
             />
           ))}

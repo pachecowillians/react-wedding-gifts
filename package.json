@@ -17,6 +17,8 @@
     "@fontsource/lora": "^5.0.17",
     "dotenv": "^16.4.5",
     "framer-motion": "^11.1.7",
+    "googleapis": "^135.0.0",
+    "net": "^1.0.2",
     "next": "14.2.2",
     "next-qrcode": "^2.5.1",
     "react": "^18",

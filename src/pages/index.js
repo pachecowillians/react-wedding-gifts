@@ -12,23 +12,55 @@ import { useState } from "react";
 import MyCard from "@/components/MyCard";
 import MyModal from "@/components/MyModal";
 
-// Vetor com URLs de imagens diferentes
-const images = [
-  "https://images.unsplash.com/photo-1617325247661-675ab4b64ae2?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
-  "https://images.unsplash.com/photo-1617325247661-675ab4b64ae2?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-];
+import { google } from "googleapis";
 
-function getRandomImage() {
-  // Seleciona aleatoriamente um índice do vetor de imagens
-  const randomIndex = Math.floor(Math.random() * images.length);
-  // Retorna a URL da imagem correspondente ao índice selecionado
-  return images[randomIndex];
+export async function getServerSideProps() {
+  // Autenticação com o Google Sheets
+  const auth = await google.auth.getClient({
+    scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
+    credentials: {
+      private_key: process.env.GAC_PVT_KEY,
+      client_email: process.env.GAC_CLIENT_EMAIL,
+    },
+  });
+
+  const sheets = google.sheets({ version: "v4", auth });
+
+  const range = `Página1!A:F`;
+
+  try {
+    // Obter os dados da planilha
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: process.env.SHEET_ID,
+      range,
+    });
+
+    // Extrair os dados das células
+    const rows = response.data.values;
+
+    // Remover o cabeçalho
+    const [header1, header2, ...gifts] = rows;
+
+    // Retornar os dados como props
+    return {
+      props: {
+        gifts,
+      },
+    };
+  } catch (error) {
+    console.error("Erro ao obter os dados da planilha:", error);
+    return {
+      props: {
+        gifts: [],
+      },
+    };
+  }
 }
 
-export default function Home() {
+export default function Home({ gifts }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [cardSelecionado, setCardSelecionado] = useState({ // Define um estado inicial para o cardSelecionado
+  const [cardSelecionado, setCardSelecionado] = useState({
+    // Define um estado inicial para o cardSelecionado
     imageSrc: "",
     title: "",
     price: 0,
@@ -81,20 +113,21 @@ export default function Home() {
           justifyContent="center"
           alignItems="center"
         >
-          {[...Array(20)].map((_, index) => (
+          {gifts.map((gift, index) => (
             <MyCard
               key={index}
               handleOpenModal={handleOpenModal}
-              cardInfo={{ 
-                imageSrc: getRandomImage(),
-                title: "Cama de Casal",
-                price: 450.0,
+              cardInfo={{
+                imageSrc: gift[0],
+                title: gift[1],
+                price: gift[2],
+                situation: gift[3],
               }}
             />
           ))}
         </SimpleGrid>
       </Container>
-      <MyModal isOpen={isOpen} onClose={onClose} cardInfo={cardSelecionado}/>
+      <MyModal isOpen={isOpen} onClose={onClose} cardInfo={cardSelecionado} />
     </>
   );
 }

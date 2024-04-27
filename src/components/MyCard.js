@@ -30,7 +30,7 @@ function MyCard({ cardInfo, handleOpenModal }) {
             {title}
           </Heading>
           <Text color="blue.600" fontSize="2xl">
-            R$ {price}
+            {price}
           </Text>
         </Stack>
       </CardBody>

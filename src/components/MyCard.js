@@ -10,10 +10,10 @@ import {
   CardFooter,
   Button,
 } from "@chakra-ui/react";
-import { ArrowForwardIcon } from "@chakra-ui/icons";
+import { ArrowForwardIcon, CheckIcon } from "@chakra-ui/icons";
 
 function MyCard({ cardInfo, handleOpenModal }) {
-  const { imageSrc, title, price } = cardInfo;
+  const { imageSrc, title, price, situation } = cardInfo;
 
   return (
     <Card maxW="sm" w="85vw" alignItems="center" size="lg">
@@ -36,17 +36,32 @@ function MyCard({ cardInfo, handleOpenModal }) {
       </CardBody>
       <Divider color="gray.200" />
       <CardFooter>
-        <Button
+        {situation == "Escolhido" ? (
+          <Button
           variant="solid"
           colorScheme="facebook"
           size="lg"
-          rightIcon={<ArrowForwardIcon />}
+          isDisabled
+          leftIcon={<CheckIcon />}
           onClick={() => {
             handleOpenModal(cardInfo);
           }}
         >
-          Escolher
+          Escolhido
         </Button>
+        ) : (
+          <Button
+            variant="solid"
+            colorScheme="facebook"
+            size="lg"
+            rightIcon={<ArrowForwardIcon />}
+            onClick={() => {
+              handleOpenModal(cardInfo);
+            }}
+          >
+            Escolher
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );

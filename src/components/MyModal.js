@@ -26,19 +26,24 @@ import { useToast } from "@chakra-ui/react";
 
 const MyModal = ({ isOpen, onClose, selectedCardData }) => {
   const [activeStep, setActiveStep] = useState(0);
-  const [paymentMethod, setPaymentMethod] = useState("");
   const [giftData, setGiftData] = useState({
-    name: '',
-    phone: '',
-    paymentMethod: ''
+    name: "",
+    phone: "",
+    paymentMethod: "",
+    giftDate: "",
   });
   const toast = useToast();
-  const steps = ["Informações de Contato", "Opções de Presente", "Pagamento"];
+  const steps = ["Opções de Presente", "Pagamento", "Informações de Contato"];
   const activeStepText = steps[activeStep];
 
   function handleClose() {
     setActiveStep(0);
-    setPaymentMethod("");
+    setGiftData({
+      name: "",
+      phone: "",
+      paymentMethod: "",
+      giftDate: "",
+    });
     onClose();
   }
 
@@ -77,24 +82,43 @@ const MyModal = ({ isOpen, onClose, selectedCardData }) => {
             steps={steps}
             activeStepText={activeStepText}
           />
-          {activeStep === 0 && <MyContactInformation />}
-          {activeStep === 1 && <MyPresentOptions />}
-          {activeStep === 2 && <MyPayment paymentMethod={paymentMethod} />}
+          {activeStep === 0 && <MyPresentOptions />}
+          {activeStep === 1 && (
+            <MyPayment paymentMethod={giftData.paymentMethod} />
+          )}
+          {activeStep === 2 && (
+            <MyContactInformation setGiftData={setGiftData} />
+          )}
         </ModalBody>
 
         <ModalFooter>
           {activeStep === 0 && (
-            <Button
-              colorScheme="facebook"
-              variant="ghost"
-              mr={3}
-              onClick={() => {
-                setActiveStep(activeStep + 1);
-              }}
-              rightIcon={<ArrowForwardIcon />}
-            >
-              Continuar
-            </Button>
+            <>
+              <Button
+                colorScheme="facebook"
+                variant="ghost"
+                onClick={() => {
+                  setGiftData({ ...giftData, paymentMethod: "pix" });
+                  setActiveStep(1);
+                }}
+                mr={3}
+                ml="auto"
+                leftIcon={<FaPix />}
+              >
+                PIX
+              </Button>
+              <Button
+                colorScheme="facebook"
+                variant="ghost"
+                onClick={() => {
+                  setGiftData({ ...giftData, paymentMethod: "buy" });
+                  setActiveStep(1);
+                }}
+                leftIcon={<FaShoppingCart />}
+              >
+                Eu Compro
+              </Button>
+            </>
           )}
           {activeStep > 0 && (
             <>
@@ -115,27 +139,14 @@ const MyModal = ({ isOpen, onClose, selectedCardData }) => {
             <>
               <Button
                 colorScheme="facebook"
-                variant="ghost"
-                onClick={() => {
-                  setPaymentMethod("pix");
-                  setActiveStep(2);
-                }}
                 mr={3}
                 ml="auto"
-                leftIcon={<FaPix />}
-              >
-                PIX
-              </Button>
-              <Button
-                colorScheme="facebook"
-                variant="ghost"
                 onClick={() => {
-                  setPaymentMethod("buy");
                   setActiveStep(2);
                 }}
-                leftIcon={<FaShoppingCart />}
+                leftIcon={<CheckIcon />}
               >
-                Eu Compro
+                Confirmar
               </Button>
             </>
           )}
@@ -146,8 +157,7 @@ const MyModal = ({ isOpen, onClose, selectedCardData }) => {
                 mr={3}
                 ml="auto"
                 onClick={() => {
-                  setActiveStep(0);
-                  onClose();
+                  handleClose();
                   toast({
                     title: "Presente reservado!",
                     description:
@@ -159,7 +169,7 @@ const MyModal = ({ isOpen, onClose, selectedCardData }) => {
                 }}
                 leftIcon={<CheckIcon />}
               >
-                Confirmar
+                Finalizar
               </Button>
             </>
           )}

@@ -14,7 +14,7 @@ import { IoPerson } from "react-icons/io5";
 import { PhoneIcon } from "@chakra-ui/icons";
 import { useForm } from "react-hook-form";
 
-const MyContactInformation = () => {
+const MyContactInformation = ({setGiftData}) => {
   const {
     handleSubmit,
     register,

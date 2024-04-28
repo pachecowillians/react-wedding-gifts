@@ -22,21 +22,27 @@ import MyStepper from "./MyStepper";
 import MyContactInformation from "./MyContactInformation";
 import MyPresentOptions from "./MyPresentOptions";
 import MyPayment from "./MyPayment";
-import { useToast } from '@chakra-ui/react'
+import { useToast } from "@chakra-ui/react";
 
 const MyModal = ({ isOpen, onClose, selectedCardData }) => {
   const [activeStep, setActiveStep] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState("");
-  const toast = useToast()
+  const toast = useToast();
   const steps = ["Informações de Contato", "Opções de Presente", "Pagamento"];
   const activeStepText = steps[activeStep];
+
+  function handleClose() {
+    setActiveStep(0);
+    setPaymentMethod("");
+    onClose();
+  }
 
   return (
     <Modal
       blockScrollOnMount={false}
       isOpen={isOpen}
-      onClose={onClose}
-      size={{base: "sm", md:"lg"}}
+      onClose={handleClose}
+      size={{ base: "sm", md: "lg" }}
     >
       <ModalOverlay />
       <ModalContent>
@@ -56,7 +62,7 @@ const MyModal = ({ isOpen, onClose, selectedCardData }) => {
                 {selectedCardData && selectedCardData.title}
               </Heading>
               <Text color="blue.600" fontSize="lg">
-                R$ {selectedCardData && selectedCardData.price}
+                {selectedCardData && selectedCardData.price}
               </Text>
             </Stack>
           </Flex>

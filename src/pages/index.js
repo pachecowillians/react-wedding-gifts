@@ -15,14 +15,15 @@ import { authenticateGoogleSheets } from "@/utils/auth";
 
 export default function Home({ gifts }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [cardSelecionado, setCardSelecionado] = useState({
+  const [selectedCardData, setSelectedCardData] = useState({
+    id: -1,
     imageSrc: "",
     title: "",
     price: 0,
   });
 
-  const handleOpenModal = (cardInfo) => {
-    setCardSelecionado(cardInfo);
+  const handleOpenModal = (cardData) => {
+    setSelectedCardData(cardData);
     onOpen();
   };
 
@@ -32,7 +33,7 @@ export default function Home({ gifts }) {
         <title>Lista de Presentes | S & W</title>
         <meta
           name="description"
-          content="Lista de presentes para o casamento de Willian e Samara"
+          content="Gift list for the wedding of Willian and Samara"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -72,6 +73,7 @@ export default function Home({ gifts }) {
               key={++index}
               handleOpenModal={handleOpenModal}
               data={{
+                id: ++index,
                 imageSrc: gift[0],
                 title: gift[1],
                 price: gift[2],
@@ -81,7 +83,11 @@ export default function Home({ gifts }) {
           ))}
         </SimpleGrid>
       </Container>
-      <MyModal isOpen={isOpen} onClose={onClose} cardInfo={cardSelecionado} />
+      <MyModal
+        isOpen={isOpen}
+        onClose={onClose}
+        selectedCardData={selectedCardData}
+      />
     </>
   );
 }

@@ -39,13 +39,10 @@ function MyCard({ data, handleOpenModal }) {
         {situation == "Escolhido" ? (
           <Button
             variant="solid"
-            colorScheme="facebook"
+            colorScheme="gray"
             size="lg"
             isDisabled
             leftIcon={<CheckIcon />}
-            onClick={() => {
-              handleOpenModal(data);
-            }}
           >
             Escolhido
           </Button>

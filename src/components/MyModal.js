@@ -24,7 +24,7 @@ import MyPresentOptions from "./MyPresentOptions";
 import MyPayment from "./MyPayment";
 import { useToast } from '@chakra-ui/react'
 
-const MyModal = ({ isOpen, onClose, cardInfo }) => {
+const MyModal = ({ isOpen, onClose, selectedCardData }) => {
   const [activeStep, setActiveStep] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState("");
   const toast = useToast()
@@ -45,18 +45,18 @@ const MyModal = ({ isOpen, onClose, cardInfo }) => {
         <ModalBody>
           <Flex gap="1em">
             <Image
-              src={cardInfo && cardInfo.imageSrc}
-              alt={cardInfo && cardInfo.description}
+              src={selectedCardData && selectedCardData.imageSrc}
+              alt={selectedCardData && selectedCardData.description}
               borderRadius="lg"
               boxSize="5em"
               objectFit="fill"
             />
             <Stack spacing="3" justifyContent="center">
               <Heading size="md" fontWeight="400">
-                {cardInfo && cardInfo.title}
+                {selectedCardData && selectedCardData.title}
               </Heading>
               <Text color="blue.600" fontSize="lg">
-                R$ {cardInfo && cardInfo.price}
+                R$ {selectedCardData && selectedCardData.price}
               </Text>
             </Stack>
           </Flex>

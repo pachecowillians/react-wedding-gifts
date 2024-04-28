@@ -27,6 +27,11 @@ import { useToast } from "@chakra-ui/react";
 const MyModal = ({ isOpen, onClose, selectedCardData }) => {
   const [activeStep, setActiveStep] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState("");
+  const [giftData, setGiftData] = useState({
+    name: '',
+    phone: '',
+    paymentMethod: ''
+  });
   const toast = useToast();
   const steps = ["Informações de Contato", "Opções de Presente", "Pagamento"];
   const activeStepText = steps[activeStep];

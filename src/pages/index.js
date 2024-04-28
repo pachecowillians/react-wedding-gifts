@@ -77,8 +77,8 @@ export default function Home({ gifts }) {
                 imageSrc: gift[0],
                 title: gift[1],
                 price: gift[2],
-                situation: gift[3],
               }}
+              disabled={gift[3] == "Escolhido"}
             />
           ))}
         </SimpleGrid>

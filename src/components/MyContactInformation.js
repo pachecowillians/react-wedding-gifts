@@ -6,24 +6,47 @@ import {
   InputLeftElement,
   Input,
   FormControl,
-  FormLabel,
   FormErrorMessage,
   Button,
+  Flex,
+  useToast,
 } from "@chakra-ui/react";
 import { IoPerson } from "react-icons/io5";
-import { PhoneIcon } from "@chakra-ui/icons";
+import { ArrowBackIcon, CheckIcon, PhoneIcon } from "@chakra-ui/icons";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup"; // Importe yupResolver
+import * as Yup from "yup";
 
-const MyContactInformation = ({setGiftData}) => {
+const MyContactInformation = ({ setGiftData, handleClose, setActiveStep }) => {
+  const schema = Yup.object().shape({
+    name: Yup.string()
+      .required("Este campo é obrigatório")
+      .matches(/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/, "Somente letras são permitidas"),
+    phone: Yup.string()
+      .required("Este campo é obrigatório")
+      .matches(/^\d{9,12}$/, "Número de celular inválido"),
+  });
+
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const onSubmit = (data) => {
-    console.log(data); // Aqui você pode enviar os dados para onde quiser
+    handleClose();
+    toast({
+      title: "Presente reservado!",
+      description:
+        "Muito obrigado pelo presente, te aguardamos em nosso casamento!",
+      status: "success",
+      duration: 9000,
+      isClosable: false,
+    });
   };
+  const toast = useToast();
 
   return (
     <>
@@ -33,7 +56,7 @@ const MyContactInformation = ({setGiftData}) => {
         laboris nisi velit proident culpa.
       </Text>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack spacing={4} mt="2em" mb="1em">
+        <Stack spacing={4} m="2em 0">
           <FormControl isInvalid={errors.name}>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
@@ -42,10 +65,7 @@ const MyContactInformation = ({setGiftData}) => {
               <Input
                 type="text"
                 placeholder="Nome completo"
-                {...register("name", {
-                  required: "Este campo é obrigatório",
-                  minLength: { value: 4, message: "Mínimo de 4 caracteres" },
-                })}
+                {...register("name")}
               />
             </InputGroup>
             <FormErrorMessage>
@@ -60,13 +80,7 @@ const MyContactInformation = ({setGiftData}) => {
               <Input
                 type="tel"
                 placeholder="Número de celular"
-                {...register("phone", {
-                  required: "Este campo é obrigatório",
-                  pattern: {
-                    value: /^[0-9]{10}$/,
-                    message: "Número de celular inválido",
-                  },
-                })}
+                {...register("phone")}
               />
             </InputGroup>
             <FormErrorMessage>
@@ -74,9 +88,27 @@ const MyContactInformation = ({setGiftData}) => {
             </FormErrorMessage>
           </FormControl>
         </Stack>
-        <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit">
-          Enviar
-        </Button>
+        <Flex mt={5} mb={3} justifyContent="flex-end">
+          <Button
+            colorScheme="facebook"
+            variant="ghost"
+            mr={3}
+            onClick={() => {
+              setActiveStep(0);
+            }}
+            leftIcon={<ArrowBackIcon />}
+          >
+            Voltar
+          </Button>
+          <Button
+            colorScheme="facebook"
+            type="submit"
+            isLoading={isSubmitting}
+            leftIcon={<CheckIcon />}
+          >
+            Finalizar
+          </Button>
+        </Flex>
       </form>
     </>
   );

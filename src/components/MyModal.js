@@ -6,8 +6,6 @@ import {
   ModalHeader,
   ModalCloseButton,
   ModalBody,
-  ModalFooter,
-  Button,
   Flex,
   Stack,
   Heading,
@@ -15,14 +13,10 @@ import {
   Image,
   Divider,
 } from "@chakra-ui/react";
-import { ArrowForwardIcon, ArrowBackIcon, CheckIcon } from "@chakra-ui/icons";
-import { FaPix } from "react-icons/fa6";
-import { FaShoppingCart } from "react-icons/fa";
 import MyStepper from "./MyStepper";
 import MyContactInformation from "./MyContactInformation";
 import MyPresentOptions from "./MyPresentOptions";
 import MyPayment from "./MyPayment";
-import { useToast } from "@chakra-ui/react";
 
 const MyModal = ({ isOpen, onClose, selectedCardData }) => {
   const [activeStep, setActiveStep] = useState(0);
@@ -32,7 +26,6 @@ const MyModal = ({ isOpen, onClose, selectedCardData }) => {
     paymentMethod: "",
     giftDate: "",
   });
-  const toast = useToast();
   const steps = ["Opções de Presente", "Pagamento", "Informações de Contato"];
   const activeStepText = steps[activeStep];
 
@@ -55,9 +48,11 @@ const MyModal = ({ isOpen, onClose, selectedCardData }) => {
       size={{ base: "sm", md: "lg" }}
     >
       <ModalOverlay />
-      <ModalContent>
-        <ModalHeader></ModalHeader>
-        <ModalCloseButton />
+      <ModalContent p={1}>
+        <ModalHeader>
+          <ModalCloseButton m={1} />
+        </ModalHeader>
+
         <ModalBody>
           <Flex gap="1em">
             <Image
@@ -82,98 +77,24 @@ const MyModal = ({ isOpen, onClose, selectedCardData }) => {
             steps={steps}
             activeStepText={activeStepText}
           />
-          {activeStep === 0 && <MyPresentOptions />}
+          {activeStep === 0 && (
+            <MyPresentOptions
+              giftData={giftData}
+              setGiftData={setGiftData}
+              setActiveStep={setActiveStep}
+            />
+          )}
           {activeStep === 1 && (
-            <MyPayment paymentMethod={giftData.paymentMethod} />
+            <MyPayment giftData={giftData} setActiveStep={setActiveStep} />
           )}
           {activeStep === 2 && (
-            <MyContactInformation setGiftData={setGiftData} />
+            <MyContactInformation
+              setGiftData={setGiftData}
+              handleClose={handleClose}
+              setActiveStep={setActiveStep}
+            />
           )}
         </ModalBody>
-
-        <ModalFooter>
-          {activeStep === 0 && (
-            <>
-              <Button
-                colorScheme="facebook"
-                variant="ghost"
-                onClick={() => {
-                  setGiftData({ ...giftData, paymentMethod: "pix" });
-                  setActiveStep(1);
-                }}
-                mr={3}
-                ml="auto"
-                leftIcon={<FaPix />}
-              >
-                PIX
-              </Button>
-              <Button
-                colorScheme="facebook"
-                variant="ghost"
-                onClick={() => {
-                  setGiftData({ ...giftData, paymentMethod: "buy" });
-                  setActiveStep(1);
-                }}
-                leftIcon={<FaShoppingCart />}
-              >
-                Eu Compro
-              </Button>
-            </>
-          )}
-          {activeStep > 0 && (
-            <>
-              <Button
-                colorScheme="facebook"
-                variant="ghost"
-                mr={3}
-                onClick={() => {
-                  setActiveStep(activeStep - 1);
-                }}
-                leftIcon={<ArrowBackIcon />}
-              >
-                Voltar
-              </Button>
-            </>
-          )}
-          {activeStep === 1 && (
-            <>
-              <Button
-                colorScheme="facebook"
-                mr={3}
-                ml="auto"
-                onClick={() => {
-                  setActiveStep(2);
-                }}
-                leftIcon={<CheckIcon />}
-              >
-                Confirmar
-              </Button>
-            </>
-          )}
-          {activeStep === 2 && (
-            <>
-              <Button
-                colorScheme="facebook"
-                mr={3}
-                ml="auto"
-                onClick={() => {
-                  handleClose();
-                  toast({
-                    title: "Presente reservado!",
-                    description:
-                      "Muito obrigado pelo presente, te aguardamos em nosso casamento!",
-                    status: "success",
-                    duration: 9000,
-                    isClosable: false,
-                  });
-                }}
-                leftIcon={<CheckIcon />}
-              >
-                Finalizar
-              </Button>
-            </>
-          )}
-        </ModalFooter>
       </ModalContent>
     </Modal>
   );

@@ -14,17 +14,17 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
     <>
       <Center>
         {selectedGiftData.paymentMethod === "pix" ? (
-          <Stack spacing={4} m={15}>
-            <Text>
+          <Stack spacing={2}>
+            <Text fontSize={{ base: "sm", md: "md", lg: "lg" }}>
               Culpa dolore voluptate mollit sunt sunt id anim proident sint aute
               non.
             </Text>
-            <Center>
+            <Center mt="1em">
               <SVG
                 text={process.env.NEXT_PUBLIC_QRCODE_TEXT}
                 options={{
                   margin: 2,
-                  width: 220,
+                  width: 170,
                   color: {
                     dark: "#000000",
                     light: "#ffffff",
@@ -32,7 +32,10 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
                 }}
               />
             </Center>
-            <Text alignSelf="center" fontSize={17}>
+            <Text
+              alignSelf="center"
+              fontSize={{ base: "sm", md: "md", lg: "lg" }}
+            >
               {process.env.NEXT_PUBLIC_ACCOUNT_OWNER}
             </Text>
             <Stack
@@ -40,39 +43,52 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
               gap={5}
               alignItems="center"
             >
-              <Text fontWeight="bold">Chave: {value}</Text>
-              <Button onClick={onCopy} leftIcon={<CopyIcon />}>
+              <Text
+                fontWeight="bold"
+                fontSize={{ base: "sm", md: "md", lg: "lg" }}
+              >
+                Chave: {value}
+              </Text>
+              <Button
+                onClick={onCopy}
+                variant="outline"
+                colorScheme="gray"
+                leftIcon={<CopyIcon />}
+                fontSize={{ base: "sm", md: "md", lg: "lg" }}
+              >
                 {hasCopied ? "Chave copiada!" : "Copiar chave"}
               </Button>
             </Stack>
           </Stack>
         ) : (
-          <Text>
+          <Text fontSize={{ base: "sm", md: "md", lg: "lg" }}>
             Ullamco incididunt qui ea irure proident enim dolore occaecat
             proident commodo do. Cupidatat Lorem ut consequat nulla nostrud.
             Laboris elit laboris nisi velit proident culpa.
           </Text>
         )}
       </Center>
-      <Flex mt={5} mb={3}>
+      <Flex mt={10} mb={3}>
         <Button
           colorScheme="facebook"
           variant="ghost"
           mr={3}
           ml="auto"
+          leftIcon={<ArrowBackIcon />}
+          size={{ base: "sm", md: "md", lg: "md" }}
           onClick={() => {
             setActiveStep(0);
           }}
-          leftIcon={<ArrowBackIcon />}
         >
           Voltar
         </Button>
         <Button
           colorScheme="facebook"
+          size={{ base: "sm", md: "md", lg: "md" }}
+          leftIcon={<CheckIcon />}
           onClick={() => {
             setActiveStep(2);
           }}
-          leftIcon={<CheckIcon />}
         >
           Confirmar
         </Button>

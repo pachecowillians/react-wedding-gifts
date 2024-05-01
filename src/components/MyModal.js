@@ -43,7 +43,7 @@ const MyModal = ({
       size={{ base: "sm", md: "lg" }}
     >
       <ModalOverlay />
-      <ModalContent p={1}>
+      <ModalContent p="1em 0 0 0">
         <ModalHeader>
           <ModalCloseButton m={1} />
         </ModalHeader>
@@ -58,10 +58,10 @@ const MyModal = ({
               // objectFit="fill"
             />
             <Stack spacing="1" justifyContent="center">
-              <Heading size="xs" fontWeight="400">
+              <Heading size="sm" fontWeight="400">
                 {selectedGiftData && selectedGiftData.title}
               </Heading>
-              <Text color="blue.600" fontSize="xs">
+              <Text color="blue.600" fontSize="sm">
                 {selectedGiftData && selectedGiftData.price}
               </Text>
             </Stack>

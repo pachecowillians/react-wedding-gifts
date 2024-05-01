@@ -40,6 +40,8 @@ const MyContactInformation = ({
     resolver: yupResolver(schema),
   });
 
+  const toast = useToast();
+
   const onSubmit = (data) => {
     setSelectedGiftData((prevGiftData) => {
       const updatedGiftData = {
@@ -49,62 +51,82 @@ const MyContactInformation = ({
         status: "Escolhido",
         giftDate: new Date().toISOString(),
       };
-      enviarDadosParaAPI(updatedGiftData)
+      const myPromise = enviarDadosParaAPI(updatedGiftData)
         .then(() => {
           fetchGifts();
         })
         .catch((error) => {
           console.error("Erro ao enviar dados:", error);
         });
+      toast.promise(myPromise, {
+        success: {
+          title: "Presente Confirmado!",
+          description:
+            "Obrigado por reservar este presente! Estamos ansiosos para vê-lo em nosso casamento!",
+          duration: 7000,
+          isClosable: true,
+          position: "top",
+        },
+        error: {
+          title: "Erro ao Reservar Presente",
+          description:
+            "Ocorreu um erro ao processar sua reserva. Por favor, verifique o status da sua reserva ou entre em contato conosco para obter assistência. Se você já fez o pagamento via PIX, não é necessário refazê-lo.",
+          duration: 10000,
+          isClosable: true,
+          position: "top",
+        },
+        loading: {
+          title: "Aguarde um momento...",
+          description:
+            "Estamos processando sua reserva. Por favor, aguarde um momento.",
+          duration: 7000,
+          isClosable: true,
+          position: "top",
+        },
+      });
+
       handleClose();
       return updatedGiftData;
     });
-    toast({
-      title: "Presente reservado!",
-      description:
-        "Muito obrigado pelo presente, te aguardamos em nosso casamento!",
-      status: "success",
-      duration: 9000,
-      isClosable: false,
-    });
   };
-  const toast = useToast();
 
-  async function enviarDadosParaAPI(selectedGiftData) {
-    try {
-      const { id, name, phone, status, paymentMethod, giftDate } =
-        selectedGiftData;
-      const response = await fetch("/api/choose-gift", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: id,
-          name: name,
-          phone: phone,
-          status: status,
-          paymentMethod: paymentMethod,
-          giftDate: giftDate,
-        }),
-      });
+  function enviarDadosParaAPI(selectedGiftData) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const { id, name, phone, status, paymentMethod, giftDate } =
+          selectedGiftData;
+        const response = await fetch("/api/choose-gift", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: id,
+            name: name,
+            phone: phone,
+            status: status,
+            paymentMethod: paymentMethod,
+            giftDate: giftDate,
+          }),
+        });
 
-      if (!response.ok) {
-        const errorMessage = await response.text();
-        throw new Error(`Erro ao enviar dados: ${errorMessage}`);
+        if (!response.ok) {
+          const errorMessage = await response.text();
+          throw new Error(`Erro ao enviar dados: ${errorMessage}`);
+        }
+
+        const data = await response.json();
+        resolve(data);
+      } catch (error) {
+        console.error("Erro ao enviar dados para a API:", error);
+        reject(error);
       }
-
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Erro ao enviar dados para a API:", error);
-      throw error;
-    }
+    });
   }
 
   return (
     <>
-      <Text>
+      <Text fontSize={{ base: "sm", md: "md", lg: "lg" }}>
         Ullamco incididunt qui ea irure proident enim dolore occaecat proident
         commodo do. Cupidatat Lorem ut consequat nulla nostrud. Laboris elit
         laboris nisi velit proident culpa.
@@ -117,12 +139,13 @@ const MyContactInformation = ({
                 <IoPerson color="var(--chakra-colors-facebook-500)" />
               </InputLeftElement>
               <Input
+                fontSize={{ base: "sm", md: "md", lg: "lg" }}
                 type="text"
                 placeholder="Nome completo"
                 {...register("name")}
               />
             </InputGroup>
-            <FormErrorMessage>
+            <FormErrorMessage fontSize={{ base: "xs", md: "sm", lg: "md" }}>
               {errors.name && errors.name.message}
             </FormErrorMessage>
           </FormControl>
@@ -133,11 +156,12 @@ const MyContactInformation = ({
               </InputLeftElement>
               <Input
                 type="tel"
+                fontSize={{ base: "sm", md: "md", lg: "lg" }}
                 placeholder="Número de celular"
                 {...register("phone")}
               />
             </InputGroup>
-            <FormErrorMessage>
+            <FormErrorMessage fontSize={{ base: "xs", md: "sm", lg: "md" }}>
               {errors.phone && errors.phone.message}
             </FormErrorMessage>
           </FormControl>

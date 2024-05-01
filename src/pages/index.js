@@ -36,8 +36,8 @@ export default function Home() {
   };
 
   useEffect(() => {
-    fetchGifts(); // Carrega os dados inicialmente
-    const interval = setInterval(fetchGifts, 30000); // Atualiza os dados a cada 10 segundos
+    fetchGifts();
+    const interval = setInterval(fetchGifts, 30000);
 
     return () => clearInterval(interval);
   }, []);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Text,
   Stack,
@@ -14,10 +14,15 @@ import {
 import { IoPerson } from "react-icons/io5";
 import { ArrowBackIcon, CheckIcon, PhoneIcon } from "@chakra-ui/icons";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup"; // Importe yupResolver
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
-const MyContactInformation = ({ setGiftData, handleClose, setActiveStep }) => {
+const MyContactInformation = ({
+  selectedGiftData,
+  setSelectedGiftData,
+  handleClose,
+  setActiveStep,
+}) => {
   const schema = Yup.object().shape({
     name: Yup.string()
       .required("Este campo é obrigatório")
@@ -36,7 +41,25 @@ const MyContactInformation = ({ setGiftData, handleClose, setActiveStep }) => {
   });
 
   const onSubmit = (data) => {
-    handleClose();
+    setSelectedGiftData((prevGiftData) => {
+      const updatedGiftData = {
+        ...prevGiftData,
+        name: data.name,
+        phone: data.phone,
+        giftDate: new Date().toISOString(),
+      };
+      console.log("SUBMETEUUUUU");
+      console.log(updatedGiftData);
+      enviarDadosParaAPI(updatedGiftData)
+        .then((data) => {
+          console.log("Dados enviados com sucesso:", data);
+        })
+        .catch((error) => {
+          console.error("Erro ao enviar dados:", error);
+        });
+      handleClose(updatedGiftData);
+      return updatedGiftData;
+    });
     toast({
       title: "Presente reservado!",
       description:
@@ -47,6 +70,37 @@ const MyContactInformation = ({ setGiftData, handleClose, setActiveStep }) => {
     });
   };
   const toast = useToast();
+
+  async function enviarDadosParaAPI(selectedGiftData) {
+    try {
+      const { id, name, phone, paymentMethod, giftDate } = selectedGiftData;
+      console.log(selectedGiftData);
+      const response = await fetch("/api/choose-gift", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+          name: name,
+          phone: phone,
+          paymentMethod: paymentMethod,
+          giftDate: giftDate,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(`Erro ao enviar dados: ${errorMessage}`);
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Erro ao enviar dados para a API:", error);
+      throw error;
+    }
+  }
 
   return (
     <>

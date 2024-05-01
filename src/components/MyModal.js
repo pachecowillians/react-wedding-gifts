@@ -18,20 +18,16 @@ import MyContactInformation from "./MyContactInformation";
 import MyPresentOptions from "./MyPresentOptions";
 import MyPayment from "./MyPayment";
 
-const MyModal = ({ isOpen, onClose, selectedCardData }) => {
+const MyModal = ({ isOpen, onClose, selectedGiftData, setSelectedGiftData }) => {
   const [activeStep, setActiveStep] = useState(0);
-  const [giftData, setGiftData] = useState({
-    name: "",
-    phone: "",
-    paymentMethod: "",
-    giftDate: "",
-  });
+  console.log(selectedGiftData);
   const steps = ["Opções de Presente", "Pagamento", "Informações de Contato"];
   const activeStepText = steps[activeStep];
 
   function handleClose() {
     setActiveStep(0);
-    setGiftData({
+    setSelectedGiftData({
+      id: -1,
       name: "",
       phone: "",
       paymentMethod: "",
@@ -56,18 +52,18 @@ const MyModal = ({ isOpen, onClose, selectedCardData }) => {
         <ModalBody>
           <Flex gap="1em">
             <Image
-              src={selectedCardData && selectedCardData.imageSrc}
-              alt={selectedCardData && selectedCardData.description}
+              src={selectedGiftData && selectedGiftData.imageSrc}
+              alt={selectedGiftData && selectedGiftData.description}
               borderRadius="lg"
               boxSize="5em"
               objectFit="fill"
             />
             <Stack spacing="3" justifyContent="center">
               <Heading size="md" fontWeight="400">
-                {selectedCardData && selectedCardData.title}
+                {selectedGiftData && selectedGiftData.title}
               </Heading>
               <Text color="blue.600" fontSize="lg">
-                {selectedCardData && selectedCardData.price}
+                {selectedGiftData && selectedGiftData.price}
               </Text>
             </Stack>
           </Flex>
@@ -79,17 +75,18 @@ const MyModal = ({ isOpen, onClose, selectedCardData }) => {
           />
           {activeStep === 0 && (
             <MyPresentOptions
-              giftData={giftData}
-              setGiftData={setGiftData}
+              selectedGiftData={selectedGiftData}
+              setSelectedGiftData={setSelectedGiftData}
               setActiveStep={setActiveStep}
             />
           )}
           {activeStep === 1 && (
-            <MyPayment giftData={giftData} setActiveStep={setActiveStep} />
+            <MyPayment selectedGiftData={selectedGiftData} setActiveStep={setActiveStep} />
           )}
           {activeStep === 2 && (
             <MyContactInformation
-              setGiftData={setGiftData}
+              selectedGiftData={selectedGiftData}
+              setSelectedGiftData={setSelectedGiftData}
               handleClose={handleClose}
               setActiveStep={setActiveStep}
             />

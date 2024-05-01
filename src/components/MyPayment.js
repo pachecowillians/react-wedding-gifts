@@ -4,15 +4,16 @@ import { useQRCode } from "next-qrcode";
 import { useClipboard } from "@chakra-ui/react";
 import { ArrowBackIcon, CheckIcon, CopyIcon } from "@chakra-ui/icons";
 
-const MyPayment = ({ giftData, setActiveStep }) => {
+const MyPayment = ({ selectedGiftData, setActiveStep }) => {
   const { SVG } = useQRCode();
   const { onCopy, value, setValue, hasCopied } = useClipboard(
     process.env.NEXT_PUBLIC_PIX_KEY
   );
+
   return (
     <>
       <Center>
-        {giftData.paymentMethod === "pix" ? (
+        {selectedGiftData.paymentMethod === "pix" ? (
           <Stack spacing={4} m={15}>
             <Text>
               Culpa dolore voluptate mollit sunt sunt id anim proident sint aute

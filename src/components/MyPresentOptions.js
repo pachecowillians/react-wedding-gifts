@@ -3,7 +3,7 @@ import { Button, Flex, Text } from "@chakra-ui/react";
 import { FaPix } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
 
-const MyPresentOptions = ({ giftData, setGiftData, setActiveStep }) => {
+const MyPresentOptions = ({ selectedGiftData, setSelectedGiftData, setActiveStep }) => {
   return (
     <>
       <Text>
@@ -17,7 +17,7 @@ const MyPresentOptions = ({ giftData, setGiftData, setActiveStep }) => {
           variant="ghost"
           mr={3}
           onClick={() => {
-            setGiftData({ ...giftData, paymentMethod: "pix" });
+            setSelectedGiftData({ ...selectedGiftData, paymentMethod: "pix" });
             setActiveStep(1);
           }}
           ml="auto"
@@ -29,7 +29,7 @@ const MyPresentOptions = ({ giftData, setGiftData, setActiveStep }) => {
           colorScheme="facebook"
           variant="ghost"
           onClick={() => {
-            setGiftData({ ...giftData, paymentMethod: "buy" });
+            setSelectedGiftData({ ...selectedGiftData, paymentMethod: "comprar" });
             setActiveStep(1);
           }}
           leftIcon={<FaShoppingCart />}

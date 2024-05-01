@@ -1,31 +1,25 @@
-import { google } from "googleapis";
+import { authenticateGoogleSheets } from "@/utils/auth";
 
 export default async function handler(req, res) {
   try {
-    // const { situacao, nome, telefone } = req.body; // Supondo que você esteja recebendo esses dados no corpo da requisição
-    const rowIndex = 4; // Índice da linha a ser atualizada
+    const { id, name, phone, paymentMethod, giftDate } = req.body; // Supondo que você esteja recebendo esses dados no corpo da requisição
 
-    const nome = "Nome bom"
-    const telefone = "271873312"
+    console.log(req.body);
 
-    const auth = await google.auth.getClient({
-      scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-      credentials: {
-        private_key: process.env.GAC_PVT_KEY.replace(/\\n/g, '\n'),
-        client_email: process.env.GAC_CLIENT_EMAIL,
-      },
-    });
+    const sheets = await authenticateGoogleSheets();
 
-    const sheets = google.sheets({ version: "v4", auth });
+    const range = `Página1!D${id}:H${id}`;
 
-    const range = `Página1!D${rowIndex}:F${rowIndex}`;
+    console.log("aquiiiiiiiiiiiiiiii");
+
+    console.log(giftDate);
 
     const response = await sheets.spreadsheets.values.update({
       spreadsheetId: process.env.SHEET_ID,
       range,
       valueInputOption: "RAW",
       resource: {
-        values: [["Escolhido", nome, telefone]],
+        values: [["Escolhido", name, phone, paymentMethod, giftDate]],
       },
     });
 

@@ -15,15 +15,22 @@ import { authenticateGoogleSheets } from "@/utils/auth";
 
 export default function Home({ gifts }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedCardData, setSelectedCardData] = useState({
+  const [selectedGiftData, setSelectedGiftData] = useState({
     id: -1,
     imageSrc: "",
     title: "",
     price: 0,
+    name: "",
+    phone: "",
+    paymentMethod: "",
+    giftDate: "",
   });
 
   const handleOpenModal = (cardData) => {
-    setSelectedCardData(cardData);
+    console.log("AQUIIII CARD DATA: ");
+    console.log(cardData);
+    console.log({...selectedGiftData, ...cardData});
+    setSelectedGiftData({...selectedGiftData, ...cardData});
     onOpen();
   };
 
@@ -70,10 +77,10 @@ export default function Home({ gifts }) {
         >
           {gifts.map((gift, index) => (
             <MyCard
-              key={++index}
+              key={index + 2}
               handleOpenModal={handleOpenModal}
               data={{
-                id: ++index,
+                id: index + 2,
                 imageSrc: gift[0],
                 title: gift[1],
                 price: gift[2],
@@ -86,7 +93,8 @@ export default function Home({ gifts }) {
       <MyModal
         isOpen={isOpen}
         onClose={onClose}
-        selectedCardData={selectedCardData}
+        selectedGiftData={selectedGiftData}
+        setSelectedGiftData={setSelectedGiftData}
       />
     </>
   );
@@ -94,7 +102,7 @@ export default function Home({ gifts }) {
 
 export async function getServerSideProps() {
   // Authentication with Google Sheets
-  const sheets = await authenticateGoogleSheets();
+  const sheets = await authenticateGoogleSheets(".readonly");
 
   const range = `Página1!A:F`;
 

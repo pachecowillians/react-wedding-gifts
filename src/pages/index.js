@@ -8,69 +8,39 @@ import {
   Center,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MyCard from "@/components/MyCard";
 import MyModal from "@/components/MyModal";
 
-import { google } from "googleapis";
-
-export async function getServerSideProps() {
-  // Autenticação com o Google Sheets
-  const auth = await google.auth.getClient({
-    scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
-    credentials: {
-      private_key: process.env.GAC_PVT_KEY.replace(/\\n/g, '\n'),
-      client_email: process.env.GAC_CLIENT_EMAIL,
-    },
-  });
-
-  const sheets = google.sheets({ version: "v4", auth });
-
-  const range = `Página1!A:F`;
-
-  try {
-    // Obter os dados da planilha
-    const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: process.env.SHEET_ID,
-      range,
-    });
-
-    // Extrair os dados das células
-    const rows = response.data.values;
-
-    // Remover o cabeçalho
-    const [header1, header2, ...gifts] = rows;
-
-    // Retornar os dados como props
-    return {
-      props: {
-        gifts,
-      },
-    };
-  } catch (error) {
-    console.error("Erro ao obter os dados da planilha:", error);
-    return {
-      props: {
-        gifts: [],
-      },
-    };
-  }
-}
-
-export default function Home({ gifts }) {
+export default function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [cardSelecionado, setCardSelecionado] = useState({
-    // Define um estado inicial para o cardSelecionado
-    imageSrc: "",
-    title: "",
-    price: 0,
-  });
+  const [gifts, setGifts] = useState([]);
+  const [selectedGiftData, setSelectedGiftData] = useState({});
 
-  // Função para lidar com a abertura do modal e definir o card selecionado
-  const handleOpenModal = (cardInfo) => {
-    setCardSelecionado(cardInfo);
+  const handleOpenModal = (cardData) => {
+    setSelectedGiftData({ ...selectedGiftData, ...cardData });
     onOpen();
   };
+
+  const fetchGifts = async () => {
+    try {
+      const response = await fetch("/api/gifts");
+      if (!response.ok) {
+        throw new Error("Failed to fetch gifts");
+      }
+      const data = await response.json();
+      setGifts(data);
+    } catch (error) {
+      console.error("Error fetching gifts:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchGifts();
+    const interval = setInterval(fetchGifts, 30000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
@@ -78,7 +48,7 @@ export default function Home({ gifts }) {
         <title>Lista de Presentes | S & W</title>
         <meta
           name="description"
-          content="Lista de presentes para o casamento de Willian e Samara"
+          content="Gift list for the wedding of Willian and Samara"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -113,21 +83,23 @@ export default function Home({ gifts }) {
           justifyContent="center"
           alignItems="center"
         >
-          {gifts.map((gift, index) => (
+          {gifts.map((gift) => (
             <MyCard
-              key={index}
+              key={gift.id}
               handleOpenModal={handleOpenModal}
-              cardInfo={{
-                imageSrc: gift[0],
-                title: gift[1],
-                price: gift[2],
-                situation: gift[3],
-              }}
+              gift={gift}
+              disabled={gift.status == "Escolhido"}
             />
           ))}
         </SimpleGrid>
       </Container>
-      <MyModal isOpen={isOpen} onClose={onClose} cardInfo={cardSelecionado} />
+      <MyModal
+        isOpen={isOpen}
+        onClose={onClose}
+        selectedGiftData={selectedGiftData}
+        setSelectedGiftData={setSelectedGiftData}
+        fetchGifts={fetchGifts}
+      />
     </>
   );
 }

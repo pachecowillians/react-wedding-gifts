@@ -18,10 +18,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
 const MyContactInformation = ({
-  selectedGiftData,
   setSelectedGiftData,
   handleClose,
   setActiveStep,
+  fetchGifts,
 }) => {
   const schema = Yup.object().shape({
     name: Yup.string()
@@ -46,18 +46,17 @@ const MyContactInformation = ({
         ...prevGiftData,
         name: data.name,
         phone: data.phone,
+        status: "Escolhido",
         giftDate: new Date().toISOString(),
       };
-      console.log("SUBMETEUUUUU");
-      console.log(updatedGiftData);
       enviarDadosParaAPI(updatedGiftData)
-        .then((data) => {
-          console.log("Dados enviados com sucesso:", data);
+        .then(() => {
+          fetchGifts();
         })
         .catch((error) => {
           console.error("Erro ao enviar dados:", error);
         });
-      handleClose(updatedGiftData);
+      handleClose();
       return updatedGiftData;
     });
     toast({
@@ -73,8 +72,8 @@ const MyContactInformation = ({
 
   async function enviarDadosParaAPI(selectedGiftData) {
     try {
-      const { id, name, phone, paymentMethod, giftDate } = selectedGiftData;
-      console.log(selectedGiftData);
+      const { id, name, phone, status, paymentMethod, giftDate } =
+        selectedGiftData;
       const response = await fetch("/api/choose-gift", {
         method: "POST",
         headers: {
@@ -84,6 +83,7 @@ const MyContactInformation = ({
           id: id,
           name: name,
           phone: phone,
+          status: status,
           paymentMethod: paymentMethod,
           giftDate: giftDate,
         }),

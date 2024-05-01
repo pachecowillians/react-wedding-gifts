@@ -8,31 +8,39 @@ import {
   Center,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MyCard from "@/components/MyCard";
 import MyModal from "@/components/MyModal";
-import { authenticateGoogleSheets } from "@/utils/auth";
 
-export default function Home({ gifts }) {
+export default function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedGiftData, setSelectedGiftData] = useState({
-    id: -1,
-    imageSrc: "",
-    title: "",
-    price: 0,
-    name: "",
-    phone: "",
-    paymentMethod: "",
-    giftDate: "",
-  });
+  const [gifts, setGifts] = useState([]);
+  const [selectedGiftData, setSelectedGiftData] = useState({});
 
   const handleOpenModal = (cardData) => {
-    console.log("AQUIIII CARD DATA: ");
-    console.log(cardData);
-    console.log({...selectedGiftData, ...cardData});
-    setSelectedGiftData({...selectedGiftData, ...cardData});
+    setSelectedGiftData({ ...selectedGiftData, ...cardData });
     onOpen();
   };
+
+  const fetchGifts = async () => {
+    try {
+      const response = await fetch("/api/gifts");
+      if (!response.ok) {
+        throw new Error("Failed to fetch gifts");
+      }
+      const data = await response.json();
+      setGifts(data);
+    } catch (error) {
+      console.error("Error fetching gifts:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchGifts(); // Carrega os dados inicialmente
+    const interval = setInterval(fetchGifts, 30000); // Atualiza os dados a cada 10 segundos
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
@@ -75,17 +83,12 @@ export default function Home({ gifts }) {
           justifyContent="center"
           alignItems="center"
         >
-          {gifts.map((gift, index) => (
+          {gifts.map((gift) => (
             <MyCard
-              key={index + 2}
+              key={gift.id}
               handleOpenModal={handleOpenModal}
-              data={{
-                id: index + 2,
-                imageSrc: gift[0],
-                title: gift[1],
-                price: gift[2],
-              }}
-              disabled={gift[3] == "Escolhido"}
+              gift={gift}
+              disabled={gift.status == "Escolhido"}
             />
           ))}
         </SimpleGrid>
@@ -95,42 +98,8 @@ export default function Home({ gifts }) {
         onClose={onClose}
         selectedGiftData={selectedGiftData}
         setSelectedGiftData={setSelectedGiftData}
+        fetchGifts={fetchGifts}
       />
     </>
   );
-}
-
-export async function getServerSideProps() {
-  // Authentication with Google Sheets
-  const sheets = await authenticateGoogleSheets(".readonly");
-
-  const range = `Página1!A:F`;
-
-  try {
-    // Get data from the spreadsheet
-    const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: process.env.SHEET_ID,
-      range,
-    });
-
-    // Extract cell data
-    const rows = response.data.values;
-
-    // Remove the header
-    const [header, ...gifts] = rows;
-
-    // Return data as props
-    return {
-      props: {
-        gifts,
-      },
-    };
-  } catch (error) {
-    console.error("Error fetching spreadsheet data:", error);
-    return {
-      props: {
-        gifts: [],
-      },
-    };
-  }
 }

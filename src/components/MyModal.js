@@ -18,21 +18,20 @@ import MyContactInformation from "./MyContactInformation";
 import MyPresentOptions from "./MyPresentOptions";
 import MyPayment from "./MyPayment";
 
-const MyModal = ({ isOpen, onClose, selectedGiftData, setSelectedGiftData }) => {
+const MyModal = ({
+  isOpen,
+  onClose,
+  selectedGiftData,
+  setSelectedGiftData,
+  fetchGifts,
+}) => {
   const [activeStep, setActiveStep] = useState(0);
-  console.log(selectedGiftData);
   const steps = ["Opções de Presente", "Pagamento", "Informações de Contato"];
   const activeStepText = steps[activeStep];
 
   function handleClose() {
     setActiveStep(0);
-    setSelectedGiftData({
-      id: -1,
-      name: "",
-      phone: "",
-      paymentMethod: "",
-      giftDate: "",
-    });
+    setSelectedGiftData({});
     onClose();
   }
 
@@ -81,14 +80,17 @@ const MyModal = ({ isOpen, onClose, selectedGiftData, setSelectedGiftData }) => 
             />
           )}
           {activeStep === 1 && (
-            <MyPayment selectedGiftData={selectedGiftData} setActiveStep={setActiveStep} />
+            <MyPayment
+              selectedGiftData={selectedGiftData}
+              setActiveStep={setActiveStep}
+            />
           )}
           {activeStep === 2 && (
             <MyContactInformation
-              selectedGiftData={selectedGiftData}
               setSelectedGiftData={setSelectedGiftData}
               handleClose={handleClose}
               setActiveStep={setActiveStep}
+              fetchGifts={fetchGifts}
             />
           )}
         </ModalBody>

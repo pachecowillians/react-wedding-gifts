@@ -12,8 +12,8 @@ import {
 } from "@chakra-ui/react";
 import { ArrowForwardIcon, CheckIcon } from "@chakra-ui/icons";
 
-function MyCard({ data, handleOpenModal, disabled }) {
-  const { imageSrc, title, price } = data;
+function MyCard({ gift, handleOpenModal, disabled }) {
+  const { imageSrc, title, price } = gift;
 
   return (
     <Card maxW="sm" w="85vw" alignItems="center" size="lg">
@@ -53,7 +53,7 @@ function MyCard({ data, handleOpenModal, disabled }) {
             size="lg"
             rightIcon={<ArrowForwardIcon />}
             onClick={() => {
-              handleOpenModal(data);
+              handleOpenModal(gift);
             }}
           >
             Escolher

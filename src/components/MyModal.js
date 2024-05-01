@@ -53,20 +53,20 @@ const MyModal = ({
             <Image
               src={selectedGiftData && selectedGiftData.imageSrc}
               alt={selectedGiftData && selectedGiftData.description}
-              borderRadius="lg"
-              boxSize="5em"
-              objectFit="fill"
+              borderRadius="0.7em"
+              maxW="5em"
+              // objectFit="fill"
             />
-            <Stack spacing="3" justifyContent="center">
-              <Heading size="md" fontWeight="400">
+            <Stack spacing="1" justifyContent="center">
+              <Heading size="xs" fontWeight="400">
                 {selectedGiftData && selectedGiftData.title}
               </Heading>
-              <Text color="blue.600" fontSize="lg">
+              <Text color="blue.600" fontSize="xs">
                 {selectedGiftData && selectedGiftData.price}
               </Text>
             </Stack>
           </Flex>
-          <Divider m="1.5em 0" />
+          <Divider m="1em 0" />
           <MyStepper
             activeStep={activeStep}
             steps={steps}

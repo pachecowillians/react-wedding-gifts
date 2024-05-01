@@ -12,6 +12,7 @@ import {
 import { useEffect, useState } from "react";
 import MyCard from "@/components/MyCard";
 import MyModal from "@/components/MyModal";
+import styles from "@/styles/Home.module.css";
 
 export default function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -54,7 +55,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container maxW="8xl" p="5em 0em" centerContent>
+      <Container maxW={{base: "8xl", xl:"80vw"}} p="5em 0em" centerContent>
         <Center flexDir="column">
           <Image
             src="./logo.svg"
@@ -77,7 +78,10 @@ export default function Home() {
         >
           Lista de Presentes
         </Heading>
-        <Box display="block" style={{ columnCount: 2, columnGap: "1.5em" }}>
+        <Box
+          className={styles.cardsGrid}
+          margin={{ base: "0 1em", md: "0 3em" }}
+        >
           {gifts.map((gift) => (
             <MyCard
               key={gift.id}

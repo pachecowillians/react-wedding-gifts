@@ -18,12 +18,12 @@ function MyCard({ gift, handleOpenModal, disabled }) {
   return (
     <Card
       maxW="sm"
-      w="40vw"
+      w="fit-content"
       alignItems="center"
       size="sm"
       boxShadow="2px 4px 12px #00000014"
       borderRadius="1em"
-      mb="1.2em"
+      mb={{base:"1.2em", md:"1.5em", lg: "2em"}}
       p="0.3em"
       style={{ breakInside: "avoid" }}
     >
@@ -34,20 +34,21 @@ function MyCard({ gift, handleOpenModal, disabled }) {
           borderRadius="0.5em"
         />
         <Stack mt="3" spacing="2">
-          <Text fontSize="xs">{title}</Text>
-          <Text color="blue.600" fontSize="sm">
+          <Text fontSize={{base: "xs", md:"sm", lg: "md"}}>{title}</Text>
+          <Text color="blue.600" fontSize={{base: "xs", md:"sm", lg: "md"}}>
             {price}
           </Text>
         </Stack>
       </CardBody>
-      <CardFooter width="100%" justifyContent="start">
+      <CardFooter width="100%" justifyContent="center">
         {disabled ? (
           <Button
             variant="outline"
             colorScheme="gray"
             borderRadius="30em"
-            p="1.2em 2em"
-            size="xs"
+            width={{base:"100%", lg: "70%"}}
+            p="1.2em"
+            size={{base: "xs", md:"sm", lg: "md"}}
             isDisabled
             leftIcon={<CheckIcon />}
           >
@@ -58,9 +59,9 @@ function MyCard({ gift, handleOpenModal, disabled }) {
             variant="solid"
             colorScheme="facebook"
             borderRadius="30em"
-            width="100%"
-            p="1.2em 1.2em"
-            size="xs"
+            width={{base:"100%", lg: "70%"}}
+            p="1.2em"
+            size={{base: "xs", md:"sm", lg: "md"}}
             onClick={() => {
               handleOpenModal(gift);
             }}

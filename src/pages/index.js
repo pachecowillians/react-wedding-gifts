@@ -7,6 +7,7 @@ import {
   Heading,
   Center,
   useDisclosure,
+  Box,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import MyCard from "@/components/MyCard";
@@ -37,9 +38,9 @@ export default function Home() {
 
   useEffect(() => {
     fetchGifts();
-    const interval = setInterval(fetchGifts, 30000);
+    // const interval = setInterval(fetchGifts, 30000);
 
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval);
   }, []);
 
   return (
@@ -53,7 +54,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container maxW="8xl" p="5em 0em">
+      <Container maxW="8xl" p="5em 0em" centerContent>
         <Center flexDir="column">
           <Image
             src="./logo.svg"
@@ -76,13 +77,7 @@ export default function Home() {
         >
           Lista de Presentes
         </Heading>
-        <SimpleGrid
-          gap={50}
-          minChildWidth="sm"
-          justifyItems="center"
-          justifyContent="center"
-          alignItems="center"
-        >
+        <Box display="block" style={{ columnCount: 2, columnGap: "1.5em" }}>
           {gifts.map((gift) => (
             <MyCard
               key={gift.id}
@@ -91,7 +86,7 @@ export default function Home() {
               disabled={gift.status == "Escolhido"}
             />
           ))}
-        </SimpleGrid>
+        </Box>
       </Container>
       <MyModal
         isOpen={isOpen}

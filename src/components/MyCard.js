@@ -16,31 +16,38 @@ function MyCard({ gift, handleOpenModal, disabled }) {
   const { imageSrc, title, price } = gift;
 
   return (
-    <Card maxW="sm" w="85vw" alignItems="center" size="lg">
-      <CardBody>
+    <Card
+      maxW="sm"
+      w="40vw"
+      alignItems="center"
+      size="sm"
+      boxShadow="2px 4px 12px #00000014"
+      borderRadius="1em"
+      mb="1.2em"
+      p="0.3em"
+      style={{ breakInside: "avoid" }}
+    >
+      <CardBody pb={0}>
         <Image
           src={imageSrc}
           alt={title}
-          borderRadius="lg"
-          boxSize="20em"
-          objectFit="fill"
+          borderRadius="0.5em"
         />
-        <Stack mt="6" spacing="3" alignItems="center">
-          <Heading size="md" fontWeight="400">
-            {title}
-          </Heading>
-          <Text color="blue.600" fontSize="2xl">
+        <Stack mt="3" spacing="2">
+          <Text fontSize="xs">{title}</Text>
+          <Text color="blue.600" fontSize="sm">
             {price}
           </Text>
         </Stack>
       </CardBody>
-      <Divider color="gray.200" />
-      <CardFooter>
+      <CardFooter width="100%" justifyContent="start">
         {disabled ? (
           <Button
-            variant="solid"
+            variant="outline"
             colorScheme="gray"
-            size="lg"
+            borderRadius="30em"
+            p="1.2em 2em"
+            size="xs"
             isDisabled
             leftIcon={<CheckIcon />}
           >
@@ -50,8 +57,10 @@ function MyCard({ gift, handleOpenModal, disabled }) {
           <Button
             variant="solid"
             colorScheme="facebook"
-            size="lg"
-            rightIcon={<ArrowForwardIcon />}
+            borderRadius="30em"
+            width="100%"
+            p="1.2em 1.2em"
+            size="xs"
             onClick={() => {
               handleOpenModal(gift);
             }}

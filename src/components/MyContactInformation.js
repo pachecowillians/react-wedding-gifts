@@ -171,18 +171,24 @@ const MyContactInformation = ({
             colorScheme="facebook"
             variant="ghost"
             mr={3}
-            onClick={() => {
-              setActiveStep(0);
-            }}
+            borderRadius="30em"
+            w="7em"
             leftIcon={<ArrowBackIcon />}
+            fontSize={{ base: "sm", md: "md", lg: "lg" }}
+            onClick={() => {
+              setActiveStep(1);
+            }}
           >
             Voltar
           </Button>
           <Button
             colorScheme="facebook"
             type="submit"
+            borderRadius="30em"
+            w="9em"
             isLoading={isSubmitting}
             leftIcon={<CheckIcon />}
+            fontSize={{ base: "sm", md: "md", lg: "lg" }}
           >
             Finalizar
           </Button>

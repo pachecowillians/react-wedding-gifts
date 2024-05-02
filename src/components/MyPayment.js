@@ -35,6 +35,7 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
             <Text
               alignSelf="center"
               fontSize={{ base: "sm", md: "md", lg: "lg" }}
+              mt="1em"
             >
               {process.env.NEXT_PUBLIC_ACCOUNT_OWNER}
             </Text>
@@ -53,6 +54,8 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
                 onClick={onCopy}
                 variant="outline"
                 colorScheme="gray"
+                borderRadius="30em"
+                w="11em"
                 leftIcon={<CopyIcon />}
                 fontSize={{ base: "sm", md: "md", lg: "lg" }}
               >
@@ -74,8 +77,10 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
           variant="ghost"
           mr={3}
           ml="auto"
+          borderRadius="30em"
+          w="7em"
           leftIcon={<ArrowBackIcon />}
-          size={{ base: "sm", md: "md", lg: "md" }}
+          fontSize={{ base: "sm", md: "md", lg: "lg" }}
           onClick={() => {
             setActiveStep(0);
           }}
@@ -84,7 +89,9 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
         </Button>
         <Button
           colorScheme="facebook"
-          size={{ base: "sm", md: "md", lg: "md" }}
+          fontSize={{ base: "sm", md: "md", lg: "lg" }}
+          borderRadius="30em"
+          w="9em"
           leftIcon={<CheckIcon />}
           onClick={() => {
             setActiveStep(2);

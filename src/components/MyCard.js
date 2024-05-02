@@ -50,15 +50,15 @@ function MyCard({ gift, handleOpenModal, disabled }) {
             fontSize={{ base: "sm", md: "md", lg: "lg" }}
             isDisabled
             leftIcon={<CheckIcon />}
-          >
+            >
             Escolhido
           </Button>
         ) : (
           <Button
-            variant="solid"
-            colorScheme="facebook"
-            borderRadius="30em"
-            w="100%"
+          variant="solid"
+          colorScheme="facebook"
+          borderRadius="30em"
+          w="100%"
             fontSize={{ base: "sm", md: "md", lg: "lg" }}
             onClick={() => {
               handleOpenModal(gift);

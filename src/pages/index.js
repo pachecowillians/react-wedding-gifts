@@ -55,7 +55,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container maxW={{base: "8xl", xl:"80vw"}} p="5em 0em" centerContent>
+      <Container maxW={{ base: "8xl", xl: "80vw" }} p="5em 0em" centerContent>
         <Center flexDir="column">
           <Image
             src="./logo.svg"
@@ -70,14 +70,16 @@ export default function Home() {
             sint non enim labore eiusmod nostrud ut minim cillum. Pariatur aute
           </Text>
         </Center>
-        <Heading
+        <Text
+          as="h1"
           m="1.5em"
-          textTransform="upper"
+          fontSize="1.5em"
+          textTransform="uppercase"
           fontWeight="400"
-          textAlign={{ base: "center", md: "left" }}
+          alignSelf="start"
         >
           Lista de Presentes
-        </Heading>
+        </Text>
         <Box
           className={styles.cardsGrid}
           margin={{ base: "0 1em", md: "0 3em" }}

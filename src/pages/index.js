@@ -8,14 +8,22 @@ import {
   Center,
   useDisclosure,
   Box,
+  Button,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import MyCard from "@/components/MyCard";
 import MyModal from "@/components/MyModal";
 import styles from "@/styles/Home.module.css";
+import { AddIcon } from "@chakra-ui/icons";
+import MyDrawer from "@/components/MyDrawer";
 
 export default function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isDrawerOpen,
+    onOpen: onDrawerOpen,
+    onClose: onDrawerClose,
+  } = useDisclosure();
   const [gifts, setGifts] = useState([]);
   const [selectedGiftData, setSelectedGiftData] = useState({});
 
@@ -39,6 +47,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchGifts();
+    // onDrawerOpen();
     // const interval = setInterval(fetchGifts, 30000);
 
     // return () => clearInterval(interval);
@@ -56,6 +65,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container maxW={{ base: "8xl", xl: "80vw" }} p="5em 0em" centerContent>
+        <Button
+          leftIcon={<AddIcon />}
+          colorScheme="teal"
+          onClick={onDrawerOpen}
+        >
+          Meus presentes
+        </Button>
         <Center flexDir="column">
           <Image
             src="./logo.svg"
@@ -100,6 +116,11 @@ export default function Home() {
         selectedGiftData={selectedGiftData}
         setSelectedGiftData={setSelectedGiftData}
         fetchGifts={fetchGifts}
+      />
+      <MyDrawer
+        isOpen={isDrawerOpen}
+        onOpen={onDrawerOpen}
+        onClose={onDrawerClose}
       />
     </>
   );

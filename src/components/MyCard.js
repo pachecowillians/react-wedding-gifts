@@ -81,7 +81,7 @@ function MyCard({ gift, handleOpenModal, disabled }) {
         <Flex w="full" justifyContent="space-between" alignItems="center">
           <MyCurrencyDisplay price={price} />
           <Button
-            colorScheme={disabled ? "gray" : "main"}
+            colorScheme={disabled ? "gray" : "facebook"}
             alignSelf="end"
             fontSize="md"
             isDisabled={disabled}

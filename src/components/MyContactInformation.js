@@ -137,7 +137,7 @@ const MyContactInformation = ({
           <FormControl isInvalid={errors.name}>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
-                <IoPerson color="var(--chakra-colors-main-500)" />
+                <IoPerson color="facebook.500" />
               </InputLeftElement>
               <Input
                 fontSize="sm"
@@ -153,7 +153,7 @@ const MyContactInformation = ({
           <FormControl isInvalid={errors.phone}>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
-                <PhoneIcon color="main.500" />
+                <PhoneIcon color="facebook.500" />
               </InputLeftElement>
               <Input
                 type="tel"
@@ -178,7 +178,7 @@ const MyContactInformation = ({
         </Stack>
         <Flex mb="1em" mt="2em" justifyContent="flex-end">
           <Button
-            colorScheme="main"
+            colorScheme="facebook"
             variant="ghost"
             mr={3}
             leftIcon={<ArrowBackIcon />}
@@ -190,7 +190,7 @@ const MyContactInformation = ({
             Voltar
           </Button>
           <Button
-            colorScheme="main"
+            colorScheme="facebook"
             type="submit"
             isLoading={isSubmitting}
             leftIcon={<GrSend />}

@@ -13,7 +13,7 @@ const MyPresentOptions = ({ selectedGiftData, setSelectedGiftData, setActiveStep
       </Text>
       <Flex my="1em">
         <Button
-          colorScheme="main"
+          colorScheme="facebook"
           variant="ghost"
           mr={3}
           ml="auto"
@@ -27,7 +27,7 @@ const MyPresentOptions = ({ selectedGiftData, setSelectedGiftData, setActiveStep
           PIX
         </Button>
         <Button
-          colorScheme="main"
+          colorScheme="facebook"
           variant="ghost"
           leftIcon={<FaShoppingCart />}
           fontSize={{ base: "sm", md: "md", lg: "lg" }}

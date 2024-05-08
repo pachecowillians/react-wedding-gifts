@@ -38,7 +38,8 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
             <Button
               onClick={onCopy}
               variant="ghost"
-              colorScheme="main"
+              colorScheme="gray"
+              color="facebook.500"
               rightIcon={<CopyIcon />}
               fontSize="sm"
               w="fit-content"
@@ -58,7 +59,7 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
       </Center>
       <Flex my="1em">
         <Button
-          colorScheme="main"
+          colorScheme="facebook"
           variant="ghost"
           mr={3}
           ml="auto"
@@ -71,7 +72,7 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
           Voltar
         </Button>
         <Button
-          colorScheme="main"
+          colorScheme="facebook"
           fontSize="sm"
           leftIcon={<CheckIcon />}
           onClick={() => {

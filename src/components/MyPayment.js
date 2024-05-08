@@ -15,7 +15,7 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
       <Center>
         {selectedGiftData.paymentMethod === "pix" ? (
           <Stack spacing={2}>
-            <Text fontSize={{ base: "sm", md: "md", lg: "lg" }}>
+            <Text fontSize="sm">
               Culpa dolore voluptate mollit sunt sunt id anim proident sint aute
               non.
             </Text>
@@ -24,7 +24,7 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
                 text={process.env.NEXT_PUBLIC_QRCODE_TEXT}
                 options={{
                   margin: 2,
-                  width: 170,
+                  width: 200,
                   color: {
                     dark: "#000000",
                     light: "#ffffff",
@@ -34,53 +34,50 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
             </Center>
             <Text
               alignSelf="center"
-              fontSize={{ base: "sm", md: "md", lg: "lg" }}
+              fontSize="sm"
               mt="1em"
             >
               {process.env.NEXT_PUBLIC_ACCOUNT_OWNER}
             </Text>
             <Stack
-              color="var(--chakra-colors-facebook-500)"
+              color="var(--chakra-colors-main-500)"
               gap={5}
               alignItems="center"
             >
-              <Text
+              {/* <Text
                 fontWeight="bold"
-                fontSize={{ base: "sm", md: "md", lg: "lg" }}
+                fontSize="sm"
               >
-                Chave: {value}
-              </Text>
+                {value}
+              </Text> */}
               <Button
                 onClick={onCopy}
                 variant="outline"
-                colorScheme="gray"
-                borderRadius="30em"
-                w="11em"
-                leftIcon={<CopyIcon />}
-                fontSize={{ base: "sm", md: "md", lg: "lg" }}
+                colorScheme="main"
+                rightIcon={<CopyIcon />}
+                fontSize="sm"
+                mt="0.75em"
               >
-                {hasCopied ? "Chave copiada!" : "Copiar chave"}
+                {hasCopied ? "Chave copiada!" : value}
               </Button>
             </Stack>
           </Stack>
         ) : (
-          <Text fontSize={{ base: "sm", md: "md", lg: "lg" }}>
+          <Text fontSize="sm">
             Ullamco incididunt qui ea irure proident enim dolore occaecat
             proident commodo do. Cupidatat Lorem ut consequat nulla nostrud.
             Laboris elit laboris nisi velit proident culpa.
           </Text>
         )}
       </Center>
-      <Flex mt={10} mb={3}>
+      <Flex mb="1em" mt="2em">
         <Button
-          colorScheme="facebook"
+          colorScheme="main"
           variant="ghost"
           mr={3}
           ml="auto"
-          borderRadius="30em"
-          w="7em"
           leftIcon={<ArrowBackIcon />}
-          fontSize={{ base: "sm", md: "md", lg: "lg" }}
+          fontSize="sm"
           onClick={() => {
             setActiveStep(0);
           }}
@@ -88,10 +85,8 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
           Voltar
         </Button>
         <Button
-          colorScheme="facebook"
-          fontSize={{ base: "sm", md: "md", lg: "lg" }}
-          borderRadius="30em"
-          w="9em"
+          colorScheme="main"
+          fontSize="sm"
           leftIcon={<CheckIcon />}
           onClick={() => {
             setActiveStep(2);

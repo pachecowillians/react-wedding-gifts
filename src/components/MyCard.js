@@ -79,16 +79,19 @@ function MyCard({ gift, handleOpenModal, disabled }) {
       <Stack p="1.5em" gap="1.5em">
         <Heading size="sm">{title}</Heading>
         <Flex w="full" justifyContent="space-between" alignItems="center">
-          <MyCurrencyDisplay price={price}/>
+          <MyCurrencyDisplay price={price} />
           <Button
-            colorScheme="main"
+            colorScheme={disabled ? "gray" : "main"}
             alignSelf="end"
             fontSize="md"
+            isDisabled={disabled}
             onClick={() => {
-              handleOpenModal(gift);
+              if (!disabled) {
+                handleOpenModal(gift);
+              }
             }}
           >
-            Escolher
+            {disabled ? "Escolhido" : "Escolher"}
           </Button>
         </Flex>
       </Stack>

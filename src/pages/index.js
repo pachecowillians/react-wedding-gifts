@@ -9,6 +9,7 @@ import {
   useDisclosure,
   Box,
   Button,
+  Stack,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import MyCard from "@/components/MyCard";
@@ -64,21 +65,22 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container maxW={{ base: "8xl", xl: "80vw" }} p="5em 0em" centerContent>
-        <Button
+      <Container centerContent>
+        {/* <Button
           leftIcon={<AddIcon />}
           colorScheme="teal"
           onClick={onDrawerOpen}
         >
           Meus presentes
-        </Button>
+        </Button> */}
         <Center flexDir="column">
           <Image
             src="./logo.svg"
             alt="Logo"
+            mt="3em"
             boxSize={{ base: "12em", md: "13em" }}
           />
-          <Text maxW="70vw" m="3em" textAlign="center">
+          <Text mx="0.5em" mt="3em" textAlign="center">
             Ea deserunt elit duis enim aliquip irure aliquip et occaecat. Et
             laboris anim veniam non est adipisicing magna qui sit. Commodo magna
             eu eu non commodo dolor pariatur occaecat cillum est officia nisi.
@@ -87,8 +89,10 @@ export default function Home() {
           </Text>
         </Center>
         <Text
-          as="h1"
-          m="1.5em"
+          as="h4"
+          mt="3em"
+          mb="1.5em"
+          mx="0.5em"
           fontSize="1.5em"
           textTransform="uppercase"
           fontWeight="400"
@@ -96,9 +100,11 @@ export default function Home() {
         >
           Lista de Presentes
         </Text>
-        <Box
-          className={styles.cardsGrid}
-          margin={{ base: "0 1em", md: "0 3em" }}
+        <Stack
+          // className={styles.cardsGrid}
+          alignItems="center"
+          gap="3em"
+          // margin={{ base: "0 1em", md: "0 3em" }}
         >
           {gifts.map((gift) => (
             <MyCard
@@ -108,7 +114,7 @@ export default function Home() {
               disabled={gift.status == "Escolhido"}
             />
           ))}
-        </Box>
+        </Stack>
       </Container>
       <MyModal
         isOpen={isOpen}

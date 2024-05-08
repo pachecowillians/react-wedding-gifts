@@ -14,7 +14,7 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
     <>
       <Center>
         {selectedGiftData.paymentMethod === "pix" ? (
-          <Stack spacing={2}>
+          <Stack>
             <Text fontSize="sm">
               Culpa dolore voluptate mollit sunt sunt id anim proident sint aute
               non.
@@ -24,7 +24,7 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
                 text={process.env.NEXT_PUBLIC_QRCODE_TEXT}
                 options={{
                   margin: 2,
-                  width: 200,
+                  width: 220,
                   color: {
                     dark: "#000000",
                     light: "#ffffff",
@@ -32,35 +32,21 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
                 }}
               />
             </Center>
-            <Text
-              alignSelf="center"
-              fontSize="sm"
-              mt="1em"
-            >
+            <Text alignSelf="center" fontSize="sm" fontWeight="600">
               {process.env.NEXT_PUBLIC_ACCOUNT_OWNER}
             </Text>
-            <Stack
-              color="var(--chakra-colors-main-500)"
-              gap={5}
-              alignItems="center"
+            <Button
+              onClick={onCopy}
+              variant="ghost"
+              colorScheme="main"
+              rightIcon={<CopyIcon />}
+              fontSize="sm"
+              w="fit-content"
+              alignSelf="center"
+              my="0.5em"
             >
-              {/* <Text
-                fontWeight="bold"
-                fontSize="sm"
-              >
-                {value}
-              </Text> */}
-              <Button
-                onClick={onCopy}
-                variant="outline"
-                colorScheme="main"
-                rightIcon={<CopyIcon />}
-                fontSize="sm"
-                mt="0.75em"
-              >
-                {hasCopied ? "Chave copiada!" : value}
-              </Button>
-            </Stack>
+              {hasCopied ? "Chave copiada!" : value}
+            </Button>
           </Stack>
         ) : (
           <Text fontSize="sm">
@@ -70,7 +56,7 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
           </Text>
         )}
       </Center>
-      <Flex mb="1em" mt="2em">
+      <Flex my="1em">
         <Button
           colorScheme="main"
           variant="ghost"
@@ -92,7 +78,7 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
             setActiveStep(2);
           }}
         >
-          Confirmar
+          Finalizar
         </Button>
       </Flex>
     </>

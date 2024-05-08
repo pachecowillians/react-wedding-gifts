@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import {
   Text,
   Stack,
@@ -10,12 +9,14 @@ import {
   Button,
   Flex,
   useToast,
+  Textarea,
 } from "@chakra-ui/react";
 import { IoPerson } from "react-icons/io5";
-import { ArrowBackIcon, CheckIcon, PhoneIcon } from "@chakra-ui/icons";
+import { ArrowBackIcon, PhoneIcon } from "@chakra-ui/icons";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { GrSend } from "react-icons/gr";
 
 const MyContactInformation = ({
   setSelectedGiftData,
@@ -165,6 +166,15 @@ const MyContactInformation = ({
               {errors.phone && errors.phone.message}
             </FormErrorMessage>
           </FormControl>
+          <FormControl>
+            <InputGroup>
+              <Textarea
+                fontSize="sm"
+                placeholder="Deixe uma mensagem para nós"
+                {...register("message")}
+              />
+            </InputGroup>
+          </FormControl>
         </Stack>
         <Flex mb="1em" mt="2em" justifyContent="flex-end">
           <Button
@@ -183,10 +193,10 @@ const MyContactInformation = ({
             colorScheme="main"
             type="submit"
             isLoading={isSubmitting}
-            leftIcon={<CheckIcon />}
+            leftIcon={<GrSend />}
             fontSize="sm"
           >
-            Finalizar
+            Enviar
           </Button>
         </Flex>
       </form>

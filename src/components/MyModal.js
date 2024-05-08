@@ -42,6 +42,7 @@ const MyModal = ({
       isOpen={isOpen}
       onClose={handleClose}
       size="sm"
+      isCentered
     >
       <ModalOverlay />
       <ModalContent pt="1em">

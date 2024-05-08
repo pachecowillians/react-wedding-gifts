@@ -11,12 +11,12 @@ const MyCurrencyDisplay = ({ price }) => {
   const [reais, cents] = valueWithoutSymbol.split(",");
 
   return (
-    <Flex alignItems="center">
+    <Flex alignItems="center" fontWeight="500" color="main.500">
       <Text fontSize="0.75em" mr="0.3em">
         R$
       </Text>
-      <Text lineHeight="normal" fontSize="1.125em">{reais}</Text>
-      <Text lineHeight="initial" fontSize="0.75em" alignSelf="end" ml="0.175em" mb="1px">
+      <Text lineHeight="normal">{reais}</Text>
+      <Text fontSize="0.6em" alignSelf="end" ml="0.2em">
         {cents}
       </Text>
     </Flex>

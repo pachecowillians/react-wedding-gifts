@@ -17,6 +17,7 @@ import MyStepper from "./MyStepper";
 import MyContactInformation from "./MyContactInformation";
 import MyPresentOptions from "./MyPresentOptions";
 import MyPayment from "./MyPayment";
+import MyCurrencyDisplay from "./MyCurrencyDisplay";
 
 const MyModal = ({
   isOpen,
@@ -40,12 +41,12 @@ const MyModal = ({
       blockScrollOnMount={false}
       isOpen={isOpen}
       onClose={handleClose}
-      size={{ base: "sm", md: "lg" }}
+      size="sm"
     >
       <ModalOverlay />
-      <ModalContent p="1em 0 0 0">
+      <ModalContent pt="1em">
         <ModalHeader>
-          <ModalCloseButton m={1} />
+          <ModalCloseButton m="0.125em"/>
         </ModalHeader>
 
         <ModalBody>
@@ -53,20 +54,19 @@ const MyModal = ({
             <Image
               src={selectedGiftData && selectedGiftData.imageSrc}
               alt={selectedGiftData && selectedGiftData.description}
-              borderRadius="0.7em"
+              borderRadius="md"
+              objectFit="cover"
               maxW="5em"
               // objectFit="fill"
             />
-            <Stack spacing="1" justifyContent="center">
-              <Heading size="sm" fontWeight="400">
+            <Stack gap="0.75em" justifyContent="center">
+              <Heading fontSize="sm" fontWeight="bold">
                 {selectedGiftData && selectedGiftData.title}
               </Heading>
-              <Text color="blue.600" fontSize="sm">
-                {selectedGiftData && selectedGiftData.price}
-              </Text>
+              <MyCurrencyDisplay price={selectedGiftData && selectedGiftData.price}/>
             </Stack>
           </Flex>
-          <Divider m="1em 0" />
+          <Divider m="1.5em 0" />
           <MyStepper
             activeStep={activeStep}
             steps={steps}

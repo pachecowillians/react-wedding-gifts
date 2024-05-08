@@ -6,19 +6,17 @@ import { FaShoppingCart } from "react-icons/fa";
 const MyPresentOptions = ({ selectedGiftData, setSelectedGiftData, setActiveStep }) => {
   return (
     <>
-      <Text fontSize={{base: "sm", md:"md", lg: "lg"}}>
+      <Text fontSize="sm">
         Ullamco incididunt qui ea irure proident enim dolore occaecat proident
         commodo do. Cupidatat Lorem ut consequat nulla nostrud. Laboris elit
         laboris nisi velit proident culpa.
       </Text>
-      <Flex mt={5} mb={3}>
+      <Flex my="1em">
         <Button
-          colorScheme="facebook"
+          colorScheme="main"
           variant="ghost"
           mr={3}
           ml="auto"
-          borderRadius="30em"
-          w="6em"
           leftIcon={<FaPix />}
           fontSize={{ base: "sm", md: "md", lg: "lg" }}
           onClick={() => {
@@ -29,10 +27,8 @@ const MyPresentOptions = ({ selectedGiftData, setSelectedGiftData, setActiveStep
           PIX
         </Button>
         <Button
-          colorScheme="facebook"
+          colorScheme="main"
           variant="ghost"
-          borderRadius="30em"
-          w="9em"
           leftIcon={<FaShoppingCart />}
           fontSize={{ base: "sm", md: "md", lg: "lg" }}
           onClick={() => {

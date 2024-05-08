@@ -126,7 +126,7 @@ const MyContactInformation = ({
 
   return (
     <>
-      <Text fontSize={{ base: "sm", md: "md", lg: "lg" }}>
+      <Text fontSize="sm">
         Ullamco incididunt qui ea irure proident enim dolore occaecat proident
         commodo do. Cupidatat Lorem ut consequat nulla nostrud. Laboris elit
         laboris nisi velit proident culpa.
@@ -136,10 +136,10 @@ const MyContactInformation = ({
           <FormControl isInvalid={errors.name}>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
-                <IoPerson color="var(--chakra-colors-facebook-500)" />
+                <IoPerson color="var(--chakra-colors-main-500)" />
               </InputLeftElement>
               <Input
-                fontSize={{ base: "sm", md: "md", lg: "lg" }}
+                fontSize="sm"
                 type="text"
                 placeholder="Nome completo"
                 {...register("name")}
@@ -152,11 +152,11 @@ const MyContactInformation = ({
           <FormControl isInvalid={errors.phone}>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
-                <PhoneIcon color="facebook.500" />
+                <PhoneIcon color="main.500" />
               </InputLeftElement>
               <Input
                 type="tel"
-                fontSize={{ base: "sm", md: "md", lg: "lg" }}
+                fontSize="sm"
                 placeholder="Número de celular"
                 {...register("phone")}
               />
@@ -166,15 +166,13 @@ const MyContactInformation = ({
             </FormErrorMessage>
           </FormControl>
         </Stack>
-        <Flex mt={5} mb={3} justifyContent="flex-end">
+        <Flex mb="1em" mt="2em" justifyContent="flex-end">
           <Button
-            colorScheme="facebook"
+            colorScheme="main"
             variant="ghost"
             mr={3}
-            borderRadius="30em"
-            w="7em"
             leftIcon={<ArrowBackIcon />}
-            fontSize={{ base: "sm", md: "md", lg: "lg" }}
+            fontSize="sm"
             onClick={() => {
               setActiveStep(1);
             }}
@@ -182,13 +180,11 @@ const MyContactInformation = ({
             Voltar
           </Button>
           <Button
-            colorScheme="facebook"
+            colorScheme="main"
             type="submit"
-            borderRadius="30em"
-            w="9em"
             isLoading={isSubmitting}
             leftIcon={<CheckIcon />}
-            fontSize={{ base: "sm", md: "md", lg: "lg" }}
+            fontSize="sm"
           >
             Finalizar
           </Button>

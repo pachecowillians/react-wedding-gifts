@@ -41,13 +41,13 @@ const MyModal = ({
       blockScrollOnMount={false}
       isOpen={isOpen}
       onClose={handleClose}
-      size="sm"
+      size={{ base: "sm", sm: "sm", md: "md", lg: "lg", xl: "xl" }}
       isCentered
     >
       <ModalOverlay />
       <ModalContent pt="1em">
         <ModalHeader>
-          <ModalCloseButton m="0.125em"/>
+          <ModalCloseButton m="0.125em" />
         </ModalHeader>
 
         <ModalBody>
@@ -56,14 +56,16 @@ const MyModal = ({
               src={selectedGiftData && selectedGiftData.imageSrc}
               alt={selectedGiftData && selectedGiftData.description}
               borderRadius="md"
-              objectFit="cover"
-              maxW="5em"
+              objectFit="contain"
+              maxW="30%"
             />
             <Stack gap="0.75em" justifyContent="center">
               <Heading fontSize="sm" fontWeight="bold">
                 {selectedGiftData && selectedGiftData.title}
               </Heading>
-              <MyCurrencyDisplay price={selectedGiftData && selectedGiftData.price}/>
+              <MyCurrencyDisplay
+                price={selectedGiftData && selectedGiftData.price}
+              />
             </Stack>
           </Flex>
           <Divider m="1.5em 0" />

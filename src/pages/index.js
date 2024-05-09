@@ -1,30 +1,19 @@
 import Head from "next/head";
 import {
-  SimpleGrid,
   Container,
   Image,
   Text,
-  Heading,
   Center,
   useDisclosure,
   Box,
-  Button,
-  Stack,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import MyCard from "@/components/MyCard";
 import MyModal from "@/components/MyModal";
 import styles from "@/styles/Home.module.css";
-import { AddIcon } from "@chakra-ui/icons";
-import MyDrawer from "@/components/MyDrawer";
 
 export default function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const {
-    isOpen: isDrawerOpen,
-    onOpen: onDrawerOpen,
-    onClose: onDrawerClose,
-  } = useDisclosure();
   const [gifts, setGifts] = useState([]);
   const [selectedGiftData, setSelectedGiftData] = useState({});
 
@@ -48,7 +37,6 @@ export default function Home() {
 
   useEffect(() => {
     fetchGifts();
-    // onDrawerOpen();
     // const interval = setInterval(fetchGifts, 30000);
 
     // return () => clearInterval(interval);
@@ -66,13 +54,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container centerContent maxW={{ md: "80%" }} mb="5em">
-        {/* <Button
-          leftIcon={<AddIcon />}
-          colorScheme="teal"
-          onClick={onDrawerOpen}
-        >
-          Meus presentes
-        </Button> */}
         <Center flexDir="column">
           <Image src="./logo.svg" alt="Logo" mt="3em" boxSize="12em" />
           <Text mx="0.5em" mt="3em" textAlign="center">
@@ -115,11 +96,6 @@ export default function Home() {
         selectedGiftData={selectedGiftData}
         setSelectedGiftData={setSelectedGiftData}
         fetchGifts={fetchGifts}
-      />
-      <MyDrawer
-        isOpen={isDrawerOpen}
-        onOpen={onDrawerOpen}
-        onClose={onDrawerClose}
       />
     </>
   );

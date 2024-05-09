@@ -11,7 +11,7 @@ const MyCurrencyDisplay = ({ price }) => {
   const [reais, cents] = valueWithoutSymbol.split(",");
 
   return (
-    <Flex alignItems="center" fontWeight="400" color="main.500">
+    <Flex alignItems="center" fontWeight="400" color="facebook.500">
       <Text fontSize="0.75em" mr="0.3em">
         R$
       </Text>

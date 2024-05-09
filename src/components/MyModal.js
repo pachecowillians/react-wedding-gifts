@@ -58,7 +58,6 @@ const MyModal = ({
               borderRadius="md"
               objectFit="cover"
               maxW="5em"
-              // objectFit="fill"
             />
             <Stack gap="0.75em" justifyContent="center">
               <Heading fontSize="sm" fontWeight="bold">

@@ -18,19 +18,19 @@ const MyPresentOptions = ({ selectedGiftData, setSelectedGiftData, setActiveStep
           mr={3}
           ml="auto"
           leftIcon={<FaPix />}
-          fontSize={{ base: "sm", md: "md", lg: "lg" }}
+          fontSize="sm"
           onClick={() => {
             setSelectedGiftData({ ...selectedGiftData, paymentMethod: "pix" });
             setActiveStep(1);
           }}
         >
-          PIX
+          Pix
         </Button>
         <Button
           colorScheme="facebook"
           variant="ghost"
           leftIcon={<FaShoppingCart />}
-          fontSize={{ base: "sm", md: "md", lg: "lg" }}
+          fontSize="sm"
           onClick={() => {
             setSelectedGiftData({ ...selectedGiftData, paymentMethod: "comprar" });
             setActiveStep(1);

@@ -10,6 +10,7 @@ import {
   Flex,
   useToast,
   Textarea,
+  Icon,
 } from "@chakra-ui/react";
 import { IoPerson } from "react-icons/io5";
 import { ArrowBackIcon, PhoneIcon } from "@chakra-ui/icons";
@@ -50,7 +51,8 @@ const MyContactInformation = ({
         name: data.name,
         phone: data.phone,
         status: "Escolhido",
-        giftDate: new Date().toISOString(),
+        message: data.message,
+        giftDate:  new Date().toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'medium' }),
       };
       const myPromise = enviarDadosParaAPI(updatedGiftData)
         .then(() => {
@@ -94,7 +96,7 @@ const MyContactInformation = ({
   function enviarDadosParaAPI(selectedGiftData) {
     return new Promise(async (resolve, reject) => {
       try {
-        const { id, name, phone, status, paymentMethod, giftDate } =
+        const { id, name, phone, status, paymentMethod, message, giftDate } =
           selectedGiftData;
         const response = await fetch("/api/choose-gift", {
           method: "POST",
@@ -107,6 +109,7 @@ const MyContactInformation = ({
             phone: phone,
             status: status,
             paymentMethod: paymentMethod,
+            message: message,
             giftDate: giftDate,
           }),
         });
@@ -137,7 +140,7 @@ const MyContactInformation = ({
           <FormControl isInvalid={errors.name}>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
-                <IoPerson color="facebook.500" />
+                <Icon as={IoPerson} color="facebook.500"/>
               </InputLeftElement>
               <Input
                 fontSize="sm"

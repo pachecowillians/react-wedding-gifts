@@ -65,7 +65,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container centerContent>
+      <Container centerContent maxW={{ md: "80%" }} mb="5em">
         {/* <Button
           leftIcon={<AddIcon />}
           colorScheme="teal"
@@ -74,12 +74,7 @@ export default function Home() {
           Meus presentes
         </Button> */}
         <Center flexDir="column">
-          <Image
-            src="./logo.svg"
-            alt="Logo"
-            mt="3em"
-            boxSize={{ base: "12em", md: "13em" }}
-          />
+          <Image src="./logo.svg" alt="Logo" mt="3em" boxSize="12em" />
           <Text mx="0.5em" mt="3em" textAlign="center">
             Ea deserunt elit duis enim aliquip irure aliquip et occaecat. Et
             laboris anim veniam non est adipisicing magna qui sit. Commodo magna
@@ -100,11 +95,9 @@ export default function Home() {
         >
           Lista de Presentes
         </Text>
-        <Stack
-          // className={styles.cardsGrid}
+        <Box
+          className={styles.cardsGrid}
           alignItems="center"
-          gap="3em"
-          // margin={{ base: "0 1em", md: "0 3em" }}
         >
           {gifts.map((gift) => (
             <MyCard
@@ -114,7 +107,7 @@ export default function Home() {
               disabled={gift.status == "Escolhido"}
             />
           ))}
-        </Stack>
+        </Box>
       </Container>
       <MyModal
         isOpen={isOpen}

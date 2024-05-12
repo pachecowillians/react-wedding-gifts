@@ -11,10 +11,21 @@ import { useEffect, useState } from "react";
 import MyCard from "@/components/MyCard";
 import MyModal from "@/components/MyModal";
 import styles from "@/styles/Home.module.css";
+import { fetchGifts } from "@/utils/fetchGifts";
 
-export default function Home() {
+export async function getStaticProps() {
+  const data = await fetchGifts();
+
+  return {
+    props: {
+      data,
+    },
+  };
+}
+
+export default function Home({data}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [gifts, setGifts] = useState([]);
+  const [gifts, setGifts] = useState(data);
   const [selectedGiftData, setSelectedGiftData] = useState({});
 
   const handleOpenModal = (cardData) => {
@@ -22,25 +33,11 @@ export default function Home() {
     onOpen();
   };
 
-  const fetchGifts = async () => {
-    try {
-      const response = await fetch("/api/gifts");
-      if (!response.ok) {
-        throw new Error("Failed to fetch gifts");
-      }
-      const data = await response.json();
-      setGifts(data);
-    } catch (error) {
-      console.error("Error fetching gifts:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchGifts();
-    // const interval = setInterval(fetchGifts, 30000);
-
-    // return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   fetchGifts();
+  //   const interval = setInterval(fetchGifts, 30000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <>
@@ -76,10 +73,7 @@ export default function Home() {
         >
           Lista de Presentes
         </Text>
-        <Box
-          className={styles.cardsGrid}
-          alignItems="center"
-        >
+        <Box className={styles.cardsGrid} alignItems="center">
           {gifts.map((gift) => (
             <MyCard
               key={gift.id}

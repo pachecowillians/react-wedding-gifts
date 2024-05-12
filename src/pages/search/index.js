@@ -11,11 +11,22 @@ import { useEffect, useState } from "react";
 import MyCard from "@/components/MyCard";
 import MyModal from "@/components/MyModal";
 import styles from "@/styles/Home.module.css";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
+import { fetchGifts } from "@/utils/fetchGifts";
 
-export default function Home() {
+export async function getStaticProps() {
+  const data = await fetchGifts();
+
+  return {
+    props: {
+      data,
+    },
+  };
+}
+
+export default function Search({ data }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [gifts, setGifts] = useState([]);
+  const [gifts, setGifts] = useState(data);
   const [selectedGiftData, setSelectedGiftData] = useState({});
 
   const router = useRouter();
@@ -67,23 +78,20 @@ export default function Home() {
             Consectetur tempor proident labore aute laborum veniam duis. Lorem
             sint non enim labore eiusmod nostrud ut minim cillum. Pariatur aute
           </Text>
-        <Text
-          as="h4"
-          mt="3em"
-          mb="1.5em"
-          mx="0.5em"
-          fontSize="1.5em"
-          textTransform="uppercase"
-          fontWeight="400"
-          alignSelf="start"
-        >
-          {query}
-        </Text>
+          <Text
+            as="h4"
+            mt="3em"
+            mb="1.5em"
+            mx="0.5em"
+            fontSize="1.5em"
+            textTransform="uppercase"
+            fontWeight="400"
+            alignSelf="start"
+          >
+            {query}
+          </Text>
         </Center>
-        <Box
-          className={styles.cardsGrid}
-          alignItems="center"
-        >
+        <Box className={styles.cardsGrid} alignItems="center">
           {gifts.map((gift) => (
             <MyCard
               key={gift.id}

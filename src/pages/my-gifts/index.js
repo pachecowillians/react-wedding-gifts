@@ -11,10 +11,22 @@ import { useEffect, useState } from "react";
 import MyCard from "@/components/MyCard";
 import MyModal from "@/components/MyModal";
 import styles from "@/styles/Home.module.css";
+import { fetchGifts } from "@/utils/fetchGifts";
 
-export default function Home() {
+export async function getStaticProps() {
+  const data = await fetchGifts();
+
+  return {
+    props: {
+      data,
+    },
+  };
+}
+
+
+export default function MyGifts({data}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [gifts, setGifts] = useState([]);
+  const [gifts, setGifts] = useState(data);
   const [selectedGiftData, setSelectedGiftData] = useState({});
 
   const handleOpenModal = (cardData) => {
@@ -35,12 +47,12 @@ export default function Home() {
     }
   };
 
-  useEffect(() => {
-    fetchGifts();
-    // const interval = setInterval(fetchGifts, 30000);
+  // useEffect(() => {
+  //   fetchGifts();
+  //   // const interval = setInterval(fetchGifts, 30000);
 
-    // return () => clearInterval(interval);
-  }, []);
+  //   // return () => clearInterval(interval);
+  // }, []);
 
   return (
     <>

@@ -45,7 +45,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Lista de Presentes</title>
+        <title>Meus Presentes</title>
         <meta
           name="description"
           content="Gift list for the wedding of Willian and Samara"
@@ -63,7 +63,6 @@ export default function Home() {
             Consectetur tempor proident labore aute laborum veniam duis. Lorem
             sint non enim labore eiusmod nostrud ut minim cillum. Pariatur aute
           </Text>
-        </Center>
         <Text
           as="h4"
           mt="3em"
@@ -74,8 +73,9 @@ export default function Home() {
           fontWeight="400"
           alignSelf="start"
         >
-          Lista de Presentes
+          Meus Presentes
         </Text>
+        </Center>
         <Box
           className={styles.cardsGrid}
           alignItems="center"

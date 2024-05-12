@@ -23,21 +23,19 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({data}) {
+export default function Home({ data }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [gifts, setGifts] = useState(data);
   const [selectedGiftData, setSelectedGiftData] = useState({});
+  const [gifts, setGifts] = useState([]);
+
+  useEffect(() => {
+    setGifts(data);
+  }, [data]);
 
   const handleOpenModal = (cardData) => {
     setSelectedGiftData({ ...selectedGiftData, ...cardData });
     onOpen();
   };
-
-  // useEffect(() => {
-  //   fetchGifts();
-  //   const interval = setInterval(fetchGifts, 30000);
-  //   return () => clearInterval(interval);
-  // }, []);
 
   return (
     <>

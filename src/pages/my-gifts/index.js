@@ -23,36 +23,19 @@ export async function getStaticProps() {
   };
 }
 
-
-export default function MyGifts({data}) {
+export default function MyGifts({ data }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [gifts, setGifts] = useState(data);
   const [selectedGiftData, setSelectedGiftData] = useState({});
+  const [gifts, setGifts] = useState([]);
+
+  useEffect(() => {
+    setGifts(data);
+  }, [data]);
 
   const handleOpenModal = (cardData) => {
     setSelectedGiftData({ ...selectedGiftData, ...cardData });
     onOpen();
   };
-
-  const fetchGifts = async () => {
-    try {
-      const response = await fetch("/api/gifts");
-      if (!response.ok) {
-        throw new Error("Failed to fetch gifts");
-      }
-      const data = await response.json();
-      setGifts(data);
-    } catch (error) {
-      console.error("Error fetching gifts:", error);
-    }
-  };
-
-  // useEffect(() => {
-  //   fetchGifts();
-  //   // const interval = setInterval(fetchGifts, 30000);
-
-  //   // return () => clearInterval(interval);
-  // }, []);
 
   return (
     <>
@@ -75,23 +58,20 @@ export default function MyGifts({data}) {
             Consectetur tempor proident labore aute laborum veniam duis. Lorem
             sint non enim labore eiusmod nostrud ut minim cillum. Pariatur aute
           </Text>
-        <Text
-          as="h4"
-          mt="3em"
-          mb="1.5em"
-          mx="0.5em"
-          fontSize="1.5em"
-          textTransform="uppercase"
-          fontWeight="400"
-          alignSelf="start"
-        >
-          Meus Presentes
-        </Text>
+          <Text
+            as="h4"
+            mt="3em"
+            mb="1.5em"
+            mx="0.5em"
+            fontSize="1.5em"
+            textTransform="uppercase"
+            fontWeight="400"
+            alignSelf="start"
+          >
+            Meus Presentes
+          </Text>
         </Center>
-        <Box
-          className={styles.cardsGrid}
-          alignItems="center"
-        >
+        <Box className={styles.cardsGrid} alignItems="center">
           {gifts.map((gift) => (
             <MyCard
               key={gift.id}

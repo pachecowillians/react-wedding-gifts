@@ -25,38 +25,33 @@ export async function getStaticProps() {
 }
 
 export default function Search({ data }) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [gifts, setGifts] = useState(data);
-  const [selectedGiftData, setSelectedGiftData] = useState({});
-
   const router = useRouter();
   const { query } = router.query;
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [selectedGiftData, setSelectedGiftData] = useState({});
+  const [gifts, setGifts] = useState([]);
+
+  useEffect(() => {
+    const removeAccents = (text) =>
+      text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    const filteredData = data.filter((object) => {
+      // Normalize both the title and search term to lowercase and remove accents
+      const normalizedTitle = removeAccents(object.title).toLowerCase();
+      const searchTerm = query ? removeAccents(query).toLowerCase() : query;
+
+      // Check if the normalized title contains the normalized search term
+      return normalizedTitle.includes(searchTerm);
+    });
+
+    setGifts(filteredData);
+  }, [data, query]);
 
   const handleOpenModal = (cardData) => {
     setSelectedGiftData({ ...selectedGiftData, ...cardData });
     onOpen();
   };
-
-  const fetchGifts = async () => {
-    try {
-      const response = await fetch("/api/gifts");
-      if (!response.ok) {
-        throw new Error("Failed to fetch gifts");
-      }
-      const data = await response.json();
-      setGifts(data);
-    } catch (error) {
-      console.error("Error fetching gifts:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchGifts();
-    // const interval = setInterval(fetchGifts, 30000);
-
-    // return () => clearInterval(interval);
-  }, []);
-
+  
   return (
     <>
       <Head>

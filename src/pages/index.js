@@ -85,7 +85,8 @@ export default function Home() {
               key={gift.id}
               handleOpenModal={handleOpenModal}
               gift={gift}
-              disabled={gift.status == "Escolhido"}
+              isChosen={gift.status == "Escolhido"}
+              allowRemove={false}
             />
           ))}
         </Box>

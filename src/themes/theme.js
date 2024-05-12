@@ -10,6 +10,9 @@ const theme = extendTheme({
     facebook: {
       500: "#42567B",
     },
+    red: {
+      500: "#c44e4e",
+    },
   },
   fontSizes: {
     xs: "0.875rem",

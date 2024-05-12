@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import MyCurrencyDisplay from "./MyCurrencyDisplay";
 
-function MyCard({ gift, handleOpenModal, disabled }) {
+function MyCard({ gift, handleOpenModal, isChosen, allowRemove }) {
   const { imageSrc, title, price } = gift;
 
   return (
@@ -29,17 +29,17 @@ function MyCard({ gift, handleOpenModal, disabled }) {
         <Flex w="full" justifyContent="space-between" alignItems="center">
           <MyCurrencyDisplay price={price} />
           <Button
-            colorScheme={disabled ? "gray" : "facebook"}
+            colorScheme={allowRemove ? "red" : isChosen ? "gray" : "facebook"}
             alignSelf="end"
             fontSize="md"
-            isDisabled={disabled}
+            isDisabled={isChosen}
             onClick={() => {
-              if (!disabled) {
+              if (!isChosen) {
                 handleOpenModal(gift);
               }
             }}
           >
-            {disabled ? "Escolhido" : "Escolher"}
+            {allowRemove ? "Remover" : isChosen ? "Escolhido" : "Escolher" }
           </Button>
         </Flex>
       </Stack>

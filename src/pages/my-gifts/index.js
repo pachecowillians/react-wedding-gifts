@@ -9,10 +9,10 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import MyCard from "@/components/MyCard";
-import MyModal from "@/components/MyModal";
 import styles from "@/styles/Home.module.css";
 import { fetchGifts } from "@/utils/fetchGifts";
 import { useRouter } from "next/router";
+import MyConfirmRemoveModal from "@/components/MyConfirmRemoveModal";
 
 export async function getStaticProps() {
   const data = await fetchGifts();
@@ -42,6 +42,15 @@ export default function MyGifts({ data }) {
   const handleOpenModal = (cardData) => {
     setSelectedGiftData({ ...selectedGiftData, ...cardData });
     onOpen();
+  };
+
+  const loadData = async () => {
+    const data = await fetchGifts();
+    const filteredData = data.filter((object) => {
+      return object.status === "Escolhido" && object.phone == phone;
+    });
+
+    setGifts(filteredData);
   };
 
   return (
@@ -90,12 +99,11 @@ export default function MyGifts({ data }) {
           ))}
         </Box>
       </Container>
-      <MyModal
+      <MyConfirmRemoveModal
         isOpen={isOpen}
         onClose={onClose}
-        selectedGiftData={selectedGiftData}
         setSelectedGiftData={setSelectedGiftData}
-        fetchGifts={fetchGifts}
+        loadData={loadData}
       />
     </>
   );

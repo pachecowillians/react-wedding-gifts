@@ -47,6 +47,7 @@ const MyModal = ({
       <ModalOverlay />
       <ModalContent pt="1em">
         <ModalHeader>
+          Escolher presente
           <ModalCloseButton m="0.125em" />
         </ModalHeader>
 

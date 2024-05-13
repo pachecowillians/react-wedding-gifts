@@ -34,9 +34,7 @@ function MyCard({ gift, handleOpenModal, isChosen, allowRemove }) {
             fontSize="md"
             isDisabled={allowRemove ? false : isChosen}
             onClick={() => {
-              if (!isChosen) {
-                handleOpenModal(gift);
-              }
+              handleOpenModal(gift);
             }}
           >
             {allowRemove ? "Remover" : isChosen ? "Escolhido" : "Escolher"}

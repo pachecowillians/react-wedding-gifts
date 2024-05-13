@@ -32,14 +32,14 @@ function MyCard({ gift, handleOpenModal, isChosen, allowRemove }) {
             colorScheme={allowRemove ? "red" : isChosen ? "gray" : "facebook"}
             alignSelf="end"
             fontSize="md"
-            isDisabled={isChosen}
+            isDisabled={allowRemove ? false : isChosen}
             onClick={() => {
               if (!isChosen) {
                 handleOpenModal(gift);
               }
             }}
           >
-            {allowRemove ? "Remover" : isChosen ? "Escolhido" : "Escolher" }
+            {allowRemove ? "Remover" : isChosen ? "Escolhido" : "Escolher"}
           </Button>
         </Flex>
       </Stack>

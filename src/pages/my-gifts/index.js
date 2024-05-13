@@ -12,6 +12,7 @@ import MyCard from "@/components/MyCard";
 import MyModal from "@/components/MyModal";
 import styles from "@/styles/Home.module.css";
 import { fetchGifts } from "@/utils/fetchGifts";
+import { useRouter } from "next/router";
 
 export async function getStaticProps() {
   const data = await fetchGifts();
@@ -24,13 +25,19 @@ export async function getStaticProps() {
 }
 
 export default function MyGifts({ data }) {
+  const router = useRouter();
+  const { phone } = router.query;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedGiftData, setSelectedGiftData] = useState({});
   const [gifts, setGifts] = useState([]);
 
   useEffect(() => {
-    setGifts(data);
-  }, [data]);
+    const filteredData = data.filter((object) => {
+      return object.status === "Escolhido" && object.phone == phone;
+    });
+
+    setGifts(filteredData);
+  }, [data, phone]);
 
   const handleOpenModal = (cardData) => {
     setSelectedGiftData({ ...selectedGiftData, ...cardData });

@@ -32,17 +32,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import { IoSearchOutline } from "react-icons/io5";
 
-const MySearchGiftsModal = ({ isOpen, onClose }) => {
+const MySearchMyGiftsModal = ({ isOpen, onClose }) => {
   const router = useRouter();
 
   const schema = Yup.object().shape({
-    name: Yup.string()
+    phone: Yup.string()
       .required("Este campo é obrigatório")
-      .matches(/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/, "Somente letras são permitidas"),
+      .matches(/^\d{9,12}$/, "Número de celular inválido"),
   });
 
   function onSubmit(data) {
-    router.push(`/search?query=${data.name}`);
+    router.push(`/my-gifts?phone=${data.phone}`);
     onClose();
   }
 
@@ -65,7 +65,7 @@ const MySearchGiftsModal = ({ isOpen, onClose }) => {
       <ModalOverlay />
       <ModalContent pt="1em">
         <ModalHeader>
-          Buscar presentes
+          Meus presentes
           <ModalCloseButton m="0.125em" />
         </ModalHeader>
 
@@ -76,20 +76,20 @@ const MySearchGiftsModal = ({ isOpen, onClose }) => {
           </Text>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Stack spacing={4} m="2em 0">
-              <FormControl isInvalid={errors.name}>
+              <FormControl isInvalid={errors.phone}>
                 <InputGroup>
                   <InputLeftElement pointerEvents="none">
-                    <SearchIcon color="facebook.500" />
+                    <PhoneIcon color="facebook.500" />
                   </InputLeftElement>
                   <Input
                     type="tel"
                     fontSize="sm"
                     placeholder="Número de celular"
-                    {...register("name")}
+                    {...register("phone")}
                   />
                 </InputGroup>
                 <FormErrorMessage fontSize={{ base: "xs", md: "sm", lg: "md" }}>
-                  {errors.name && errors.name.message}
+                  {errors.phone && errors.phone.message}
                 </FormErrorMessage>
               </FormControl>
             </Stack>
@@ -98,6 +98,7 @@ const MySearchGiftsModal = ({ isOpen, onClose }) => {
                 colorScheme="facebook"
                 type="submit"
                 isLoading={isSubmitting}
+                leftIcon={<IoSearchOutline />}
                 fontSize="sm"
               >
                 Buscar
@@ -110,4 +111,4 @@ const MySearchGiftsModal = ({ isOpen, onClose }) => {
   );
 };
 
-export default MySearchGiftsModal;
+export default MySearchMyGiftsModal;

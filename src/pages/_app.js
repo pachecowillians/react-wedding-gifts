@@ -6,17 +6,25 @@ import {
   Flex,
   Icon,
   IconButton,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { FaHouse, FaPix } from "react-icons/fa6";
 import { IoHomeOutline, IoSearchOutline } from "react-icons/io5";
 import { AiOutlineGift, AiOutlineHome } from "react-icons/ai";
 import { BsXDiamond } from "react-icons/bs";
-import { RiHome2Line } from "react-icons/ri";
-import Link from "next/link";
 import { useState } from "react";
+import MySearchMyGiftsModal from "@/components/MySearchMyGiftsModal";
+import { useRouter } from "next/router";
+import MySearchGiftsModal from "@/components/MySearchGiftsModal";
 
 export default function App({ Component, pageProps }) {
   const [selectedPage, setSelectedPage] = useState("home"); // Defina a página inicialmente como 'home'
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isSearchOpen,
+    onOpen: onSearchOpen,
+    onClose: onSearchClose,
+  } = useDisclosure();
+  const router = useRouter();
 
   return (
     <ChakraProvider theme={theme}>
@@ -24,6 +32,7 @@ export default function App({ Component, pageProps }) {
       <Center w="full" px="1.75em" position="fixed" bottom="2em">
         <Flex
           w="full"
+          maxW="25em"
           h="4.25em"
           bg="white"
           borderRadius="full"
@@ -40,7 +49,10 @@ export default function App({ Component, pageProps }) {
             fontSize="1.375em"
             colorScheme={selectedPage == "home" ? "facebook" : "black"}
             variant={selectedPage == "home" ? "solid" : "ghost"}
-            onClick={()=>{setSelectedPage("home")}}
+            onClick={() => {
+              router.push("/");
+              setSelectedPage("home");
+            }}
             transition="all ease 0.3s"
           />
           <IconButton
@@ -52,7 +64,9 @@ export default function App({ Component, pageProps }) {
             fontSize="1.375em"
             colorScheme={selectedPage == "pix" ? "facebook" : "black"}
             variant={selectedPage == "pix" ? "solid" : "ghost"}
-            onClick={()=>{setSelectedPage("pix")}}
+            onClick={() => {
+              setSelectedPage("pix");
+            }}
             transition="all ease 0.3s"
           />
           <IconButton
@@ -64,7 +78,10 @@ export default function App({ Component, pageProps }) {
             fontSize="1.375em"
             colorScheme={selectedPage == "search" ? "facebook" : "black"}
             variant={selectedPage == "search" ? "solid" : "ghost"}
-            onClick={()=>{setSelectedPage("search")}}
+            onClick={() => {
+              onSearchOpen();
+              setSelectedPage("search");
+            }}
             transition="all ease 0.3s"
           />
           <IconButton
@@ -76,11 +93,16 @@ export default function App({ Component, pageProps }) {
             fontSize="1.375em"
             colorScheme={selectedPage == "my-gifts" ? "facebook" : "black"}
             variant={selectedPage == "my-gifts" ? "solid" : "ghost"}
-            onClick={()=>{setSelectedPage("my-gifts")}}
+            onClick={() => {
+              onOpen();
+              setSelectedPage("my-gifts");
+            }}
             transition="all ease 0.3s"
           />
         </Flex>
       </Center>
+      <MySearchMyGiftsModal isOpen={isOpen} onClose={onClose} />
+      <MySearchGiftsModal isOpen={isSearchOpen} onClose={onSearchClose} />
     </ChakraProvider>
   );
 }

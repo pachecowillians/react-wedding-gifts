@@ -17,7 +17,7 @@ const MyConfirmRemoveModal = ({
   isOpen,
   onClose,
   setSelectedGiftData,
-  loadData,
+  fetchGifts,
 }) => {
   const toast = useToast();
 
@@ -33,7 +33,9 @@ const MyConfirmRemoveModal = ({
         giftDate: "",
       };
       const myPromise = enviarDadosParaAPI(updatedGiftData)
-        .then()
+        .then(() => {
+          fetchGifts();
+        })
         .catch((error) => {
           console.error("Erro ao enviar dados:", error);
         });
@@ -75,7 +77,7 @@ const MyConfirmRemoveModal = ({
       try {
         const { id, name, phone, status, paymentMethod, message, giftDate } =
           selectedGiftData;
-        const response = await fetch("/api/choose-gift", {
+        const response = await fetch("/api/update-gift", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -106,7 +108,6 @@ const MyConfirmRemoveModal = ({
   }
 
   function handleClose() {
-    loadData();
     setSelectedGiftData({});
     onClose();
   }

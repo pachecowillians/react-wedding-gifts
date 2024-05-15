@@ -12,7 +12,6 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import MyCard from "@/components/MyCard";
-import MyModal from "@/components/MyModal";
 import styles from "@/styles/Home.module.css";
 import { useRouter } from "next/router";
 import { fetchGifts } from "@/utils/fetchGifts";
@@ -92,13 +91,13 @@ export default function Pix({ data }) {
           Finalizar
         </Button>
       </Container>
-      <MyModal
+      {/* <MyModal
         isOpen={isOpen}
         onClose={onClose}
         selectedGiftData={selectedGiftData}
         setSelectedGiftData={setSelectedGiftData}
         fetchGifts={fetchGifts}
-      />
+      /> */}
     </>
   );
 }

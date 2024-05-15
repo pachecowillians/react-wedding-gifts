@@ -13,44 +13,32 @@ import styles from "@/styles/Home.module.css";
 import { fetchGifts } from "@/utils/fetchGifts";
 import { useRouter } from "next/router";
 import MyConfirmRemoveModal from "@/components/modals/MyConfirmRemoveModal";
+import useSWR from "swr";
 
-export async function getStaticProps() {
-  const data = await fetchGifts();
-
-  return {
-    props: {
-      data,
-    },
-  };
-}
-
-export default function MyGifts({ data }) {
+export default function MyGifts() {
   const router = useRouter();
   const { phone } = router.query;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedGiftData, setSelectedGiftData] = useState({});
   const [gifts, setGifts] = useState([]);
 
-  useEffect(() => {
-    const filteredData = data.filter((object) => {
-      return object.status === "Escolhido" && object.phone == phone;
-    });
+  const fetcher = (url) => fetch(url).then((res) => res.json());
 
-    setGifts(filteredData);
+  const { data, error, mutate } = useSWR("/api/gifts", fetcher);
+
+  useEffect(() => {
+    if (data) {
+      const filteredData = data.filter((object) => {
+        return object.status === "Escolhido" && object.phone == phone;
+      });
+
+      setGifts(filteredData);
+    }
   }, [data, phone]);
 
   const handleOpenModal = (cardData) => {
     setSelectedGiftData({ ...selectedGiftData, ...cardData });
     onOpen();
-  };
-
-  const loadData = async () => {
-    const data = await fetchGifts();
-    const filteredData = data.filter((object) => {
-      return object.status === "Escolhido" && object.phone == phone;
-    });
-
-    setGifts(filteredData);
   };
 
   return (
@@ -103,7 +91,7 @@ export default function MyGifts({ data }) {
         isOpen={isOpen}
         onClose={onClose}
         setSelectedGiftData={setSelectedGiftData}
-        loadData={loadData}
+        fetchGifts={mutate}
       />
     </>
   );

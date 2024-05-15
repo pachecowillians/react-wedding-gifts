@@ -32,7 +32,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import { IoSearchOutline } from "react-icons/io5";
 
-const MySearchMyGiftsModal = ({ isOpen, onClose, setSelectedPage }) => {
+const MySearchUserModal = ({ isOpen, onClose, setSelectedPage }) => {
   const router = useRouter();
 
   const schema = Yup.object().shape({
@@ -42,7 +42,10 @@ const MySearchMyGiftsModal = ({ isOpen, onClose, setSelectedPage }) => {
   });
 
   function onSubmit(data) {
-    router.push(`/my-gifts?phone=${data.phone}`);
+    router.push({
+      pathname: '/my-gifts',
+      query: { phone: data.phone },
+    }, undefined, { shallow: true }); 
     onClose();
   }
 
@@ -102,7 +105,7 @@ const MySearchMyGiftsModal = ({ isOpen, onClose, setSelectedPage }) => {
                 colorScheme="facebook"
                 type="submit"
                 isLoading={isSubmitting}
-                leftIcon={<IoSearchOutline />}
+                leftIcon={<SearchIcon />}
                 fontSize="sm"
               >
                 Buscar
@@ -115,4 +118,4 @@ const MySearchMyGiftsModal = ({ isOpen, onClose, setSelectedPage }) => {
   );
 };
 
-export default MySearchMyGiftsModal;
+export default MySearchUserModal;

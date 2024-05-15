@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Modal,
   ModalOverlay,
@@ -8,29 +8,19 @@ import {
   ModalBody,
   Flex,
   Stack,
-  Heading,
   Text,
-  Image,
-  Divider,
   Button,
   FormControl,
   InputGroup,
   InputLeftElement,
   Input,
   FormErrorMessage,
-  useToast,
 } from "@chakra-ui/react";
-import MyStepper from "../MyStepper";
-import MyContactInformation from "../MyContactInformation";
-import MyPresentOptions from "../MyPresentOptions";
-import MyPayment from "../MyPayment";
-import MyCurrencyDisplay from "../MyCurrencyDisplay";
-import { ArrowBackIcon, DeleteIcon, PhoneIcon, SearchIcon } from "@chakra-ui/icons";
+import { PhoneIcon, SearchIcon } from "@chakra-ui/icons";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
-import { IoSearchOutline } from "react-icons/io5";
 
 const MySearchUserModal = ({ isOpen, onClose, setSelectedPage }) => {
   const router = useRouter();
@@ -42,11 +32,15 @@ const MySearchUserModal = ({ isOpen, onClose, setSelectedPage }) => {
   });
 
   function onSubmit(data) {
-    router.push({
-      pathname: '/my-gifts',
-      query: { phone: data.phone },
-    }, undefined, { shallow: true }); 
-    setSelectedPage("my-gifts")
+    router.push(
+      {
+        pathname: "/my-gifts",
+        query: { phone: data.phone },
+      },
+      undefined,
+      { shallow: true }
+    );
+    setSelectedPage("my-gifts");
     onClose();
   }
 

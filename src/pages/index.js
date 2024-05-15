@@ -10,7 +10,6 @@ import {
 import { useEffect, useState } from "react";
 import MyCard from "@/components/MyCard";
 import styles from "@/styles/Home.module.css";
-import { fetchGifts } from "@/utils/fetchGifts";
 import MyChooseGiftModal from "@/components/modals/MyChooseGiftModal";
 import useSWR from "swr";
 

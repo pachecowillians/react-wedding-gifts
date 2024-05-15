@@ -11,8 +11,6 @@ import { useEffect, useState } from "react";
 import MyCard from "@/components/MyCard";
 import styles from "@/styles/Home.module.css";
 import { useRouter } from "next/router";
-import { fetchGifts } from "@/utils/fetchGifts";
-import MySearchGiftsModal from "@/components/modals/MySearchGiftsModal";
 import useSWR from "swr";
 import MyChooseGiftModal from "@/components/modals/MyChooseGiftModal";
 
@@ -33,11 +31,9 @@ export default function Search() {
         text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
       const filteredData = data.filter((object) => {
-        // Normalize both the title and search term to lowercase and remove accents
         const normalizedTitle = removeAccents(object.title).toLowerCase();
         const searchTerm = query ? removeAccents(query).toLowerCase() : query;
 
-        // Check if the normalized title contains the normalized search term
         return normalizedTitle.includes(searchTerm);
       });
 

@@ -15,8 +15,16 @@ const MyCurrencyDisplay = ({ price }) => {
       <Text fontSize="0.75em" mr="0.3em">
         R$
       </Text>
-      <Text lineHeight="normal" fontSize="1.125em">{reais}</Text>
-      <Text lineHeight="initial" fontSize="0.75em" alignSelf="end" ml="0.175em" mb="1px">
+      <Text lineHeight="normal" fontSize="1.125em">
+        {reais}
+      </Text>
+      <Text
+        lineHeight="initial"
+        fontSize="0.75em"
+        alignSelf="end"
+        ml="0.175em"
+        mb="1px"
+      >
         {cents}
       </Text>
     </Flex>

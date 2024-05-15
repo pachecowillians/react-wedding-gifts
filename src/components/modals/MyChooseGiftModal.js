@@ -9,7 +9,6 @@ import {
   Flex,
   Stack,
   Heading,
-  Text,
   Image,
   Divider,
 } from "@chakra-ui/react";

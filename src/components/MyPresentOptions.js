@@ -3,7 +3,11 @@ import { Button, Flex, Text } from "@chakra-ui/react";
 import { FaPix } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
 
-const MyPresentOptions = ({ selectedGiftData, setSelectedGiftData, setActiveStep }) => {
+const MyPresentOptions = ({
+  selectedGiftData,
+  setSelectedGiftData,
+  setActiveStep,
+}) => {
   return (
     <>
       <Text fontSize="sm">
@@ -32,7 +36,10 @@ const MyPresentOptions = ({ selectedGiftData, setSelectedGiftData, setActiveStep
           leftIcon={<FaShoppingCart />}
           fontSize="sm"
           onClick={() => {
-            setSelectedGiftData({ ...selectedGiftData, paymentMethod: "comprar" });
+            setSelectedGiftData({
+              ...selectedGiftData,
+              paymentMethod: "comprar",
+            });
             setActiveStep(1);
           }}
         >

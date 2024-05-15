@@ -2,7 +2,8 @@ import { authenticateGoogleSheets } from "@/utils/auth";
 
 export default async function handler(req, res) {
   try {
-    const { id, name, phone, status, paymentMethod, message, giftDate } = req.body; // Supondo que você esteja recebendo esses dados no corpo da requisição
+    const { id, name, phone, status, paymentMethod, message, giftDate } =
+      req.body;
 
     const sheets = await authenticateGoogleSheets();
 

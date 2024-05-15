@@ -15,6 +15,7 @@ export default function Pix() {
   const { onCopy, value, setValue, hasCopied } = useClipboard(
     process.env.NEXT_PUBLIC_PIX_KEY
   );
+
   return (
     <>
       <Head>

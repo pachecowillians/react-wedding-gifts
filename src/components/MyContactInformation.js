@@ -52,7 +52,10 @@ const MyContactInformation = ({
         phone: data.phone,
         status: "Escolhido",
         message: data.message,
-        giftDate:  new Date().toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'medium' }),
+        giftDate: new Date().toLocaleString(undefined, {
+          dateStyle: "medium",
+          timeStyle: "medium",
+        }),
       };
       const myPromise = enviarDadosParaAPI(updatedGiftData)
         .then(() => {
@@ -140,7 +143,7 @@ const MyContactInformation = ({
           <FormControl isInvalid={errors.name}>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
-                <Icon as={IoPerson} color="facebook.500"/>
+                <Icon as={IoPerson} color="facebook.500" />
               </InputLeftElement>
               <Input
                 fontSize="sm"

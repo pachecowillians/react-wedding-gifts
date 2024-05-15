@@ -1,5 +1,4 @@
 import theme from "@/themes/theme";
-import { SearchIcon } from "@chakra-ui/icons";
 import {
   Center,
   ChakraProvider,
@@ -8,7 +7,7 @@ import {
   IconButton,
   useDisclosure,
 } from "@chakra-ui/react";
-import { IoHomeOutline, IoSearchOutline } from "react-icons/io5";
+import { IoSearchOutline } from "react-icons/io5";
 import { AiOutlineGift, AiOutlineHome } from "react-icons/ai";
 import { BsXDiamond } from "react-icons/bs";
 import { useEffect, useState } from "react";
@@ -17,7 +16,7 @@ import MySearchGiftsModal from "@/components/modals/MySearchGiftsModal";
 import MySearchUserModal from "@/components/modals/MySearchUserModal";
 
 export default function App({ Component, pageProps }) {
-  const [selectedPage, setSelectedPage] = useState("home"); // Defina a página inicialmente como 'home'
+  const [selectedPage, setSelectedPage] = useState("home");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
     isOpen: isSearchOpen,
@@ -37,23 +36,29 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     const handleScroll = () => {
       const currentPosition = window.scrollY;
-      setScrollDirection(currentPosition > scrollPosition ? 'down' : 'up');
+      setScrollDirection(currentPosition > scrollPosition ? "down" : "up");
       setScrollPosition(currentPosition);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [scrollPosition]);
-  
-  const isBarHidden = scrollDirection === 'down';
+
+  const isBarHidden = scrollDirection === "down";
 
   return (
     <ChakraProvider theme={theme}>
       <Component {...pageProps} />
-      <Center w="full" px="1.75em" position="fixed" bottom={isBarHidden ? "-4.25em" : "2em"} transition="bottom 0.3s ease-in-out">
+      <Center
+        w="full"
+        px="1.75em"
+        position="fixed"
+        bottom={isBarHidden ? "-4.25em" : "2em"}
+        transition="bottom 0.3s ease-in-out"
+      >
         <Flex
           w="full"
           maxW="25em"
@@ -74,9 +79,13 @@ export default function App({ Component, pageProps }) {
             colorScheme={selectedPage == "home" ? "facebook" : "black"}
             variant={selectedPage == "home" ? "solid" : "ghost"}
             onClick={() => {
-              router.push({
-                pathname: '/',
-              }, undefined, { shallow: true }); 
+              router.push(
+                {
+                  pathname: "/",
+                },
+                undefined,
+                { shallow: true }
+              );
               setSelectedPage("home");
             }}
             transition="all ease 0.3s"
@@ -91,9 +100,13 @@ export default function App({ Component, pageProps }) {
             colorScheme={selectedPage == "pix" ? "facebook" : "black"}
             variant={selectedPage == "pix" ? "solid" : "ghost"}
             onClick={() => {
-              router.push({
-                pathname: '/pix',
-              }, undefined, { shallow: true }); 
+              router.push(
+                {
+                  pathname: "/pix",
+                },
+                undefined,
+                { shallow: true }
+              );
               setSelectedPage("pix");
             }}
             transition="all ease 0.3s"

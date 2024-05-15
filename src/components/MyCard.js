@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Card,
-  Image,
-  Stack,
-  Heading,
-  Text,
-  Button,
-  Flex,
-} from "@chakra-ui/react";
+import { Card, Image, Stack, Heading, Button, Flex } from "@chakra-ui/react";
 import MyCurrencyDisplay from "./MyCurrencyDisplay";
 
 function MyCard({ gift, handleOpenModal, isChosen, allowRemove }) {

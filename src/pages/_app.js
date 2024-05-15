@@ -62,11 +62,12 @@ export default function App({ Component, pageProps }) {
         <Flex
           w="full"
           maxW="25em"
-          p="0.5em"
+          py="0.5em"
+          px="1em"
           bg="white"
           borderRadius="full"
           alignItems="center"
-          justifyContent="space-evenly"
+          justifyContent="space-between"
           boxShadow="xl"
         >
           <IconButton

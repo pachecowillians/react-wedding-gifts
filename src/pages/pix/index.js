@@ -4,29 +4,13 @@ import {
   Image,
   Text,
   Center,
-  useDisclosure,
-  Box,
   Button,
-  Stack,
   useClipboard,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import MyCard from "@/components/MyCard";
-import styles from "@/styles/Home.module.css";
-import { useRouter } from "next/router";
-import { fetchGifts } from "@/utils/fetchGifts";
-import { CheckIcon, CopyIcon } from "@chakra-ui/icons";
+import { CopyIcon } from "@chakra-ui/icons";
 import { useQRCode } from "next-qrcode";
 
-export default function Pix({ data }) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedGiftData, setSelectedGiftData] = useState({});
-  const [gifts, setGifts] = useState([]);
-
-  const handleOpenModal = (cardData) => {
-    setSelectedGiftData({ ...selectedGiftData, ...cardData });
-    onOpen();
-  };
+export default function Pix() {
   const { SVG } = useQRCode();
   const { onCopy, value, setValue, hasCopied } = useClipboard(
     process.env.NEXT_PUBLIC_PIX_KEY
@@ -42,10 +26,10 @@ export default function Pix({ data }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container centerContent maxW={{ md: "80%" }} mb="5em">
+      <Container centerContent maxW={{ md: "80%" }} mb="9em">
         <Center flexDir="column">
           <Image src="./logo.svg" alt="Logo" mt="3em" boxSize="12em" />
-          <Text mx="0.5em" my="3em" textAlign="center">
+          <Text mx="0.5em" my="2em" textAlign="center">
             Ea deserunt elit duis enim aliquip irure aliquip et occaecat. Et
             laboris anim veniam non est adipisicing magna qui sit. Commodo magna
             eu eu non commodo dolor pariatur occaecat cillum est officia nisi.
@@ -63,7 +47,7 @@ export default function Pix({ data }) {
             }}
           />
         </Center>
-        <Text alignSelf="center" fontSize="sm" fontWeight="600">
+        <Text alignSelf="center" fontSize="sm" fontWeight="600" mt="1em">
           {process.env.NEXT_PUBLIC_ACCOUNT_OWNER}
         </Text>
         <Button
@@ -79,25 +63,7 @@ export default function Pix({ data }) {
         >
           {hasCopied ? "Chave copiada!" : value}
         </Button>
-        <Button
-          colorScheme="facebook"
-          fontSize="sm"
-          mt="1em"
-          leftIcon={<CheckIcon />}
-          onClick={() => {
-            setActiveStep(2);
-          }}
-        >
-          Finalizar
-        </Button>
       </Container>
-      {/* <MyModal
-        isOpen={isOpen}
-        onClose={onClose}
-        selectedGiftData={selectedGiftData}
-        setSelectedGiftData={setSelectedGiftData}
-        fetchGifts={fetchGifts}
-      /> */}
     </>
   );
 }

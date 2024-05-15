@@ -26,6 +26,7 @@ export default function App({ Component, pageProps }) {
   } = useDisclosure();
 
   const router = useRouter();
+
   useEffect(() => {
     setSelectedPage("home");
   }, []);
@@ -54,7 +55,9 @@ export default function App({ Component, pageProps }) {
             colorScheme={selectedPage == "home" ? "facebook" : "black"}
             variant={selectedPage == "home" ? "solid" : "ghost"}
             onClick={() => {
-              router.push("/");
+              router.push({
+                pathname: '/',
+              }, undefined, { shallow: true }); 
               setSelectedPage("home");
             }}
             transition="all ease 0.3s"
@@ -69,7 +72,9 @@ export default function App({ Component, pageProps }) {
             colorScheme={selectedPage == "pix" ? "facebook" : "black"}
             variant={selectedPage == "pix" ? "solid" : "ghost"}
             onClick={() => {
-              router.push("/pix");
+              router.push({
+                pathname: '/pix',
+              }, undefined, { shallow: true }); 
               setSelectedPage("pix");
             }}
             transition="all ease 0.3s"

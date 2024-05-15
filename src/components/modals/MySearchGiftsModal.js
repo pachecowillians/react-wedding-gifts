@@ -31,6 +31,15 @@ const MySearchGiftsModal = ({ isOpen, onClose, setSelectedPage }) => {
       .matches(/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/, "Somente letras são permitidas"),
   });
 
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
   function onSubmit(data) {
     router.push(
       {
@@ -41,16 +50,9 @@ const MySearchGiftsModal = ({ isOpen, onClose, setSelectedPage }) => {
       { shallow: true }
     );
     setSelectedPage("search");
+    reset();
     onClose();
   }
-
-  const {
-    handleSubmit,
-    register,
-    formState: { errors, isSubmitting },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
 
   return (
     <Modal

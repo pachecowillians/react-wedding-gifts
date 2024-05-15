@@ -31,6 +31,15 @@ const MySearchUserModal = ({ isOpen, onClose, setSelectedPage }) => {
       .matches(/^\d{9,12}$/, "Número de celular inválido"),
   });
 
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
   function onSubmit(data) {
     router.push(
       {
@@ -41,16 +50,9 @@ const MySearchUserModal = ({ isOpen, onClose, setSelectedPage }) => {
       { shallow: true }
     );
     setSelectedPage("my-gifts");
+    reset();
     onClose();
   }
-
-  const {
-    handleSubmit,
-    register,
-    formState: { errors, isSubmitting },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
 
   return (
     <Modal

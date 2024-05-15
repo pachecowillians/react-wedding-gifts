@@ -22,8 +22,7 @@ export default function Home() {
 
   const fetcher = (url) => fetch(url).then((res) => res.json());
 
-  const { data, error } = useSWR("/api/gifts", fetcher);
-  
+  const { data, error, mutate } = useSWR("/api/gifts", fetcher);
 
   useEffect(() => {
     setGifts(data);
@@ -88,7 +87,7 @@ export default function Home() {
         onClose={onClose}
         selectedGiftData={selectedGiftData}
         setSelectedGiftData={setSelectedGiftData}
-        fetchGifts={fetchGifts}
+        fetchGifts={mutate}
       />
     </>
   );

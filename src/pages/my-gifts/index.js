@@ -29,7 +29,19 @@ export default function MyGifts() {
   useEffect(() => {
     if (data) {
       const filteredData = data.filter((object) => {
-        return object.status === "Escolhido" && object.phone == phone;
+        if (object.status !== "Escolhido") {
+          return false;
+        }
+
+        const normalizePhone = (phone) => phone.replace(/\D/g, "");
+
+        const normalizedObjectPhone = normalizePhone(object.phone);
+        const normalizedPhone = normalizePhone(phone);
+
+        return (
+          normalizedObjectPhone.includes(normalizedPhone) ||
+          normalizedPhone.includes(normalizedObjectPhone)
+        );
       });
 
       setGifts(filteredData);

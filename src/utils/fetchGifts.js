@@ -2,7 +2,7 @@
 export async function fetchGifts() {
 
   try {
-      const response = await fetch("http://localhost:3000/api/gifts");
+      const response = await fetch("http://localhost:3000/api/get-gifts");
     if (!response.ok) {
       throw new Error("Failed to fetch gifts");
     }

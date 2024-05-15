@@ -13,13 +13,13 @@ import {
   Image,
   Divider,
 } from "@chakra-ui/react";
-import MyStepper from "./MyStepper";
-import MyContactInformation from "./MyContactInformation";
-import MyPresentOptions from "./MyPresentOptions";
-import MyPayment from "./MyPayment";
-import MyCurrencyDisplay from "./MyCurrencyDisplay";
+import MyStepper from "../MyStepper";
+import MyContactInformation from "../MyContactInformation";
+import MyPresentOptions from "../MyPresentOptions";
+import MyPayment from "../MyPayment";
+import MyCurrencyDisplay from "../MyCurrencyDisplay";
 
-const MyModal = ({
+const MyChooseGiftModal = ({
   isOpen,
   onClose,
   selectedGiftData,
@@ -102,4 +102,4 @@ const MyModal = ({
   );
 };
 
-export default MyModal;
+export default MyChooseGiftModal;

@@ -9,28 +9,28 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import MyCard from "@/components/MyCard";
-import MyModal from "@/components/MyModal";
 import styles from "@/styles/Home.module.css";
 import { fetchGifts } from "@/utils/fetchGifts";
+import MyChooseGiftModal from "@/components/modals/MyChooseGiftModal";
+import useSWR from "swr";
 
-export async function getStaticProps() {
-  const data = await fetchGifts();
 
-  return {
-    props: {
-      data,
-    },
-  };
-}
-
-export default function Home({ data }) {
+export default function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedGiftData, setSelectedGiftData] = useState({});
   const [gifts, setGifts] = useState([]);
 
+  const fetcher = (url) => fetch(url).then((res) => res.json());
+
+  const { data, error } = useSWR("/api/gifts", fetcher);
+  
+
   useEffect(() => {
     setGifts(data);
   }, [data]);
+
+  if (error) return <div>Erro ao buscar os dados.</div>;
+  if (!gifts) return <div>Carregando...</div>;
 
   const handleOpenModal = (cardData) => {
     setSelectedGiftData({ ...selectedGiftData, ...cardData });
@@ -73,17 +73,17 @@ export default function Home({ data }) {
         </Text>
         <Box className={styles.cardsGrid} alignItems="center">
           {gifts.map((gift) => (
-            <MyCard
-              key={gift.id}
-              handleOpenModal={handleOpenModal}
-              gift={gift}
-              isChosen={gift.status == "Escolhido"}
-              allowRemove={false}
-            />
-          ))}
+              <MyCard
+                key={gift.id}
+                handleOpenModal={handleOpenModal}
+                gift={gift}
+                isChosen={gift.status == "Escolhido"}
+                allowRemove={false}
+              />
+            ))}
         </Box>
       </Container>
-      <MyModal
+      <MyChooseGiftModal
         isOpen={isOpen}
         onClose={onClose}
         selectedGiftData={selectedGiftData}

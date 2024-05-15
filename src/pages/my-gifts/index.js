@@ -12,7 +12,7 @@ import MyCard from "@/components/MyCard";
 import styles from "@/styles/Home.module.css";
 import { fetchGifts } from "@/utils/fetchGifts";
 import { useRouter } from "next/router";
-import MyConfirmRemoveModal from "@/components/MyConfirmRemoveModal";
+import MyConfirmRemoveModal from "@/components/modals/MyConfirmRemoveModal";
 
 export async function getStaticProps() {
   const data = await fetchGifts();

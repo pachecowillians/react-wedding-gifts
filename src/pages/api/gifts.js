@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     // Authentication with Google Sheets
     const sheets = await authenticateGoogleSheets(".readonly");
 
-    const range = `Página1!A:I`;
+    const range = `${process.env.NEXT_PUBLIC_SHEET_PAGE}!A:I`;
 
     // Get data from the spreadsheet
     const response = await sheets.spreadsheets.values.get({

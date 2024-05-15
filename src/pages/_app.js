@@ -12,9 +12,9 @@ import { IoHomeOutline, IoSearchOutline } from "react-icons/io5";
 import { AiOutlineGift, AiOutlineHome } from "react-icons/ai";
 import { BsXDiamond } from "react-icons/bs";
 import { useEffect, useState } from "react";
-import MySearchMyGiftsModal from "@/components/MySearchMyGiftsModal";
+import MySearchMyGiftsModal from "@/components/modals/MySearchMyGiftsModal";
 import { useRouter } from "next/router";
-import MySearchGiftsModal from "@/components/MySearchGiftsModal";
+import MySearchGiftsModal from "@/components/modals/MySearchGiftsModal";
 
 export default function App({ Component, pageProps }) {
   const [selectedPage, setSelectedPage] = useState("home"); // Defina a página inicialmente como 'home'

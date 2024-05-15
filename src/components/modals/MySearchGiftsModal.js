@@ -20,11 +20,11 @@ import {
   FormErrorMessage,
   useToast,
 } from "@chakra-ui/react";
-import MyStepper from "./MyStepper";
-import MyContactInformation from "./MyContactInformation";
-import MyPresentOptions from "./MyPresentOptions";
-import MyPayment from "./MyPayment";
-import MyCurrencyDisplay from "./MyCurrencyDisplay";
+import MyStepper from "../MyStepper";
+import MyContactInformation from "../MyContactInformation";
+import MyPresentOptions from "../MyPresentOptions";
+import MyPayment from "../MyPayment";
+import MyCurrencyDisplay from "../MyCurrencyDisplay";
 import {
   ArrowBackIcon,
   DeleteIcon,

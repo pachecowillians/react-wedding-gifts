@@ -57,7 +57,7 @@ export default function App({ Component, pageProps }) {
         <Flex
           w="full"
           maxW="25em"
-          h="4.25em"
+          h="4em"
           bg="white"
           borderRadius="full"
           alignItems="center"

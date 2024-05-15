@@ -107,6 +107,7 @@ const MySearchGiftsModal = ({ isOpen, onClose, setSelectedPage }) => {
                 colorScheme="facebook"
                 type="submit"
                 isLoading={isSubmitting}
+                leftIcon={<SearchIcon />}
                 fontSize="sm"
               >
                 Buscar

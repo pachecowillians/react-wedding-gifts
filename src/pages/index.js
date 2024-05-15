@@ -6,13 +6,13 @@ import {
   Center,
   useDisclosure,
   Box,
+  Spinner,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import MyCard from "@/components/MyCard";
 import styles from "@/styles/Home.module.css";
 import MyChooseGiftModal from "@/components/modals/MyChooseGiftModal";
 import useSWR from "swr";
-
 
 export default function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -26,9 +26,6 @@ export default function Home() {
   useEffect(() => {
     setGifts(data);
   }, [data]);
-
-  if (error) return <div>Erro ao buscar os dados.</div>;
-  if (!gifts) return <div>Carregando...</div>;
 
   const handleOpenModal = (cardData) => {
     setSelectedGiftData({ ...selectedGiftData, ...cardData });
@@ -70,7 +67,8 @@ export default function Home() {
           Lista de Presentes
         </Text>
         <Box className={styles.cardsGrid} alignItems="center">
-          {gifts.map((gift) => (
+          {gifts ? (
+            gifts.map((gift) => (
               <MyCard
                 key={gift.id}
                 handleOpenModal={handleOpenModal}
@@ -78,7 +76,10 @@ export default function Home() {
                 isChosen={gift.status == "Escolhido"}
                 allowRemove={false}
               />
-            ))}
+            ))
+          ) : (
+            <Spinner mt="4em" size="xl" color="#D1AD74" />
+          )}
         </Box>
       </Container>
       <MyChooseGiftModal

@@ -6,6 +6,7 @@ import {
   Center,
   useDisclosure,
   Box,
+  Spinner,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import MyCard from "@/components/MyCard";
@@ -75,15 +76,19 @@ export default function MyGifts() {
           </Text>
         </Center>
         <Box className={styles.cardsGrid} alignItems="center">
-          {gifts.map((gift) => (
-            <MyCard
-              key={gift.id}
-              handleOpenModal={handleOpenModal}
-              gift={gift}
-              isChosen={gift.status == "Escolhido"}
-              allowRemove={true}
-            />
-          ))}
+          {data ? (
+            gifts.map((gift) => (
+              <MyCard
+                key={gift.id}
+                handleOpenModal={handleOpenModal}
+                gift={gift}
+                isChosen={gift.status == "Escolhido"}
+                allowRemove={true}
+              />
+            ))
+          ) : (
+            <Spinner mt="4em" size="xl" color="#D1AD74" />
+          )}
         </Box>
       </Container>
       <MyConfirmRemoveModal

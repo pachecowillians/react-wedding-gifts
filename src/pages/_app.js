@@ -31,10 +31,29 @@ export default function App({ Component, pageProps }) {
     setSelectedPage("home");
   }, []);
 
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [scrollDirection, setScrollDirection] = useState(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentPosition = window.scrollY;
+      setScrollDirection(currentPosition > scrollPosition ? 'down' : 'up');
+      setScrollPosition(currentPosition);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [scrollPosition]);
+  
+  const isBarHidden = scrollDirection === 'down';
+
   return (
     <ChakraProvider theme={theme}>
       <Component {...pageProps} />
-      <Center w="full" px="1.75em" position="fixed" bottom="2em">
+      <Center w="full" px="1.75em" position="fixed" bottom={isBarHidden ? "-4.25em" : "2em"} transition="bottom 0.3s ease-in-out">
         <Flex
           w="full"
           maxW="25em"

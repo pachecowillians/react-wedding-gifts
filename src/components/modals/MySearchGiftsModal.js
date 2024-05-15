@@ -47,7 +47,11 @@ const MySearchGiftsModal = ({ isOpen, onClose, setSelectedPage }) => {
   });
 
   function onSubmit(data) {
-    router.push(`/search?query=${data.name}`);
+    router.push({
+      pathname: '/search',
+      query: { query: data.name },
+    }, undefined, { shallow: true }); 
+    setSelectedPage("search");
     onClose();
   }
 
@@ -58,9 +62,7 @@ const MySearchGiftsModal = ({ isOpen, onClose, setSelectedPage }) => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  useEffect(() => {
-    setSelectedPage("my-gifts");
-  }, [setSelectedPage]);
+
   return (
     <Modal
       blockScrollOnMount={false}

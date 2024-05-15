@@ -46,6 +46,7 @@ const MySearchUserModal = ({ isOpen, onClose, setSelectedPage }) => {
       pathname: '/my-gifts',
       query: { phone: data.phone },
     }, undefined, { shallow: true }); 
+    setSelectedPage("my-gifts")
     onClose();
   }
 
@@ -56,10 +57,6 @@ const MySearchUserModal = ({ isOpen, onClose, setSelectedPage }) => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
-  useEffect(() => {
-    setSelectedPage("search")
-  }, [setSelectedPage]);
 
   return (
     <Modal

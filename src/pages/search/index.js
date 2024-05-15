@@ -9,49 +9,47 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import MyCard from "@/components/MyCard";
-import MyModal from "@/components/MyModal";
 import styles from "@/styles/Home.module.css";
 import { useRouter } from "next/router";
 import { fetchGifts } from "@/utils/fetchGifts";
+import MySearchGiftsModal from "@/components/modals/MySearchGiftsModal";
+import useSWR from "swr";
+import MyChooseGiftModal from "@/components/modals/MyChooseGiftModal";
 
-export async function getStaticProps() {
-  const data = await fetchGifts();
-
-  return {
-    props: {
-      data,
-    },
-  };
-}
-
-export default function Search({ data }) {
+export default function Search() {
   const router = useRouter();
   const { query } = router.query;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedGiftData, setSelectedGiftData] = useState({});
   const [gifts, setGifts] = useState([]);
 
+  const fetcher = (url) => fetch(url).then((res) => res.json());
+
+  const { data, error, mutate } = useSWR("/api/gifts", fetcher);
+
   useEffect(() => {
-    const removeAccents = (text) =>
-      text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    if (data) {
+      const removeAccents = (text) =>
+        text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-    const filteredData = data.filter((object) => {
-      // Normalize both the title and search term to lowercase and remove accents
-      const normalizedTitle = removeAccents(object.title).toLowerCase();
-      const searchTerm = query ? removeAccents(query).toLowerCase() : query;
+      const filteredData = data.filter((object) => {
+        // Normalize both the title and search term to lowercase and remove accents
+        const normalizedTitle = removeAccents(object.title).toLowerCase();
+        const searchTerm = query ? removeAccents(query).toLowerCase() : query;
 
-      // Check if the normalized title contains the normalized search term
-      return normalizedTitle.includes(searchTerm);
-    });
+        // Check if the normalized title contains the normalized search term
+        return normalizedTitle.includes(searchTerm);
+      });
 
-    setGifts(filteredData);
+      setGifts(filteredData);
+    }
   }, [data, query]);
 
   const handleOpenModal = (cardData) => {
     setSelectedGiftData({ ...selectedGiftData, ...cardData });
     onOpen();
   };
-  
+
   return (
     <>
       <Head>
@@ -98,12 +96,12 @@ export default function Search({ data }) {
           ))}
         </Box>
       </Container>
-      <MyModal
+      <MyChooseGiftModal
         isOpen={isOpen}
         onClose={onClose}
         selectedGiftData={selectedGiftData}
         setSelectedGiftData={setSelectedGiftData}
-        fetchGifts={fetchGifts}
+        fetchGifts={mutate}
       />
     </>
   );

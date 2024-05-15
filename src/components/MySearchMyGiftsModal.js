@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -32,7 +32,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import { IoSearchOutline } from "react-icons/io5";
 
-const MySearchMyGiftsModal = ({ isOpen, onClose }) => {
+const MySearchMyGiftsModal = ({ isOpen, onClose, setSelectedPage }) => {
   const router = useRouter();
 
   const schema = Yup.object().shape({
@@ -53,6 +53,10 @@ const MySearchMyGiftsModal = ({ isOpen, onClose }) => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  useEffect(() => {
+    setSelectedPage("search")
+  }, [setSelectedPage]);
 
   return (
     <Modal

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -25,14 +25,19 @@ import MyContactInformation from "./MyContactInformation";
 import MyPresentOptions from "./MyPresentOptions";
 import MyPayment from "./MyPayment";
 import MyCurrencyDisplay from "./MyCurrencyDisplay";
-import { ArrowBackIcon, DeleteIcon, PhoneIcon, SearchIcon } from "@chakra-ui/icons";
+import {
+  ArrowBackIcon,
+  DeleteIcon,
+  PhoneIcon,
+  SearchIcon,
+} from "@chakra-ui/icons";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import { IoSearchOutline } from "react-icons/io5";
 
-const MySearchGiftsModal = ({ isOpen, onClose }) => {
+const MySearchGiftsModal = ({ isOpen, onClose, setSelectedPage }) => {
   const router = useRouter();
 
   const schema = Yup.object().shape({
@@ -53,7 +58,9 @@ const MySearchGiftsModal = ({ isOpen, onClose }) => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
+  useEffect(() => {
+    setSelectedPage("my-gifts");
+  }, [setSelectedPage]);
   return (
     <Modal
       blockScrollOnMount={false}
@@ -82,9 +89,9 @@ const MySearchGiftsModal = ({ isOpen, onClose }) => {
                     <SearchIcon color="facebook.500" />
                   </InputLeftElement>
                   <Input
-                    type="tel"
+                    type="text"
                     fontSize="sm"
-                    placeholder="Número de celular"
+                    placeholder="Nome do presente"
                     {...register("name")}
                   />
                 </InputGroup>

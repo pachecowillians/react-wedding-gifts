@@ -11,7 +11,7 @@ import {
 import { IoHomeOutline, IoSearchOutline } from "react-icons/io5";
 import { AiOutlineGift, AiOutlineHome } from "react-icons/ai";
 import { BsXDiamond } from "react-icons/bs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MySearchMyGiftsModal from "@/components/MySearchMyGiftsModal";
 import { useRouter } from "next/router";
 import MySearchGiftsModal from "@/components/MySearchGiftsModal";
@@ -24,7 +24,11 @@ export default function App({ Component, pageProps }) {
     onOpen: onSearchOpen,
     onClose: onSearchClose,
   } = useDisclosure();
+
   const router = useRouter();
+  useEffect(() => {
+    setSelectedPage("home");
+  }, []);
 
   return (
     <ChakraProvider theme={theme}>
@@ -65,6 +69,7 @@ export default function App({ Component, pageProps }) {
             colorScheme={selectedPage == "pix" ? "facebook" : "black"}
             variant={selectedPage == "pix" ? "solid" : "ghost"}
             onClick={() => {
+              router.push("/pix");
               setSelectedPage("pix");
             }}
             transition="all ease 0.3s"
@@ -80,7 +85,6 @@ export default function App({ Component, pageProps }) {
             variant={selectedPage == "search" ? "solid" : "ghost"}
             onClick={() => {
               onSearchOpen();
-              setSelectedPage("search");
             }}
             transition="all ease 0.3s"
           />
@@ -95,14 +99,21 @@ export default function App({ Component, pageProps }) {
             variant={selectedPage == "my-gifts" ? "solid" : "ghost"}
             onClick={() => {
               onOpen();
-              setSelectedPage("my-gifts");
             }}
             transition="all ease 0.3s"
           />
         </Flex>
       </Center>
-      <MySearchMyGiftsModal isOpen={isOpen} onClose={onClose} />
-      <MySearchGiftsModal isOpen={isSearchOpen} onClose={onSearchClose} />
+      <MySearchMyGiftsModal
+        isOpen={isOpen}
+        onClose={onClose}
+        setSelectedPage={setSelectedPage}
+      />
+      <MySearchGiftsModal
+        isOpen={isSearchOpen}
+        onClose={onSearchClose}
+        setSelectedPage={setSelectedPage}
+      />
     </ChakraProvider>
   );
 }

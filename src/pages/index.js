@@ -47,14 +47,10 @@ export default function Home() {
         <Center flexDir="column">
           <Image src="./logo.svg" alt="Logo" mt="3em" boxSize="12em" />
           <Text mx="0.5em" mt="3em" textAlign="center">
-            Bem-vindo à nossa lista de presentes! <br />
-            Aqui você encontra os itens que mais curtimos e que gostaríamos de
-            ter na nossa nova jornada juntos. <br />
-            Dê uma olhada, escolha o que quiser e decida como contribuir:
-            comprando diretamente ou enviando um PIX pra gente. <br />
-            E se quiserem dar uma força extra, a chave PIX está aqui pra receber
-            qualquer contribuição adicional. <br />
-            Obrigado por fazer parte desse momento com a gente!
+            Seja bem-vindo à nossa lista de presentes! Nela, reunimos itens que
+            desejamos para nossa jornada juntos. Fique à vontade para escolher
+            e contribuir como preferir: comprando diretamente ou enviando um
+            PIX. Agradecemos imensamente por fazer parte deste momento conosco!
           </Text>
         </Center>
         <Text

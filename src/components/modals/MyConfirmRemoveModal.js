@@ -129,8 +129,8 @@ const MyConfirmRemoveModal = ({
 
         <ModalBody>
           <Text fontSize="sm">
-            Ullamco incididunt qui ea irure proident enim dolore occaecat
-            proident commodo do. Cupidatat Lorem ut consequat nulla nostrud.
+            Você tem certeza de que deseja desistir deste presente? Ao
+            confirmar, ele será removido da sua lista de presentes.
           </Text>
           <Flex mb="1em" mt="2em" justifyContent="flex-end">
             <Button

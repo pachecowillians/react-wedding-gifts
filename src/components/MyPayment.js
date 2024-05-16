@@ -16,8 +16,10 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
         {selectedGiftData.paymentMethod === "pix" ? (
           <Stack>
             <Text fontSize="sm">
-              Culpa dolore voluptate mollit sunt sunt id anim proident sint aute
-              non.
+              Você escolheu pagar via PIX!
+              <br /> Copie a chave PIX ou escaneie o QR Code abaixo. No app do
+              seu banco, confira os dados e realize o pagamento do valor
+              equivalente ao presente escolhido.
             </Text>
             <Center mt="1em">
               <SVG
@@ -32,7 +34,12 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
                 }}
               />
             </Center>
-            <Text alignSelf="center" fontSize="sm" fontWeight="600" color="facebook.500">
+            <Text
+              alignSelf="center"
+              fontSize="sm"
+              fontWeight="600"
+              color="facebook.500"
+            >
               {process.env.NEXT_PUBLIC_ACCOUNT_OWNER}
             </Text>
             <Button
@@ -40,7 +47,7 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
               variant="ghost"
               colorScheme="gray"
               color="facebook.500"
-              rightIcon={<CopyIcon fontSize="1.2em"/>}
+              rightIcon={<CopyIcon fontSize="1.2em" />}
               fontSize="sm"
               w="fit-content"
               alignSelf="center"
@@ -51,9 +58,9 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
           </Stack>
         ) : (
           <Text fontSize="sm">
-            Ullamco incididunt qui ea irure proident enim dolore occaecat
-            proident commodo do. Cupidatat Lorem ut consequat nulla nostrud.
-            Laboris elit laboris nisi velit proident culpa.
+            Você escolheu comprar o presente!
+            <br /> Aguardamos sua entrega no dia do casamento ou em uma ocasião
+            oportuna. Agradecemos por seu carinho e atenção!
           </Text>
         )}
       </Center>

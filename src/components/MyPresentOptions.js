@@ -11,9 +11,10 @@ const MyPresentOptions = ({
   return (
     <>
       <Text fontSize="sm">
-        Ullamco incididunt qui ea irure proident enim dolore occaecat proident
-        commodo do. Cupidatat Lorem ut consequat nulla nostrud. Laboris elit
-        laboris nisi velit proident culpa.
+        Escolha a melhor forma de presentear!
+        <br /> Você pode nos enviar o valor equivalente ao presente via PIX, e
+        cuidaremos de tudo para você, ou, se preferir, pode comprar o presente
+        você mesmo. A decisão é sua!
       </Text>
       <Flex my="1em">
         <Button

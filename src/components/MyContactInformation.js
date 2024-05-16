@@ -134,9 +134,9 @@ const MyContactInformation = ({
   return (
     <>
       <Text fontSize="sm">
-        Ullamco incididunt qui ea irure proident enim dolore occaecat proident
-        commodo do. Cupidatat Lorem ut consequat nulla nostrud. Laboris elit
-        laboris nisi velit proident culpa.
+        Muito obrigado pelo presente! <br />
+        Por favor, preencha seu nome e telefone para que possamos contatá-lo, se
+        necessário. Se quiser, deixe uma mensagem especial para os noivos.
       </Text>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={4} m="2em 0">

@@ -74,7 +74,8 @@ export default function Search() {
           <Center flexDir="column" gap="0.75em" color="facebook.500" mt="5em">
             <SearchIcon fontSize="3.5em" />
             <Heading fontSize="lg" textAlign="center" mt="1em">
-              Não encontramos nenhum presente correspondente à sua pesquisa.
+              Não encontramos nenhum presente correspondente à &quot;{query}
+              &quot;.
             </Heading>
             <Text textAlign="center">
               Se desejar, entre em contato conosco para adicionarmos o item à

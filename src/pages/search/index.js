@@ -69,47 +69,49 @@ export default function Search() {
             eu eu non commodo dolor pariatur occaecat cillum est officia nisi.
             Consectetur tempor proident labore aute laborum veniam duis.
           </Text>
-          <Text
-            as="h4"
-            mt="2.5em"
-            mb="1.5em"
-            mx="0.5em"
-            fontSize="1.5em"
-            textTransform="uppercase"
-            fontWeight="400"
-            alignSelf="start"
-          >
-            {query}
-          </Text>
         </Center>
-        <Box className={styles.cardsGrid} alignItems="center">
-          {data ? (
-            data.length > 0 ? (
-              <Center flexDir="column" gap="0.75em" color="facebook.500">
-                <SearchIcon fontSize="3.5em" />
-                <Heading fontSize="lg" textAlign="center" mt="1em">
-                  Não encontramos nenhum presente correspondente à sua pesquisa.
-                </Heading>
-                <Text textAlign="center">
-                  Se desejar, entre em contato conosco para adicionarmos o item
-                  à nossa lista.
-                </Text>
-              </Center>
-            ) : (
-              gifts.map((gift) => (
-                <MyCard
-                  key={gift.id}
-                  handleOpenModal={handleOpenModal}
-                  gift={gift}
-                  isChosen={gift.status == "Escolhido"}
-                  allowRemove={false}
-                />
-              ))
-            )
-          ) : (
-            <Spinner mt="4em" size="xl" color="#D1AD74" />
-          )}
-        </Box>
+        {data.length > 0 ? (
+          <Center flexDir="column" gap="0.75em" color="facebook.500" mt="5em">
+            <SearchIcon fontSize="3.5em" />
+            <Heading fontSize="lg" textAlign="center" mt="1em">
+              Não encontramos nenhum presente correspondente à sua pesquisa.
+            </Heading>
+            <Text textAlign="center">
+              Se desejar, entre em contato conosco para adicionarmos o item à
+              nossa lista.
+            </Text>
+          </Center>
+        ) : (
+          <>
+            <Text
+              as="h4"
+              mt="2.5em"
+              mb="1.5em"
+              mx="0.5em"
+              fontSize="1.5em"
+              textTransform="uppercase"
+              fontWeight="400"
+              alignSelf="start"
+            >
+              {query}
+            </Text>
+            <Box className={styles.cardsGrid} alignItems="center">
+              {data ? (
+                gifts.map((gift) => (
+                  <MyCard
+                    key={gift.id}
+                    handleOpenModal={handleOpenModal}
+                    gift={gift}
+                    isChosen={gift.status == "Escolhido"}
+                    allowRemove={false}
+                  />
+                ))
+              ) : (
+                <Spinner mt="4em" size="xl" color="#D1AD74" />
+              )}
+            </Box>
+          </>
+        )}
       </Container>
       <MyChooseGiftModal
         isOpen={isOpen}

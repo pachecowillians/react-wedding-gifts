@@ -77,47 +77,48 @@ export default function MyGifts() {
             eu eu non commodo dolor pariatur occaecat cillum est officia nisi.
             Consectetur tempor proident labore aute laborum veniam duis.
           </Text>
-          <Text
-            as="h4"
-            mt="2.5em"
-            mb="1.5em"
-            mx="0.5em"
-            fontSize="1.5em"
-            textTransform="uppercase"
-            fontWeight="400"
-            alignSelf="start"
-          >
-            Meus Presentes
-          </Text>
         </Center>
-        <Box className={styles.cardsGrid} alignItems="center">
-          {data ? (
-            data.length > 0 ? (
-              <Center flexDir="column" gap="0.75em" color="facebook.500">
-                <Icon as={AiOutlineGift} fontSize="3.5em" />
-                <Heading fontSize="lg" textAlign="center" mt="1em">
-                  Você ainda não escolheu nenhum presente.
-                </Heading>
-                <Text textAlign="center">
-                  Confira a nossa seleção e encontre algo que combine
-                  conosco!
-                </Text>
-              </Center>
-            ) : (
-              gifts.map((gift) => (
-                <MyCard
-                  key={gift.id}
-                  handleOpenModal={handleOpenModal}
-                  gift={gift}
-                  isChosen={gift.status == "Escolhido"}
-                  allowRemove={true}
-                />
-              ))
-            )
-          ) : (
-            <Spinner mt="4em" size="xl" color="#D1AD74" />
-          )}
-        </Box>
+        {data.length > 0 ? (
+          <Center flexDir="column" gap="0.75em" color="facebook.500" mt="5em">
+            <Icon as={AiOutlineGift} fontSize="3.5em" />
+            <Heading fontSize="lg" textAlign="center" mt="1em">
+              Você ainda não escolheu nenhum presente.
+            </Heading>
+            <Text textAlign="center">
+              Confira a nossa seleção e encontre algo que combine conosco!
+            </Text>
+          </Center>
+        ) : (
+          <>
+            <Text
+              as="h4"
+              mt="2.5em"
+              mb="1.5em"
+              mx="0.5em"
+              fontSize="1.5em"
+              textTransform="uppercase"
+              fontWeight="400"
+              alignSelf="start"
+            >
+              Meus Presentes
+            </Text>
+            <Box className={styles.cardsGrid} alignItems="center">
+              {data ? (
+                gifts.map((gift) => (
+                  <MyCard
+                    key={gift.id}
+                    handleOpenModal={handleOpenModal}
+                    gift={gift}
+                    isChosen={gift.status == "Escolhido"}
+                    allowRemove={true}
+                  />
+                ))
+              ) : (
+                <Spinner mt="4em" size="xl" color="#D1AD74" />
+              )}
+            </Box>
+          </>
+        )}
       </Container>
       <MyConfirmRemoveModal
         isOpen={isOpen}

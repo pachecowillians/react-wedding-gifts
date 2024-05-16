@@ -40,7 +40,7 @@ export default function Pix() {
             text={process.env.NEXT_PUBLIC_QRCODE_TEXT}
             options={{
               margin: 2,
-              width: 220,
+              width: 250,
               color: {
                 dark: "#000000",
                 light: "#ffffff",
@@ -48,7 +48,7 @@ export default function Pix() {
             }}
           />
         </Center>
-        <Text alignSelf="center" fontSize="sm" fontWeight="600" mt="1em">
+        <Text alignSelf="center" fontSize="sm" fontWeight="600" mt="1em" color="facebook.500">
           {process.env.NEXT_PUBLIC_ACCOUNT_OWNER}
         </Text>
         <Button
@@ -56,7 +56,7 @@ export default function Pix() {
           variant="ghost"
           colorScheme="gray"
           color="facebook.500"
-          rightIcon={<CopyIcon />}
+          rightIcon={<CopyIcon fontSize="1.2em"/>}
           fontSize="sm"
           w="fit-content"
           alignSelf="center"

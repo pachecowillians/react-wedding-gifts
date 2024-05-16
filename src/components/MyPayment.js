@@ -32,7 +32,7 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
                 }}
               />
             </Center>
-            <Text alignSelf="center" fontSize="sm" fontWeight="600">
+            <Text alignSelf="center" fontSize="sm" fontWeight="600" color="facebook.500">
               {process.env.NEXT_PUBLIC_ACCOUNT_OWNER}
             </Text>
             <Button
@@ -40,7 +40,7 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
               variant="ghost"
               colorScheme="gray"
               color="facebook.500"
-              rightIcon={<CopyIcon />}
+              rightIcon={<CopyIcon fontSize="1.2em"/>}
               fontSize="sm"
               w="fit-content"
               alignSelf="center"

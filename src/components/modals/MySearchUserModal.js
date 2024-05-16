@@ -71,8 +71,8 @@ const MySearchUserModal = ({ isOpen, onClose, setSelectedPage }) => {
 
         <ModalBody>
           <Text fontSize="sm">
-            Ullamco incididunt qui ea irure proident enim dolore occaecat
-            proident commodo do. Cupidatat Lorem ut consequat nulla nostrud.
+            Digite o seu telefone abaixo para receber a listagem dos presentes
+            que escolheu
           </Text>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Stack spacing={4} m="2em 0">

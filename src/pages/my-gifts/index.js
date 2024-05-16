@@ -7,6 +7,8 @@ import {
   useDisclosure,
   Box,
   Spinner,
+  Heading,
+  Icon,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import MyCard from "@/components/MyCard";
@@ -14,6 +16,8 @@ import styles from "@/styles/Home.module.css";
 import { useRouter } from "next/router";
 import MyConfirmRemoveModal from "@/components/modals/MyConfirmRemoveModal";
 import useSWR from "swr";
+import { SearchIcon } from "@chakra-ui/icons";
+import { AiOutlineGift } from "react-icons/ai";
 
 export default function MyGifts() {
   const router = useRouter();
@@ -71,12 +75,11 @@ export default function MyGifts() {
             Ea deserunt elit duis enim aliquip irure aliquip et occaecat. Et
             laboris anim veniam non est adipisicing magna qui sit. Commodo magna
             eu eu non commodo dolor pariatur occaecat cillum est officia nisi.
-            Consectetur tempor proident labore aute laborum veniam duis. Lorem
-            sint non enim labore eiusmod nostrud ut minim cillum. Pariatur aute
+            Consectetur tempor proident labore aute laborum veniam duis.
           </Text>
           <Text
             as="h4"
-            mt="3em"
+            mt="2.5em"
             mb="1.5em"
             mx="0.5em"
             fontSize="1.5em"
@@ -89,15 +92,28 @@ export default function MyGifts() {
         </Center>
         <Box className={styles.cardsGrid} alignItems="center">
           {data ? (
-            gifts.map((gift) => (
-              <MyCard
-                key={gift.id}
-                handleOpenModal={handleOpenModal}
-                gift={gift}
-                isChosen={gift.status == "Escolhido"}
-                allowRemove={true}
-              />
-            ))
+            data.length > 0 ? (
+              <Center flexDir="column" gap="0.75em" color="facebook.500">
+                <Icon as={AiOutlineGift} fontSize="3.5em" />
+                <Heading fontSize="lg" textAlign="center" mt="1em">
+                  Você ainda não escolheu nenhum presente.
+                </Heading>
+                <Text textAlign="center">
+                  Confira a nossa seleção e encontre algo que combine
+                  conosco!
+                </Text>
+              </Center>
+            ) : (
+              gifts.map((gift) => (
+                <MyCard
+                  key={gift.id}
+                  handleOpenModal={handleOpenModal}
+                  gift={gift}
+                  isChosen={gift.status == "Escolhido"}
+                  allowRemove={true}
+                />
+              ))
+            )
           ) : (
             <Spinner mt="4em" size="xl" color="#D1AD74" />
           )}

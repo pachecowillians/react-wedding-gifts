@@ -14,12 +14,12 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
     <>
       <Center>
         {selectedGiftData.paymentMethod === "pix" ? (
-          <Stack spacing={4} m={15}>
-            <Text>
+          <Stack>
+            <Text fontSize="sm">
               Culpa dolore voluptate mollit sunt sunt id anim proident sint aute
               non.
             </Text>
-            <Center>
+            <Center mt="1em">
               <SVG
                 text={process.env.NEXT_PUBLIC_QRCODE_TEXT}
                 options={{
@@ -32,49 +32,54 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
                 }}
               />
             </Center>
-            <Text alignSelf="center" fontSize={17}>
+            <Text alignSelf="center" fontSize="sm" fontWeight="600" color="facebook.500">
               {process.env.NEXT_PUBLIC_ACCOUNT_OWNER}
             </Text>
-            <Stack
-              color="var(--chakra-colors-facebook-500)"
-              gap={5}
-              alignItems="center"
+            <Button
+              onClick={onCopy}
+              variant="ghost"
+              colorScheme="gray"
+              color="facebook.500"
+              rightIcon={<CopyIcon fontSize="1.2em"/>}
+              fontSize="sm"
+              w="fit-content"
+              alignSelf="center"
+              my="0.5em"
             >
-              <Text fontWeight="bold">Chave: {value}</Text>
-              <Button onClick={onCopy} leftIcon={<CopyIcon />}>
-                {hasCopied ? "Chave copiada!" : "Copiar chave"}
-              </Button>
-            </Stack>
+              {hasCopied ? "Chave copiada!" : value}
+            </Button>
           </Stack>
         ) : (
-          <Text>
+          <Text fontSize="sm">
             Ullamco incididunt qui ea irure proident enim dolore occaecat
             proident commodo do. Cupidatat Lorem ut consequat nulla nostrud.
             Laboris elit laboris nisi velit proident culpa.
           </Text>
         )}
       </Center>
-      <Flex mt={5} mb={3}>
+      <Flex my="1em">
         <Button
           colorScheme="facebook"
           variant="ghost"
           mr={3}
           ml="auto"
+          leftIcon={<ArrowBackIcon />}
+          fontSize="sm"
           onClick={() => {
             setActiveStep(0);
           }}
-          leftIcon={<ArrowBackIcon />}
         >
           Voltar
         </Button>
         <Button
           colorScheme="facebook"
+          fontSize="sm"
+          leftIcon={<CheckIcon />}
           onClick={() => {
             setActiveStep(2);
           }}
-          leftIcon={<CheckIcon />}
         >
-          Confirmar
+          Finalizar
         </Button>
       </Flex>
     </>

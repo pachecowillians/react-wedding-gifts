@@ -31,10 +31,10 @@ export default function Pix() {
         <Center flexDir="column">
           <Image src="./logo.svg" alt="Logo" mt="3em" boxSize="12em" />
           <Text mx="0.5em" my="2em" textAlign="center">
-            Cada gesto de carinho fortalece nossos laços, transformando momentos
-            simples em lembranças preciosas. Agradecemos sinceramente por seu
-            apoio. Se sentir vontade de oferecer uma contribuição adicional,
-            nossa chave PIX está disponível para receber sua colaboração.
+            Cada gesto de carinho fortalece nossos laços e transforma momentos
+            simples em lembranças preciosas. Agradecemos sinceramente pelo apoio
+            e, se desejar contribuir mais, nossa chave PIX está disponível para
+            receber sua colaboração.
           </Text>
 
           <SVG

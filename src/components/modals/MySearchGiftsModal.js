@@ -71,8 +71,7 @@ const MySearchGiftsModal = ({ isOpen, onClose, setSelectedPage }) => {
 
         <ModalBody>
           <Text fontSize="sm">
-            Ullamco incididunt qui ea irure proident enim dolore occaecat
-            proident commodo do. Cupidatat Lorem ut consequat nulla nostrud.
+            Digite o nome do presente que deseja e inicie sua busca
           </Text>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Stack spacing={4} m="2em 0">

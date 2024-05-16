@@ -64,13 +64,11 @@ export default function Search() {
         <Center flexDir="column">
           <Image src="./logo.svg" alt="Logo" mt="3em" boxSize="12em" />
           <Text mx="0.5em" mt="3em" textAlign="center">
-            Ea deserunt elit duis enim aliquip irure aliquip et occaecat. Et
-            laboris anim veniam non est adipisicing magna qui sit. Commodo magna
-            eu eu non commodo dolor pariatur occaecat cillum est officia nisi.
-            Consectetur tempor proident labore aute laborum veniam duis.
+            Apresentamos uma seleção de presentes relacionados à sua busca.
+            Encontre o presente ideal aqui!
           </Text>
         </Center>
-        {data && data.length > 0 ? (
+        {data && gifts && gifts.length == 0 ? (
           <Center flexDir="column" gap="0.75em" color="facebook.500" mt="5em">
             <SearchIcon fontSize="3.5em" />
             <Heading fontSize="lg" textAlign="center" mt="1em">
@@ -82,7 +80,7 @@ export default function Search() {
               nossa lista.
             </Text>
           </Center>
-        ) : (
+        ) : data ? (
           <>
             <Text
               as="h4"
@@ -97,7 +95,7 @@ export default function Search() {
               {query}
             </Text>
             <Box className={styles.cardsGrid} alignItems="center">
-              {data ? (
+              {data &&
                 gifts.map((gift) => (
                   <MyCard
                     key={gift.id}
@@ -106,12 +104,11 @@ export default function Search() {
                     isChosen={gift.status == "Escolhido"}
                     allowRemove={false}
                   />
-                ))
-              ) : (
-                <Spinner mt="4em" size="xl" color="#D1AD74" />
-              )}
+                ))}
             </Box>
           </>
+        ) : (
+          <Spinner mt="4em" size="xl" color="#D1AD74" />
         )}
       </Container>
       <MyChooseGiftModal

@@ -78,7 +78,7 @@ export default function MyGifts() {
             Consectetur tempor proident labore aute laborum veniam duis.
           </Text>
         </Center>
-        {data && data.length > 0 ? (
+        {data && gifts && gifts.length == 0 ? (
           <Center flexDir="column" gap="0.75em" color="facebook.500" mt="5em">
             <Icon as={AiOutlineGift} fontSize="3.5em" />
             <Heading fontSize="lg" textAlign="center" mt="1em">
@@ -88,7 +88,7 @@ export default function MyGifts() {
               Confira a nossa seleção e encontre algo que combine conosco!
             </Text>
           </Center>
-        ) : (
+        ) : data ? (
           <>
             <Text
               as="h4"
@@ -103,7 +103,7 @@ export default function MyGifts() {
               Meus Presentes
             </Text>
             <Box className={styles.cardsGrid} alignItems="center">
-              {data ? (
+              {data &&
                 gifts.map((gift) => (
                   <MyCard
                     key={gift.id}
@@ -112,12 +112,11 @@ export default function MyGifts() {
                     isChosen={gift.status == "Escolhido"}
                     allowRemove={true}
                   />
-                ))
-              ) : (
-                <Spinner mt="4em" size="xl" color="#D1AD74" />
-              )}
+                ))}
             </Box>
           </>
+        ) : (
+          <Spinner mt="4em" size="xl" color="#D1AD74" />
         )}
       </Container>
       <MyConfirmRemoveModal

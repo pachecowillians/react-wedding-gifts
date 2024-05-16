@@ -72,10 +72,9 @@ export default function MyGifts() {
         <Center flexDir="column">
           <Image src="./logo.svg" alt="Logo" mt="3em" boxSize="12em" />
           <Text mx="0.5em" mt="3em" textAlign="center">
-            Ea deserunt elit duis enim aliquip irure aliquip et occaecat. Et
-            laboris anim veniam non est adipisicing magna qui sit. Commodo magna
-            eu eu non commodo dolor pariatur occaecat cillum est officia nisi.
-            Consectetur tempor proident labore aute laborum veniam duis.
+            Veja abaixo os presentes que você selecionou. Confira suas escolhas
+            e esteja pronto para tornar nossa ocasião ainda mais especial com
+            esses itens.
           </Text>
         </Center>
         {data && gifts && gifts.length == 0 ? (

@@ -1,65 +1,38 @@
 import React from "react";
-import {
-  Card,
-  CardBody,
-  Image,
-  Stack,
-  Heading,
-  Text,
-  Divider,
-  CardFooter,
-  Button,
-} from "@chakra-ui/react";
-import { ArrowForwardIcon, CheckIcon } from "@chakra-ui/icons";
+import { Card, Image, Stack, Heading, Button, Flex } from "@chakra-ui/react";
+import MyCurrencyDisplay from "./MyCurrencyDisplay";
 
-function MyCard({ gift, handleOpenModal, disabled }) {
+function MyCard({ gift, handleOpenModal, isChosen, allowRemove }) {
   const { imageSrc, title, price } = gift;
 
   return (
-    <Card maxW="sm" w="85vw" alignItems="center" size="lg">
-      <CardBody>
-        <Image
-          src={imageSrc}
-          alt={title}
-          borderRadius="lg"
-          boxSize="20em"
-          objectFit="fill"
-        />
-        <Stack mt="6" spacing="3" alignItems="center">
-          <Heading size="md" fontWeight="400">
-            {title}
-          </Heading>
-          <Text color="blue.600" fontSize="2xl">
-            {price}
-          </Text>
-        </Stack>
-      </CardBody>
-      <Divider color="gray.200" />
-      <CardFooter>
-        {disabled ? (
+    <Card
+      direction="column"
+      variant="outline"
+      borderRadius="xl"
+      overflow="hidden"
+      mx="0.5em"
+      maxW="25em"
+      mb="2.5em"
+    >
+      <Image objectFit="cover" src={imageSrc} alt={title} />
+      <Stack p="1.5em" gap="1.5em">
+        <Heading size="sm">{title}</Heading>
+        <Flex w="full" justifyContent="space-between" alignItems="center">
+          <MyCurrencyDisplay price={price} />
           <Button
-            variant="solid"
-            colorScheme="gray"
-            size="lg"
-            isDisabled
-            leftIcon={<CheckIcon />}
-          >
-            Escolhido
-          </Button>
-        ) : (
-          <Button
-            variant="solid"
-            colorScheme="facebook"
-            size="lg"
-            rightIcon={<ArrowForwardIcon />}
+            colorScheme={allowRemove ? "red" : isChosen ? "gray" : "facebook"}
+            alignSelf="end"
+            fontSize="md"
+            isDisabled={allowRemove ? false : isChosen}
             onClick={() => {
               handleOpenModal(gift);
             }}
           >
-            Escolher
+            {allowRemove ? "Remover" : isChosen ? "Escolhido" : "Escolher"}
           </Button>
-        )}
-      </CardFooter>
+        </Flex>
+      </Stack>
     </Card>
   );
 }

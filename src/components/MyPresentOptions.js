@@ -3,36 +3,45 @@ import { Button, Flex, Text } from "@chakra-ui/react";
 import { FaPix } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
 
-const MyPresentOptions = ({ selectedGiftData, setSelectedGiftData, setActiveStep }) => {
+const MyPresentOptions = ({
+  selectedGiftData,
+  setSelectedGiftData,
+  setActiveStep,
+}) => {
   return (
     <>
-      <Text>
+      <Text fontSize="sm">
         Ullamco incididunt qui ea irure proident enim dolore occaecat proident
         commodo do. Cupidatat Lorem ut consequat nulla nostrud. Laboris elit
         laboris nisi velit proident culpa.
       </Text>
-      <Flex mt={5} mb={3}>
+      <Flex my="1em">
         <Button
           colorScheme="facebook"
           variant="ghost"
           mr={3}
+          ml="auto"
+          leftIcon={<FaPix />}
+          fontSize="sm"
           onClick={() => {
             setSelectedGiftData({ ...selectedGiftData, paymentMethod: "pix" });
             setActiveStep(1);
           }}
-          ml="auto"
-          leftIcon={<FaPix />}
         >
-          PIX
+          Pix
         </Button>
         <Button
           colorScheme="facebook"
           variant="ghost"
+          leftIcon={<FaShoppingCart />}
+          fontSize="sm"
           onClick={() => {
-            setSelectedGiftData({ ...selectedGiftData, paymentMethod: "comprar" });
+            setSelectedGiftData({
+              ...selectedGiftData,
+              paymentMethod: "comprar",
+            });
             setActiveStep(1);
           }}
-          leftIcon={<FaShoppingCart />}
         >
           Eu Compro
         </Button>

@@ -9,16 +9,16 @@ import {
   Flex,
   Stack,
   Heading,
-  Text,
   Image,
   Divider,
 } from "@chakra-ui/react";
-import MyStepper from "./MyStepper";
-import MyContactInformation from "./MyContactInformation";
-import MyPresentOptions from "./MyPresentOptions";
-import MyPayment from "./MyPayment";
+import MyStepper from "../MyStepper";
+import MyContactInformation from "../MyContactInformation";
+import MyPresentOptions from "../MyPresentOptions";
+import MyPayment from "../MyPayment";
+import MyCurrencyDisplay from "../MyCurrencyDisplay";
 
-const MyModal = ({
+const MyChooseGiftModal = ({
   isOpen,
   onClose,
   selectedGiftData,
@@ -40,12 +40,14 @@ const MyModal = ({
       blockScrollOnMount={false}
       isOpen={isOpen}
       onClose={handleClose}
-      size={{ base: "sm", md: "lg" }}
+      size={{ base: "sm", sm: "sm", md: "md", lg: "lg", xl: "xl" }}
+      isCentered
     >
       <ModalOverlay />
-      <ModalContent p={1}>
+      <ModalContent pt="1em">
         <ModalHeader>
-          <ModalCloseButton m={1} />
+          Escolher presente
+          <ModalCloseButton m="0.125em" />
         </ModalHeader>
 
         <ModalBody>
@@ -53,17 +55,17 @@ const MyModal = ({
             <Image
               src={selectedGiftData && selectedGiftData.imageSrc}
               alt={selectedGiftData && selectedGiftData.description}
-              borderRadius="lg"
-              boxSize="5em"
-              objectFit="fill"
+              borderRadius="md"
+              objectFit="contain"
+              maxW="30%"
             />
-            <Stack spacing="3" justifyContent="center">
-              <Heading size="md" fontWeight="400">
+            <Stack gap="0.75em" justifyContent="center">
+              <Heading fontSize="sm" fontWeight="bold">
                 {selectedGiftData && selectedGiftData.title}
               </Heading>
-              <Text color="blue.600" fontSize="lg">
-                {selectedGiftData && selectedGiftData.price}
-              </Text>
+              <MyCurrencyDisplay
+                price={selectedGiftData && selectedGiftData.price}
+              />
             </Stack>
           </Flex>
           <Divider m="1.5em 0" />
@@ -99,4 +101,4 @@ const MyModal = ({
   );
 };
 
-export default MyModal;
+export default MyChooseGiftModal;

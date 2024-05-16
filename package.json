@@ -14,6 +14,7 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@fontsource-variable/inter": "^5.0.18",
     "@fontsource/lora": "^5.0.17",
     "@hookform/resolvers": "^3.3.4",
     "dotenv": "^16.4.5",
@@ -26,6 +27,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.51.3",
     "react-icons": "^5.1.0",
+    "swr": "^2.2.5",
     "yup": "^1.4.0"
   },
   "devDependencies": {

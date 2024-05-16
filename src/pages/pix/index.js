@@ -31,9 +31,10 @@ export default function Pix() {
         <Center flexDir="column">
           <Image src="./logo.svg" alt="Logo" mt="3em" boxSize="12em" />
           <Text mx="0.5em" my="2em" textAlign="center">
-            Ea deserunt elit duis enim aliquip irure aliquip et occaecat. Et
-            laboris anim veniam non est adipisicing magna qui sit. Commodo magna
-            eu eu non commodo dolor pariatur occaecat cillum est officia nisi.
+            Cada gesto de carinho fortalece nossos laços, transformando momentos
+            simples em lembranças preciosas. Agradecemos sinceramente por seu
+            apoio. Se sentir vontade de oferecer uma contribuição adicional,
+            nossa chave PIX está disponível para receber sua colaboração.
           </Text>
 
           <SVG
@@ -48,7 +49,13 @@ export default function Pix() {
             }}
           />
         </Center>
-        <Text alignSelf="center" fontSize="sm" fontWeight="600" mt="1em" color="facebook.500">
+        <Text
+          alignSelf="center"
+          fontSize="sm"
+          fontWeight="600"
+          mt="1em"
+          color="facebook.500"
+        >
           {process.env.NEXT_PUBLIC_ACCOUNT_OWNER}
         </Text>
         <Button
@@ -56,7 +63,7 @@ export default function Pix() {
           variant="ghost"
           colorScheme="gray"
           color="facebook.500"
-          rightIcon={<CopyIcon fontSize="1.2em"/>}
+          rightIcon={<CopyIcon fontSize="1.2em" />}
           fontSize="sm"
           w="fit-content"
           alignSelf="center"

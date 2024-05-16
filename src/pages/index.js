@@ -47,11 +47,14 @@ export default function Home() {
         <Center flexDir="column">
           <Image src="./logo.svg" alt="Logo" mt="3em" boxSize="12em" />
           <Text mx="0.5em" mt="3em" textAlign="center">
-            Ea deserunt elit duis enim aliquip irure aliquip et occaecat. Et
-            laboris anim veniam non est adipisicing magna qui sit. Commodo magna
-            eu eu non commodo dolor pariatur occaecat cillum est officia nisi.
-            Consectetur tempor proident labore aute laborum veniam duis. Lorem
-            sint non enim labore eiusmod nostrud ut minim cillum. Pariatur aute
+            Bem-vindo à nossa lista de presentes! <br />
+            Aqui você encontra os itens que mais curtimos e que gostaríamos de
+            ter na nossa nova jornada juntos. <br />
+            Dê uma olhada, escolha o que quiser e decida como contribuir:
+            comprando diretamente ou enviando um PIX pra gente. <br />
+            E se quiserem dar uma força extra, a chave PIX está aqui pra receber
+            qualquer contribuição adicional. <br />
+            Obrigado por fazer parte desse momento com a gente!
           </Text>
         </Center>
         <Text

@@ -78,7 +78,7 @@ export default function MyGifts() {
             Consectetur tempor proident labore aute laborum veniam duis.
           </Text>
         </Center>
-        {data.length > 0 ? (
+        {data && data.length > 0 ? (
           <Center flexDir="column" gap="0.75em" color="facebook.500" mt="5em">
             <Icon as={AiOutlineGift} fontSize="3.5em" />
             <Heading fontSize="lg" textAlign="center" mt="1em">

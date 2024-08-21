@@ -16,7 +16,6 @@ import MyStepper from "../MyStepper";
 import MyContactInformation from "../MyContactInformation";
 import MyPresentOptions from "../MyPresentOptions";
 import MyPayment from "../MyPayment";
-import MyCurrencyDisplay from "../MyCurrencyDisplay";
 
 const MyChooseGiftModal = ({
   isOpen,

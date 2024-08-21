@@ -1,9 +1,8 @@
 import React from "react";
 import { Card, Image, Stack, Heading, Button, Flex } from "@chakra-ui/react";
-import MyCurrencyDisplay from "./MyCurrencyDisplay";
 
 function MyCard({ gift, handleOpenModal, isChosen, allowRemove }) {
-  const { imageSrc, title, price } = gift;
+  const { imageSrc, title } = gift;
 
   return (
     <Card

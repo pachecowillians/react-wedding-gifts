@@ -13,7 +13,7 @@ import {
 const MyStepper = ({ activeStep, steps, activeStepText }) => {
   return (
     <Stack mb="1.5em">
-      <Stepper size="xs" colorScheme="facebook" index={activeStep} gap="0">
+      <Stepper size="sm" colorScheme="facebook" index={activeStep} gap="0">
         {steps.map((step, index) => (
           <Step key={index} gap="0">
             <StepIndicator>
@@ -23,7 +23,7 @@ const MyStepper = ({ activeStep, steps, activeStepText }) => {
           </Step>
         ))}
       </Stepper>
-      <Text fontSize="md">
+      <Text fontSize="md" mt="0.25em">
         Passo {activeStep + 1}: <b>{activeStepText}</b>
       </Text>
     </Stack>

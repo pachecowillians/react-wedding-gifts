@@ -14,7 +14,6 @@ import MyCard from "@/components/MyCard";
 import styles from "@/styles/Home.module.css";
 import MyChooseGiftModal from "@/components/modals/MyChooseGiftModal";
 import useSWR from "swr";
-import { SearchIcon } from "@chakra-ui/icons";
 import { GrDeliver } from "react-icons/gr";
 
 export default function Home() {

@@ -63,9 +63,6 @@ const MyChooseGiftModal = ({
               <Heading fontSize="sm" fontWeight="bold">
                 {selectedGiftData && selectedGiftData.title}
               </Heading>
-              <MyCurrencyDisplay
-                price={selectedGiftData && selectedGiftData.price}
-              />
             </Stack>
           </Flex>
           <Divider m="1.5em 0" />

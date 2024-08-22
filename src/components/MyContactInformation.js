@@ -68,7 +68,7 @@ const MyContactInformation = ({
         success: {
           title: "Presente Confirmado!",
           description:
-            "Obrigado por reservar este presente! Estamos ansiosos para vê-lo em nosso casamento!",
+            "Presente reservado com sucesso! Agradecemos muito e estamos animados para te ver no nosso casamento.",
           duration: 7000,
           isClosable: true,
           position: "top",
@@ -76,7 +76,7 @@ const MyContactInformation = ({
         error: {
           title: "Erro ao Reservar Presente",
           description:
-            "Ocorreu um erro ao processar sua reserva. Por favor, verifique o status da sua reserva ou entre em contato conosco para obter assistência. Se você já fez o pagamento via PIX, não é necessário refazê-lo.",
+            "Ocorreu um erro ao fazer a reserva. Por favor, confira o status ou fale com a gente se precisar de ajuda. Se já fez o pagamento via PIX, não precisa refazer.",
           duration: 10000,
           isClosable: true,
           position: "top",
@@ -84,7 +84,7 @@ const MyContactInformation = ({
         loading: {
           title: "Aguarde um momento...",
           description:
-            "Estamos processando sua reserva. Por favor, aguarde um momento.",
+            "Estamos cuidando da sua reserva. Só um instante, por favor.",
           duration: 7000,
           isClosable: true,
           position: "top",

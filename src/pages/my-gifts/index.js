@@ -60,7 +60,7 @@ export default function MyGifts() {
   return (
     <>
       <Head>
-        <title>Meus Presentes</title>
+        <title>W&S | Meus Presentes</title>
         <meta
           name="description"
           content="Gift list for the wedding of Willian and Samara"

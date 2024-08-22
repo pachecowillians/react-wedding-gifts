@@ -19,7 +19,7 @@ export default function Pix() {
   return (
     <>
       <Head>
-        <title>Pix</title>
+        <title>W&S | Pix</title>
         <meta
           name="description"
           content="Gift list for the wedding of Willian and Samara"

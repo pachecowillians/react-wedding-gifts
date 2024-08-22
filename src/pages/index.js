@@ -37,7 +37,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Lista de Presentes</title>
+        <title>W&S | Lista de Presentes</title>
         <meta
           name="description"
           content="Gift list for the wedding of Willian and Samara"

@@ -52,7 +52,7 @@ export default function Search() {
   return (
     <>
       <Head>
-        <title>Buscar</title>
+        <title>W&S | Buscar</title>
         <meta
           name="description"
           content="Gift list for the wedding of Willian and Samara"

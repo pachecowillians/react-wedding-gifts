@@ -49,10 +49,13 @@ export default function Home() {
         <Center flexDir="column">
           <Image src="./logo.svg" alt="Logo" mt="3em" boxSize="12em" />
           <Text mx="0.5em" mt="3em" textAlign="center">
-            Seja bem-vindo à nossa lista de presentes! Nela, reunimos itens que
-            desejamos para nossa jornada juntos. Fique à vontade para escolher e
-            contribuir como preferir: comprando diretamente ou enviando um PIX.
-            Agradecemos imensamente por fazer parte deste momento conosco!
+            O grande dia está chegando, e a gente mal pode esperar para
+            comemorar com vocês! Sabemos que todo mundo gosta de presentear quem
+            ama, então criamos essa lista de presentes para dar uma forcinha.
+            Tem de tudo um pouco, desde itens para a nossa nova casinha até
+            algumas coisinhas que sempre sonhamos ter. Escolham o que quiserem
+            (ou só venham com um abraço mesmo, que também vale!). No fim, o que
+            mais importa é ter vocês com a gente nessa nova aventura!
           </Text>
         </Center>
         {data && gifts && gifts.length == 0 ? (

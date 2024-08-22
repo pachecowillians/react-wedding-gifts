@@ -25,7 +25,7 @@ const MyChooseGiftModal = ({
   fetchGifts,
 }) => {
   const [activeStep, setActiveStep] = useState(0);
-  const steps = ["Opções de Presente", "Pagamento", "Informações de Contato"];
+  const steps = ["Escolha como nos presentear!", "Finalize o Presente do Seu Jeito!", "Obrigado pelo Presente!"];
   const activeStepText = steps[activeStep];
 
   function handleClose() {

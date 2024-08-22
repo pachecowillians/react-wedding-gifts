@@ -134,9 +134,11 @@ const MyContactInformation = ({
   return (
     <>
       <Text fontSize="sm">
-        Muito obrigado pelo presente! <br />
-        Por favor, preencha seu nome e telefone para que possamos contatá-lo, se
-        necessário. Se quiser, deixe uma mensagem especial para os noivos.
+        Para que possamos identificar e agradecer seu presente, por favor,
+        preencha seu nome e telefone abaixo. Se quiser deixar uma mensagem para
+        nós, ficaremos muito felizes em ler suas palavras!
+        <br /> Não se preocupe! Seus dados serão usados exclusivamente para isso
+        e ficarão seguros conosco.
       </Text>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={4} m="2em 0">

@@ -64,8 +64,10 @@ export default function Search() {
         <Center flexDir="column">
           <Image src="./logo.svg" alt="Logo" mt="3em" boxSize="12em" />
           <Text mx="0.5em" mt="3em" textAlign="center">
-            Apresentamos uma seleção de presentes relacionados à sua busca.
-            Encontre o presente ideal aqui!
+            Achou o presente perfeito? Ótimo! Agora é só reservar para garantir
+            que ninguém vai escolher antes de você. Se ainda está em dúvida, não
+            tem problema, a lista está cheia de boas opções! Mas não espere
+            muito, os melhores presentes voam rápido.
           </Text>
         </Center>
         {data && gifts && gifts.length == 0 ? (

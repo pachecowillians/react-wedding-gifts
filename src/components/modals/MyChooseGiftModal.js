@@ -46,7 +46,7 @@ const MyChooseGiftModal = ({
       <ModalContent pt="1em">
         <ModalHeader>
           Escolher presente
-          <ModalCloseButton m="0.125em" />
+          <ModalCloseButton m="0.25em" />
         </ModalHeader>
 
         <ModalBody>

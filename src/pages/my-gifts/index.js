@@ -72,9 +72,11 @@ export default function MyGifts() {
         <Center flexDir="column">
           <Image src="./logo.svg" alt="Logo" mt="3em" boxSize="12em" />
           <Text mx="0.5em" mt="3em" textAlign="center">
-            Veja abaixo os presentes que você selecionou. Confira suas escolhas
-            e esteja pronto para tornar nossa ocasião ainda mais especial com
-            esses itens.
+            Olha só que beleza! Esses são os presentes que você escolheu para a
+            gente. Já estamos sonhando com eles! Se quiser fazer alguma
+            alteração ou adicionar mais um mimo, fique à vontade. Cada escolha é
+            uma lembrança especial que levaremos para sempre. Obrigado por fazer
+            parte desse momento!
           </Text>
         </Center>
         {data && gifts && gifts.length == 0 ? (
@@ -121,6 +123,7 @@ export default function MyGifts() {
       <MyConfirmRemoveModal
         isOpen={isOpen}
         onClose={onClose}
+        selectedGiftData={selectedGiftData}
         setSelectedGiftData={setSelectedGiftData}
         fetchGifts={mutate}
       />

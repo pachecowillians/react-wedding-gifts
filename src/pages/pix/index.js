@@ -31,10 +31,12 @@ export default function Pix() {
         <Center flexDir="column">
           <Image src="./logo.svg" alt="Logo" mt="3em" boxSize="12em" />
           <Text mx="0.5em" my="2em" textAlign="center">
-            Cada gesto de carinho fortalece nossos laços e transforma momentos
-            simples em lembranças preciosas. Agradecemos sinceramente pelo apoio
-            e, se desejar contribuir mais, nossa chave PIX está disponível para
-            receber sua colaboração.
+            Quer dar aquele presente especial, mas sem sair de casa? O PIX salva
+            o dia! É só escanear o QR Code ou, se preferir, copiar a chave PIX
+            que está logo ali em baixo. Prometemos usar esse presente com muito
+            carinho (ou para pagar a lua de mel, quem sabe?). Cada contribuição
+            é uma parte do nosso sonho, e somos muito gratos por você fazer
+            parte dele. Obrigado por estar conosco nesse momento tão especial!
           </Text>
 
           <SVG

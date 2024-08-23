@@ -65,8 +65,8 @@ export default function Home() {
               Ops! Parece que nossos presentes ainda não chegaram ao site.
             </Heading>
             <Text textAlign="center">
-              Mas não se preocupe! Estamos prontos para adicionar suas sugestões
-              à nossa lista. Se tiver algo em mente, deixe-nos saber.
+              Mas fique de olho! Logo logo a lista estará cheia de opções
+              incríveis para você escolher. Volte em breve e confira!
             </Text>
           </Center>
         ) : data ? (

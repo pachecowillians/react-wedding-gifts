@@ -83,10 +83,12 @@ export default function MyGifts() {
           <Center flexDir="column" gap="0.75em" color="facebook.500" mt="5em">
             <Icon as={AiOutlineGift} fontSize="3.5em" />
             <Heading fontSize="lg" textAlign="center" mt="1em">
-              Você ainda não escolheu nenhum presente.
+              Você ainda não escolheu nenhum presente...
             </Heading>
             <Text textAlign="center">
-              Confira a nossa seleção e encontre algo que combine conosco!
+              Mas não se preocupe, ainda dá tempo! Nossa lista está cheia de
+              opções incríveis esperando por você. <br />
+              Que tal dar uma olhadinha e escolher algo especial?
             </Text>
           </Center>
         ) : data ? (

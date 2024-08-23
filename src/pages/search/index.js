@@ -52,32 +52,35 @@ export default function Search() {
   return (
     <>
       <Head>
-        <title>Buscar</title>
+        <title>W&S | Buscar</title>
         <meta
           name="description"
           content="Gift list for the wedding of Willian and Samara"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo.svg" />
       </Head>
       <Container centerContent maxW={{ md: "80%" }} mb="5em">
         <Center flexDir="column">
           <Image src="./logo.svg" alt="Logo" mt="3em" boxSize="12em" />
           <Text mx="0.5em" mt="3em" textAlign="center">
-            Apresentamos uma seleção de presentes relacionados à sua busca.
-            Encontre o presente ideal aqui!
+            Achou o presente perfeito? Ótimo! Agora é só reservar para garantir
+            que ninguém vai escolher antes de você. Se ainda está em dúvida, não
+            tem problema, a lista está cheia de boas opções! Mas não espere
+            muito, os melhores presentes voam rápido.
           </Text>
         </Center>
         {data && gifts && gifts.length == 0 ? (
           <Center flexDir="column" gap="0.75em" color="facebook.500" mt="5em">
             <SearchIcon fontSize="3.5em" />
             <Heading fontSize="lg" textAlign="center" mt="1em">
-              Não encontramos nenhum presente correspondente à &quot;{query}
+              Poxa, não encontramos nenhum(a) &quot;{query}
               &quot;.
             </Heading>
             <Text textAlign="center">
-              Se desejar, entre em contato conosco para adicionarmos o item à
-              nossa lista.
+              Mas não se preocupe! Se você tiver algo específico em mente, é só
+              falar com a gente e podemos adicionar à lista.
+              <br /> Quem sabe seu presente está a um passo de ser incluído!
             </Text>
           </Center>
         ) : data ? (

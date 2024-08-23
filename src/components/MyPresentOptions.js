@@ -11,10 +11,10 @@ const MyPresentOptions = ({
   return (
     <>
       <Text fontSize="sm">
-        Escolha a melhor forma de presentear!
-        <br /> Você pode nos enviar o valor equivalente ao presente via PIX, e
-        cuidaremos de tudo para você, ou, se preferir, pode comprar o presente
-        você mesmo. A decisão é sua!
+        Você pode escolher um presente da nossa lista e comprá-lo onde achar
+        melhor. Ou, se preferir algo mais prático, também pode nos enviar o presente
+        diretamente via Pix. Fique à vontade para escolher a forma que for mais
+        conveniente para você!
       </Text>
       <Flex my="1em">
         <Button

@@ -60,31 +60,35 @@ export default function MyGifts() {
   return (
     <>
       <Head>
-        <title>Meus Presentes</title>
+        <title>W&S | Meus Presentes</title>
         <meta
           name="description"
           content="Gift list for the wedding of Willian and Samara"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo.svg" />
       </Head>
       <Container centerContent maxW={{ md: "80%" }} mb="5em">
         <Center flexDir="column">
           <Image src="./logo.svg" alt="Logo" mt="3em" boxSize="12em" />
           <Text mx="0.5em" mt="3em" textAlign="center">
-            Veja abaixo os presentes que você selecionou. Confira suas escolhas
-            e esteja pronto para tornar nossa ocasião ainda mais especial com
-            esses itens.
+            Olha só que beleza! Esses são os presentes que você escolheu para a
+            gente. Já estamos sonhando com eles! Se quiser fazer alguma
+            alteração ou adicionar mais um mimo, fique à vontade. Cada escolha é
+            uma lembrança especial que levaremos para sempre. Obrigado por fazer
+            parte desse momento!
           </Text>
         </Center>
         {data && gifts && gifts.length == 0 ? (
           <Center flexDir="column" gap="0.75em" color="facebook.500" mt="5em">
             <Icon as={AiOutlineGift} fontSize="3.5em" />
             <Heading fontSize="lg" textAlign="center" mt="1em">
-              Você ainda não escolheu nenhum presente.
+              Você ainda não escolheu nenhum presente...
             </Heading>
             <Text textAlign="center">
-              Confira a nossa seleção e encontre algo que combine conosco!
+              Mas não se preocupe, ainda dá tempo! Nossa lista está cheia de
+              opções incríveis esperando por você. <br />
+              Que tal dar uma olhadinha e escolher algo especial?
             </Text>
           </Center>
         ) : data ? (
@@ -121,6 +125,7 @@ export default function MyGifts() {
       <MyConfirmRemoveModal
         isOpen={isOpen}
         onClose={onClose}
+        selectedGiftData={selectedGiftData}
         setSelectedGiftData={setSelectedGiftData}
         fetchGifts={mutate}
       />

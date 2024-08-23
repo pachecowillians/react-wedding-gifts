@@ -66,15 +66,12 @@ const MySearchGiftsModal = ({ isOpen, onClose, setSelectedPage }) => {
       <ModalContent pt="1em">
         <ModalHeader>
           Buscar presentes
-          <ModalCloseButton m="0.125em" />
+          <ModalCloseButton m="0.25em" />
         </ModalHeader>
 
         <ModalBody>
-          <Text fontSize="sm">
-            Digite o nome do presente que deseja e inicie sua busca
-          </Text>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Stack spacing={4} m="2em 0">
+            <Stack spacing={4} m="1em 0">
               <FormControl isInvalid={errors.name}>
                 <InputGroup>
                   <InputLeftElement pointerEvents="none">
@@ -83,7 +80,7 @@ const MySearchGiftsModal = ({ isOpen, onClose, setSelectedPage }) => {
                   <Input
                     type="text"
                     fontSize="sm"
-                    placeholder="Nome do presente"
+                    placeholder="Digite o nome do presente"
                     {...register("name")}
                   />
                 </InputGroup>

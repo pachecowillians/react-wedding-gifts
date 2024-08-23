@@ -16,7 +16,6 @@ import MyStepper from "../MyStepper";
 import MyContactInformation from "../MyContactInformation";
 import MyPresentOptions from "../MyPresentOptions";
 import MyPayment from "../MyPayment";
-import MyCurrencyDisplay from "../MyCurrencyDisplay";
 
 const MyChooseGiftModal = ({
   isOpen,
@@ -26,7 +25,7 @@ const MyChooseGiftModal = ({
   fetchGifts,
 }) => {
   const [activeStep, setActiveStep] = useState(0);
-  const steps = ["Opções de Presente", "Pagamento", "Informações de Contato"];
+  const steps = ["Escolha como nos presentear!", "Finalize o Presente do Seu Jeito!", "Obrigado pelo Presente!"];
   const activeStepText = steps[activeStep];
 
   function handleClose() {
@@ -47,7 +46,7 @@ const MyChooseGiftModal = ({
       <ModalContent pt="1em">
         <ModalHeader>
           Escolher presente
-          <ModalCloseButton m="0.125em" />
+          <ModalCloseButton m="0.25em" />
         </ModalHeader>
 
         <ModalBody>
@@ -63,9 +62,6 @@ const MyChooseGiftModal = ({
               <Heading fontSize="sm" fontWeight="bold">
                 {selectedGiftData && selectedGiftData.title}
               </Heading>
-              <MyCurrencyDisplay
-                price={selectedGiftData && selectedGiftData.price}
-              />
             </Stack>
           </Flex>
           <Divider m="1.5em 0" />

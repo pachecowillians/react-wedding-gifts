@@ -66,16 +66,12 @@ const MySearchUserModal = ({ isOpen, onClose, setSelectedPage }) => {
       <ModalContent pt="1em">
         <ModalHeader>
           Meus presentes
-          <ModalCloseButton m="0.125em" />
+          <ModalCloseButton m="0.25em" />
         </ModalHeader>
 
         <ModalBody>
-          <Text fontSize="sm">
-            Digite o seu telefone abaixo para receber a listagem dos presentes
-            que escolheu
-          </Text>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Stack spacing={4} m="2em 0">
+            <Stack spacing={4} m="1em 0">
               <FormControl isInvalid={errors.phone}>
                 <InputGroup>
                   <InputLeftElement pointerEvents="none">
@@ -84,7 +80,7 @@ const MySearchUserModal = ({ isOpen, onClose, setSelectedPage }) => {
                   <Input
                     type="tel"
                     fontSize="sm"
-                    placeholder="Número de celular"
+                    placeholder="Digite o seu número de celular"
                     {...register("phone")}
                   />
                 </InputGroup>

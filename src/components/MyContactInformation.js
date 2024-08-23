@@ -68,23 +68,23 @@ const MyContactInformation = ({
         success: {
           title: "Presente Confirmado!",
           description:
-            "Obrigado por reservar este presente! Estamos ansiosos para vê-lo em nosso casamento!",
+            "Sua reserva foi feita com sucesso! A gente mal pode esperar para te ver no nosso casamento. Obrigado por fazer parte desse momento!",
           duration: 7000,
           isClosable: true,
           position: "top",
         },
         error: {
-          title: "Erro ao Reservar Presente",
+          title: "Ops, deu erro!",
           description:
-            "Ocorreu um erro ao processar sua reserva. Por favor, verifique o status da sua reserva ou entre em contato conosco para obter assistência. Se você já fez o pagamento via PIX, não é necessário refazê-lo.",
+            "Algo deu errado ao reservar o presente. Por favor, verifique o status ou fale com a gente se precisar de uma mão. Se já pagou via PIX, pode ficar tranquilo que não precisa refazer.",
           duration: 10000,
           isClosable: true,
           position: "top",
         },
         loading: {
-          title: "Aguarde um momento...",
+          title: "Quase lá...",
           description:
-            "Estamos processando sua reserva. Por favor, aguarde um momento.",
+            "Estamos finalizando sua reserva. Só um minutinho, por favor.",
           duration: 7000,
           isClosable: true,
           position: "top",
@@ -134,9 +134,11 @@ const MyContactInformation = ({
   return (
     <>
       <Text fontSize="sm">
-        Muito obrigado pelo presente! <br />
-        Por favor, preencha seu nome e telefone para que possamos contatá-lo, se
-        necessário. Se quiser, deixe uma mensagem especial para os noivos.
+        Para que possamos identificar e agradecer seu presente, por favor,
+        preencha seu nome e telefone abaixo. Se quiser deixar uma mensagem para
+        nós, ficaremos muito felizes em ler suas palavras!
+        <br /> Não se preocupe! Seus dados serão usados exclusivamente para isso
+        e ficarão seguros conosco.
       </Text>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={4} m="2em 0">

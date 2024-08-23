@@ -16,10 +16,10 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
         {selectedGiftData.paymentMethod === "pix" ? (
           <Stack>
             <Text fontSize="sm">
-              Você escolheu pagar via PIX!
-              <br /> Copie a chave PIX ou escaneie o QR Code abaixo. No app do
-              seu banco, confira os dados e realize o pagamento do valor
-              equivalente ao presente escolhido.
+              Você pode usar o QR Code abaixo para uma transação rápida e
+              prática. Se preferir, também pode copiar a chave Pix que está logo
+              abaixo e usá-la no seu aplicativo de pagamento. Escolha o método
+              que achar mais fácil!
             </Text>
             <Center mt="1em">
               <SVG
@@ -58,9 +58,10 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
           </Stack>
         ) : (
           <Text fontSize="sm">
-            Você escolheu comprar o presente!
-            <br /> Aguardamos sua entrega no dia do casamento ou em uma ocasião
-            oportuna. Agradecemos por seu carinho e atenção!
+            Você pode comprar o presente onde preferir e entregá-lo quando for
+            mais conveniente para você. O site é apenas para reservar os
+            presentes e evitar duplicatas, então fique à vontade para escolher a
+            loja e o momento que melhor se adequem à sua rotina.
           </Text>
         )}
       </Center>

@@ -10,12 +10,17 @@ import {
   Text,
   Button,
   useToast,
+  Stack,
+  Heading,
+  Divider,
+  Image,
 } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 
 const MyConfirmRemoveModal = ({
   isOpen,
   onClose,
+  selectedGiftData,
   setSelectedGiftData,
   fetchGifts,
 }) => {
@@ -42,25 +47,25 @@ const MyConfirmRemoveModal = ({
 
       toast.promise(myPromise, {
         success: {
-          title: "Presente Removido!",
+          title: "Presente Cancelado!",
           description:
-            "Sentimos muito que tenha desistido do presente! Agradecemos por considerar. Estamos ansiosos para vê-lo em nosso casamento!",
+            "Entendemos, às vezes as coisas mudam! O presente foi removido, mas a gente ainda está super animado para te ver no casamento!",
           duration: 7000,
           isClosable: true,
           position: "top",
         },
         error: {
-          title: "Erro ao Remover o Presente",
+          title: "Opa, deu erro!",
           description:
-            "Lamentamos informar que ocorreu um erro ao processar sua remoção de presente. Por favor, verifique o status da sua reserva ou entre em contato conosco para obter assistência. Se você já fez o pagamento via PIX, não é necessário refazê-lo.",
+            "Parece que algo deu errado ao cancelar o presente. Por favor, verifique ou fale com a gente para resolver.",
           duration: 10000,
           isClosable: true,
           position: "top",
         },
         loading: {
-          title: "Aguarde um momento...",
+          title: "Processando...",
           description:
-            "Estamos processando a remoção do seu presente. Por favor, aguarde um momento.",
+            "Estamos cuidando de tudo para cancelar o presente. Só um instante, por favor.",
           duration: 7000,
           isClosable: true,
           position: "top",
@@ -124,13 +129,30 @@ const MyConfirmRemoveModal = ({
       <ModalContent pt="1em">
         <ModalHeader>
           Remover presente
-          <ModalCloseButton m="0.125em" />
+          <ModalCloseButton m="0.25em" />
         </ModalHeader>
 
         <ModalBody>
+          <Flex gap="1em">
+            <Image
+              src={selectedGiftData && selectedGiftData.imageSrc}
+              alt={selectedGiftData && selectedGiftData.description}
+              borderRadius="md"
+              objectFit="contain"
+              maxW="30%"
+            />
+            <Stack gap="0.75em" justifyContent="center">
+              <Heading fontSize="sm" fontWeight="bold">
+                {selectedGiftData && selectedGiftData.title}
+              </Heading>
+            </Stack>
+          </Flex>
+          <Divider m="1.5em 0" />
           <Text fontSize="sm">
-            Você tem certeza de que deseja desistir deste presente? Ao
-            confirmar, ele será removido da sua lista de presentes.
+            Ei, você está prestes a cancelar a reserva deste presente. Tem
+            certeza? Se for o caso, só confirmar e a reserva será cancelada. Se
+            mudar de ideia, nossa lista está aqui para ajudar você a encontrar o
+            presente perfeito!
           </Text>
           <Flex mb="1em" mt="2em" justifyContent="flex-end">
             <Button

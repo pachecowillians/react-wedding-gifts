@@ -60,8 +60,8 @@ const MyPayment = ({ selectedGiftData, setActiveStep }) => {
           <Text fontSize="sm">
             Você pode comprar o presente onde preferir e entregá-lo quando for
             mais conveniente para você. O site é apenas para reservar os
-            presentes e evitar duplicatas, então fique à vontade para escolher a
-            loja e o momento que melhor se adequem à sua rotina.
+            presentes e evitar presentes repetidos, então fique à vontade para
+            escolher a loja e o momento que melhor se encaixem na sua rotina.
           </Text>
         )}
       </Center>

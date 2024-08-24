@@ -35,7 +35,7 @@ export default function Search() {
 
       const filteredData = data.filter((object) => {
         const normalizedTitle = removeAccents(object.title).toLowerCase();
-        const searchTerm = query ? removeAccents(query).toLowerCase() : query;
+        const searchTerm = query ? removeAccents(query).toLowerCase().trim() : query;
 
         return normalizedTitle.includes(searchTerm);
       });
